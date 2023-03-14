@@ -16,7 +16,6 @@ export class UserRepo {
   }
 
   async loginUser(user: ProtoUserStructure): Promise<UserStructure> {
-    user.name = ""; // En el formulario de login no se pide name
     const resp = await fetch(this.url + "/login", {
       method: "POST",
       body: JSON.stringify(user),
