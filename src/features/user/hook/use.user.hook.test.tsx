@@ -1,20 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { ProtoUserStructure } from "../model/user.model";
 import { userReducer } from "../reducer/user.reducer";
 import { UserRepo } from "../services/repository/user.repo";
 import { useUsers } from "./use.user.hook";
 
-describe("Given the useCharacters hook", () => {
+describe("Given the useUsers hook", () => {
   let elements: HTMLElement[];
-  let mockRepo: UserRepo;
+
   const mockStore = configureStore({
     reducer: { users: userReducer },
     preloadedState: {
@@ -35,13 +29,12 @@ describe("Given the useCharacters hook", () => {
     },
   });
 
+  const mockRepo: UserRepo = {
+    url: "",
+    loginUser: jest.fn(),
+    registerUser: jest.fn(),
+  };
   beforeEach(async () => {
-    const mockRepo: UserRepo = {
-      url: "",
-      loginUser: jest.fn(),
-      registerUser: jest.fn(),
-    };
-
     const TestComponent = function () {
       const { logUser, regUser } = useUsers(mockRepo);
 
@@ -54,7 +47,7 @@ describe("Given the useCharacters hook", () => {
     };
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
-    await waitFor(async () => {
+    await act(async () => {
       // eslint-disable-next-line testing-library/no-render-in-setup
       await render(
         <Provider store={mockStore}>
@@ -67,14 +60,14 @@ describe("Given the useCharacters hook", () => {
   });
 
   describe("When click on first button", () => {
-    test("Then it should call the repo method readOne", async () => {
+    test("Then it should call the repo method loginUser", async () => {
       await fireEvent.click(elements[0]);
       expect(mockRepo.loginUser).toHaveBeenCalled();
     });
   });
 
   describe("When click on second button", () => {
-    test("Then it should call the repo method readOne", async () => {
+    test("Then it should call the repo method registerUser", async () => {
       await fireEvent.click(elements[1]);
       expect(mockRepo.registerUser).toHaveBeenCalled();
     });
