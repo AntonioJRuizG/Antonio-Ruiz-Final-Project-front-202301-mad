@@ -1,5 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { Provider } from "react-redux";
 import { ProtoUserStructure } from "../model/user.model";
 import { userReducer } from "../reducer/user.reducer";
@@ -48,7 +54,7 @@ describe("Given the useCharacters hook", () => {
     };
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
-    await act(async () => {
+    await waitFor(async () => {
       // eslint-disable-next-line testing-library/no-render-in-setup
       await render(
         <Provider store={mockStore}>
@@ -62,15 +68,15 @@ describe("Given the useCharacters hook", () => {
 
   describe("When click on first button", () => {
     test("Then it should call the repo method readOne", async () => {
-      fireEvent.click(elements[0]);
-      await expect(mockRepo.loginUser).toHaveBeenCalled();
+      await fireEvent.click(elements[0]);
+      expect(mockRepo.loginUser).toHaveBeenCalled();
     });
   });
 
   describe("When click on second button", () => {
     test("Then it should call the repo method readOne", async () => {
-      fireEvent.click(elements[1]);
-      await expect(mockRepo.registerUser).toHaveBeenCalled();
+      await fireEvent.click(elements[1]);
+      expect(mockRepo.registerUser).toHaveBeenCalled();
     });
   });
 });
