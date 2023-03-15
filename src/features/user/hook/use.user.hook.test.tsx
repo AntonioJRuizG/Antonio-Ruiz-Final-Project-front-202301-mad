@@ -49,7 +49,7 @@ describe("Given the useUsers hook", () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
       // eslint-disable-next-line testing-library/no-render-in-setup
-      await render(
+      render(
         <Provider store={mockStore}>
           <TestComponent></TestComponent>
         </Provider>
