@@ -31,6 +31,9 @@ describe("Given UserRepo", () => {
       expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/register`, {
         method: "POST",
         body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
       expect(result).toEqual(expectedUser);
 
@@ -61,6 +64,9 @@ describe("Given UserRepo", () => {
       expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/login`, {
         method: "POST",
         body: JSON.stringify({ ...user, name: "" }),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
       expect(result).toEqual(expectedUser);
 
