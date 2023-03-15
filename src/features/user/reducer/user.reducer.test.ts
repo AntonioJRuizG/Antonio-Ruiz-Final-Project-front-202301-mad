@@ -6,14 +6,14 @@ describe("Given userReducer", () => {
     id: "1",
     name: "test1",
     email: "test1@test.com",
-    passwd: "test1",
+    pw: "test1",
   };
 
   const user2 = {
     id: "2",
     name: "test2",
     email: "test2@test.com",
-    passwd: "test2",
+    pw: "test2",
   };
 
   const users = [user1, user2];

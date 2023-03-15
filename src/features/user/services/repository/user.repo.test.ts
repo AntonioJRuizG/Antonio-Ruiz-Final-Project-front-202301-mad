@@ -13,13 +13,13 @@ describe("Given UserRepo", () => {
       const user: ProtoUserStructure = {
         email: "test@test.com",
         name: "testname",
-        passwd: "1234",
+        pw: "1234",
       };
       const expectedUser: UserStructure = {
         id: "1",
         email: "test@test.com",
         name: "testname",
-        passwd: "1234",
+        pw: "1234",
       };
       const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue({
         json: () => Promise.resolve(expectedUser),
@@ -31,6 +31,9 @@ describe("Given UserRepo", () => {
       expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/register`, {
         method: "POST",
         body: JSON.stringify(user),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
       expect(result).toEqual(expectedUser);
 
@@ -43,13 +46,13 @@ describe("Given UserRepo", () => {
       const user: ProtoUserStructure = {
         name: "",
         email: "test@test.com",
-        passwd: "1234",
+        pw: "1234",
       };
       const expectedUser: UserStructure = {
         id: "1",
         email: "test@test.com",
         name: "",
-        passwd: "1234",
+        pw: "1234",
       };
       const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue({
         json: () => Promise.resolve(expectedUser),
@@ -61,6 +64,9 @@ describe("Given UserRepo", () => {
       expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/login`, {
         method: "POST",
         body: JSON.stringify({ ...user, name: "" }),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
       expect(result).toEqual(expectedUser);
 

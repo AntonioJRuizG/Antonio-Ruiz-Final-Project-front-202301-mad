@@ -5,15 +5,11 @@ export type UserId = {
 export type ProtoUserStructure = {
   name: string;
   email: string;
-  passwd: string;
+  pw: string;
 };
 
 export type UserStructure = UserId & ProtoUserStructure;
 
 export class ProtoUser implements ProtoUserStructure {
-  constructor(
-    public name: string,
-    public email: string,
-    public passwd: string
-  ) {}
+  constructor(public name: string, public email: string, public pw: string) {}
 }

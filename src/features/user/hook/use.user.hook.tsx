@@ -6,9 +6,7 @@ import * as ac from "../reducer/user.action.creator";
 
 export function useUsers(repo: UserRepo) {
   const users = useSelector((state: RootState) => state.users);
-
   const dispatch = useDispatch<AppDispatch>();
-
   const regUser = async (user: ProtoUserStructure) => {
     try {
       const newUser = await repo.registerUser(user);
