@@ -40,8 +40,8 @@ describe("Given the useUsers hook", () => {
 
       return (
         <div>
-          <button onClick={() => logUser({} as ProtoUserStructure)}></button>
           <button onClick={() => regUser({} as ProtoUserStructure)}></button>
+          <button onClick={() => logUser({} as ProtoUserStructure)}></button>
         </div>
       );
     };
@@ -59,17 +59,41 @@ describe("Given the useUsers hook", () => {
     elements = await screen.findAllByRole("button");
   });
 
+  describe("When click on second button", () => {
+    test("Then it should call the repo method registerUser", async () => {
+      await fireEvent.click(elements[0]);
+      expect(mockRepo.registerUser).toHaveBeenCalled();
+    });
+  });
+
+  describe("When registerUser method fails", () => {
+    test("Then it should call the error console", async () => {
+      (mockRepo.registerUser as jest.Mock).mockRejectedValue(
+        new Error("Async error")
+      );
+
+      await fireEvent.click(elements[0]);
+      // eslint-disable-next-line jest/valid-expect
+      expect(mockRepo.registerUser).rejects.toThrow();
+    });
+  });
+
   describe("When click on first button", () => {
     test("Then it should call the repo method loginUser", async () => {
-      await fireEvent.click(elements[0]);
+      await fireEvent.click(elements[1]);
       expect(mockRepo.loginUser).toHaveBeenCalled();
     });
   });
 
-  describe("When click on second button", () => {
-    test("Then it should call the repo method registerUser", async () => {
+  describe("When loginUser method fails", () => {
+    test("Then it should call the error console", async () => {
+      (mockRepo.loginUser as jest.Mock).mockRejectedValue(
+        new Error("Async error")
+      );
+
       await fireEvent.click(elements[1]);
-      expect(mockRepo.registerUser).toHaveBeenCalled();
+      // eslint-disable-next-line jest/valid-expect
+      expect(mockRepo.loginUser).rejects.toThrow();
     });
   });
 });
