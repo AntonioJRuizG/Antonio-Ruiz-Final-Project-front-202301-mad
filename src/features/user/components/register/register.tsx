@@ -18,7 +18,7 @@ export function RegisterForm() {
       inputs[2].value
     );
     regUser(newUser);
-    // form.reset();
+    form.reset();
   };
 
   return (

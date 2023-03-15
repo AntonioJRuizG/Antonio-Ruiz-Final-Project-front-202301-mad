@@ -8,7 +8,7 @@ describe("Given Contact2 component", () => {
   let elements: HTMLElement[];
   beforeEach(async () => {
     // eslint-disable-next-line testing-library/no-render-in-setup
-    await render(
+    render(
       <Provider store={store}>
         <RegisterForm></RegisterForm>
       </Provider>
