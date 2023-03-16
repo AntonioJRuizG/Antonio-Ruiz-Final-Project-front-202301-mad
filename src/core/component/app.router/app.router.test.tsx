@@ -37,7 +37,7 @@ describe("Given AppRouter component", () => {
       );
 
       const element = await screen.findByRole("heading", {
-        name: "Register",
+        name: "Login",
       });
       expect(element).toBeInTheDocument();
     });
