@@ -1,3 +1,4 @@
+import { storage } from "../../../../utils/storage";
 import { ProtoUserStructure, UserStructure } from "../../model/user.model";
 
 export class UserRepo {
@@ -32,6 +33,7 @@ export class UserRepo {
       },
     });
     const data = (await resp.json()) as UserStructure;
+    storage.set("token", data.token);
     return data;
   }
 }
