@@ -5,7 +5,7 @@ import { MenuOptions } from "../app/app";
 const RegisterPage = lazy(
   () => import("../../../pages/register/register.page")
 );
-const LoginPage = lazy(() => import("../../../pages/register/register.page"));
+const LoginPage = lazy(() => import("../../../pages/login/login.page"));
 
 type AppRouterProps = {
   menuOptions: MenuOptions[];
