@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { RegisterForm } from "../../features/user/components/register/register";
-import { RegisterPage } from "./register.page";
+import RegisterPage from "./register.page";
 
 jest.mock("../../features/user/components/register/register");
 
