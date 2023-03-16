@@ -16,9 +16,9 @@ export function useUsers(repo: UserRepo) {
     }
   };
 
-  const logUser = async (user: ProtoUserStructure) => {
+  const logUser = async (user: ProtoUserStructure, token: string) => {
     try {
-      const newUser = await repo.loginUser(user);
+      const newUser = await repo.loginUser(user, token);
       dispatch(ac.addCreator(newUser));
     } catch (error) {
       console.log((error as Error).message);

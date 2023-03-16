@@ -6,6 +6,7 @@ export type ProtoUserStructure = {
   name: string;
   email: string;
   pw: string;
+  token?: string;
 };
 
 export type UserStructure = UserId & ProtoUserStructure;
