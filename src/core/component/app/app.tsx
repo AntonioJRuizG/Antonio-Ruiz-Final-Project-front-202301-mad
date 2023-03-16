@@ -1,5 +1,4 @@
-import { LoginForm } from "../../../features/user/components/login/login";
-import { RegisterForm } from "../../../features/user/components/register/register";
+import { AppRouter } from "../app.router/app.router";
 import "./app.css";
 
 export type MenuOptions = {
@@ -12,12 +11,11 @@ export const menuOptions: MenuOptions[] = [
   { label: "Login", path: "/about" },
 ];
 
-export function App() {
+export default function App() {
   return (
     <>
       <h1>Comunidad del bombardino</h1>
-      <RegisterForm></RegisterForm>
-      <LoginForm></LoginForm>
+      <AppRouter menuOptions={menuOptions}></AppRouter>
     </>
   );
 }
