@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { AppRouter } from "../app.router/app.router";
 import "./app.css";
 
@@ -15,7 +16,9 @@ export default function App() {
   return (
     <>
       <h1>Comunidad del bombardino</h1>
-      <AppRouter menuOptions={menuOptions}></AppRouter>
+      <BrowserRouter>
+        <AppRouter menuOptions={menuOptions}></AppRouter>
+      </BrowserRouter>
     </>
   );
 }
