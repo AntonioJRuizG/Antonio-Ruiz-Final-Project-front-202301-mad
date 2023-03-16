@@ -1,12 +1,10 @@
 import { render } from "@testing-library/react";
-import { App } from "./app";
-import { RegisterForm } from "../../../features/user/components/register/register";
 import { store } from "../../store/store";
 import { Provider } from "react-redux";
-import { LoginForm } from "../../../features/user/components/login/login";
+import App from "./app";
+import { AppRouter } from "../app.router/app.router";
 
-jest.mock("../../../features/user/components/register/register");
-jest.mock("../../../features/user/components/login/login");
+jest.mock("../app.router/app.router");
 
 describe("Given App component", () => {
   describe("When it is rendered", () => {
@@ -17,8 +15,7 @@ describe("Given App component", () => {
         </Provider>
       );
 
-      expect(RegisterForm).toHaveBeenCalled();
-      expect(LoginForm).toHaveBeenCalled();
+      expect(AppRouter).toHaveBeenCalled();
     });
   });
 });
