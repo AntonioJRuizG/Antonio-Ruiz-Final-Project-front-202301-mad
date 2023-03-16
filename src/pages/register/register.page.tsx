@@ -1,5 +1,10 @@
 import { RegisterForm } from "../../features/user/components/register/register";
 
-export function RegisterPage() {
-  return <RegisterForm></RegisterForm>;
+export default function RegisterPage() {
+  return (
+    <>
+      <h1>Register</h1>
+      <RegisterForm></RegisterForm>
+    </>
+  );
 }

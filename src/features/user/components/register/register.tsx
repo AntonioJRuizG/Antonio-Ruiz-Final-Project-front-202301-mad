@@ -23,7 +23,6 @@ export function RegisterForm() {
 
   return (
     <>
-      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
