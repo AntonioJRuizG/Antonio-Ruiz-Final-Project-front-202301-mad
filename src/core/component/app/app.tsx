@@ -1,13 +1,28 @@
-import { LoginForm } from "../../../features/user/components/login/login";
-import { RegisterForm } from "../../../features/user/components/register/register";
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from "../app.router/app.router";
+import { Header } from "../header/header";
+import { Navbar } from "../navbar/navbar";
 import "./app.css";
 
-export function App() {
+export type MenuOptions = {
+  label: string;
+  path: string;
+};
+
+export const menuOptions: MenuOptions[] = [
+  { label: "Register", path: "/" },
+  { label: "Login", path: "/login" },
+];
+
+export default function App() {
   return (
     <>
-      <h1>Comunidad del bombardino</h1>
-      <RegisterForm></RegisterForm>
-      <LoginForm></LoginForm>
+      <Header>
+        <Navbar menuOptions={menuOptions}></Navbar>
+      </Header>
+      <BrowserRouter>
+        <AppRouter menuOptions={menuOptions}></AppRouter>
+      </BrowserRouter>
     </>
   );
 }
