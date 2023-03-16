@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRouter } from "../app.router/app.router";
+import { Header } from "../header/header";
 import { Navbar } from "../navbar/navbar";
 import "./app.css";
 
@@ -16,8 +17,9 @@ export const menuOptions: MenuOptions[] = [
 export default function App() {
   return (
     <>
-      <h1>Comunidad del bombardino</h1>
-      <Navbar menuOptions={menuOptions}></Navbar>
+      <Header>
+        <Navbar menuOptions={menuOptions}></Navbar>
+      </Header>
       <BrowserRouter>
         <AppRouter menuOptions={menuOptions}></AppRouter>
       </BrowserRouter>
