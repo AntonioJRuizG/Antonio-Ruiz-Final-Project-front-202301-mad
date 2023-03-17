@@ -13,7 +13,7 @@ export type ProtoBombardinoStructure = {
   creator: {};
 };
 
-export type UserStructure = BombardinoId & ProtoBombardinoStructure;
+export type BombardinoStructure = BombardinoId & ProtoBombardinoStructure;
 
 export class ProtoBombardino implements ProtoBombardinoStructure {
   constructor(
