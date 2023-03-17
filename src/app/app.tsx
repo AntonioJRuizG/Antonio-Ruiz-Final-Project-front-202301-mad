@@ -11,8 +11,8 @@ export type MenuOptions = {
 
 export const menuOptions: MenuOptions[] = [
   { label: "Gallery", path: "/" },
-  { label: "Register", path: "/register" },
-  { label: "Login", path: "/login" },
+  { label: "Register", path: "/registro" },
+  { label: "Login", path: "/acceso" },
 ];
 
 export default function App() {
