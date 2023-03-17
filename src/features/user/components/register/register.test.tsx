@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { store } from "../../../../core/store/store";
+import { store } from "../../../../store/store";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserRepo } from "../../services/repository/user.repo";
 import { RegisterForm } from "./register";

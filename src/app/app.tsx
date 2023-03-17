@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
-import { AppRouter } from "../app.router/app.router";
-import { Header } from "../header/header";
-import { Navbar } from "../navbar/navbar";
+import { Header } from "../common/components/header/header";
+import { Navbar } from "../common/components/navbar/navbar";
+import { AppRouter } from "../router/app.router/app.router";
 import "./app.css";
 
 export type MenuOptions = {

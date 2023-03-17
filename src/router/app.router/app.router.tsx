@@ -1,11 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { MenuOptions } from "../app/app";
+import { MenuOptions } from "../../app/app";
 
-const RegisterPage = lazy(
-  () => import("../../../pages/register/register.page")
-);
-const LoginPage = lazy(() => import("../../../pages/login/login.page"));
+const RegisterPage = lazy(() => import("../../pages/register/register.page"));
+const LoginPage = lazy(() => import("../../pages/login/login.page"));
 
 type AppRouterProps = {
   menuOptions: MenuOptions[];

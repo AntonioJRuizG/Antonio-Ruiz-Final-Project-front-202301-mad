@@ -1,4 +1,4 @@
-import { MenuOptions } from "../app/app";
+import { MenuOptions } from "../../../app/app";
 
 type NavProps = {
   menuOptions: MenuOptions[];
