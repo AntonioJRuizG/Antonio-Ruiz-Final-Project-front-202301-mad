@@ -1,5 +1,5 @@
-import { bombardinoReducer } from "./bombardino.reducer";
 import * as ac from "./bombardino.action.creator";
+import { bombardinoReducer } from "./bombardino.reducer";
 
 describe("Given bombardinosReducer", () => {
   const bombardino1 = {

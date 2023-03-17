@@ -5,8 +5,9 @@ import * as ac from "./user.action.creator";
 const initialState: UserStructure[] = [];
 
 export const userReducer = createReducer(initialState, (builder) => {
-  builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
   builder.addCase(ac.addCreator, (state, { payload }) => [...state, payload]);
+  /* Future user cases:
+  builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
   builder.addCase(ac.updateCreator, (state, { payload }) =>
     state.map((item) => (item.id === payload.id ? payload : item))
   );
@@ -14,5 +15,5 @@ export const userReducer = createReducer(initialState, (builder) => {
     state.filter((item) => item.id !== payload)
   );
 
-  builder.addDefaultCase((state) => state);
+  builder.addDefaultCase((state) => state); */
 });
