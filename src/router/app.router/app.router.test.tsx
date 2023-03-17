@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
-import { MenuOptions } from "../app/app";
 import { AppRouter } from "./app.router";
 import "@testing-library/jest-dom";
+import { MenuOptions } from "../../app/app";
 
-jest.mock("../../../features/user/components/login/login");
-jest.mock("../../../features/user/components/register/register");
+jest.mock("../../features/user/components/login/login");
+jest.mock("../../features/user/components/register/register");
 
 describe("Given AppRouter component", () => {
   const mockOptions: MenuOptions[] = [

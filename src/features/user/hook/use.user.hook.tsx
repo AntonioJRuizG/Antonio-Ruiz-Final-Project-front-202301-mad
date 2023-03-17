@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../core/store/store.js";
+import { AppDispatch, RootState } from "../../../store/store.js";
 import { ProtoUserStructure } from "../model/user.model.js";
 import { UserRepo } from "../services/repository/user.repo.js";
 import * as ac from "../reducer/user.action.creator";
