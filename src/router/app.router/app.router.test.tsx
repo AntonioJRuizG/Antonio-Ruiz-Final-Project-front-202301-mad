@@ -4,6 +4,7 @@ import { AppRouter } from "./app.router";
 import "@testing-library/jest-dom";
 import { MenuOptions } from "../../app/app";
 
+jest.mock("../../common/components/gallery/gallery");
 jest.mock("../../features/user/components/login/login");
 jest.mock("../../features/user/components/register/register");
 
@@ -18,14 +19,14 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/'", () => {
     test("Then the gallery apge should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={0}>
           <AppRouter menuOptions={mockOptions}></AppRouter>
         </Router>
       );
 
       const element = await screen.findByRole("heading", {
-        name: "Gallery",
+        name: "Galería de bombardinos",
       });
       expect(element).toBeInTheDocument();
     });
@@ -40,7 +41,7 @@ describe("Given AppRouter component", () => {
       );
 
       const element = await screen.findByRole("heading", {
-        name: "Register",
+        name: "Registro",
       });
       expect(element).toBeInTheDocument();
     });
@@ -55,7 +56,7 @@ describe("Given AppRouter component", () => {
       );
 
       const element = await screen.findByRole("heading", {
-        name: "Login",
+        name: "Iniciar sesión",
       });
       expect(element).toBeInTheDocument();
     });
