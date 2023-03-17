@@ -19,7 +19,7 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/'", () => {
     test("Then the gallery apge should be in the screen", async () => {
-      await render(
+      render(
         <Router initialEntries={pathsEntries} initialIndex={0}>
           <AppRouter menuOptions={mockOptions}></AppRouter>
         </Router>
