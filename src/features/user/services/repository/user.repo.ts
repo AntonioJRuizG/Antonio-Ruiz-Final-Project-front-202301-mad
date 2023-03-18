@@ -4,8 +4,7 @@ import { ProtoUserStructure, UserStructure } from "../../model/user.model";
 export class UserRepo {
   url: string;
   constructor() {
-    // RENDER SERVER: this.url = "https://antonio-ruiz-final-project-2023.onrender.com/users";
-    this.url = "http://localhost:4500/usuarios";
+    this.url = "https://antonio-ruiz-final-project-2023.onrender.com/usuarios";
   }
 
   async registerUser(user: ProtoUserStructure): Promise<UserStructure> {
