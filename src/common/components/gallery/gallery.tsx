@@ -13,8 +13,8 @@ export function Gallery() {
       <h1>Galería</h1>
       <section className="character-list">
         <ul className="character-list__character">
-          {bombardinos.map((item: BombardinoStructure) => (
-            <li key={item.id.toString()} className="character-colum">
+          {bombardinos.map((item: BombardinoStructure, index) => (
+            <li key={index} className="character-colum">
               <div className="character-card">
                 <Link to={`/details/${item.id}`} relative="path">
                   <img
