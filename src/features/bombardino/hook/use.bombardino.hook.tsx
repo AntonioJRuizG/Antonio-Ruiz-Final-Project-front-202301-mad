@@ -12,7 +12,7 @@ export function useBombardino(repo: BombardinoRepo) {
     const loadBombardinos = async () => {
       try {
         const data = await repo.loadBombardinos();
-        dispatch(ac.loadCreator(data));
+        dispatch(ac.loadCreator(data.results));
       } catch (error) {
         console.log((error as Error).message);
       }
