@@ -1,3 +1,4 @@
+// Overall site style
 $backgroud_color: #edeff2;
 $body_padding: 1rem;
 $font_default_family: "Roboto", sans-serif;
@@ -5,3 +6,7 @@ $gallery_item_background_color: white;
 $min_screen_with: 300px;
 $text_default_light_color: #4d4d4d;
 $text_default_dark_color: #1e1e1e;
+
+// Gallery cards
+$min_height_card: 300px;
+$min_width_card: 200px;
