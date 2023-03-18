@@ -10,10 +10,7 @@ export function Gallery() {
 
   return (
     <>
-      <header className="app-header">
-        <h1>Gallery</h1>
-      </header>
-
+      <h1>Galería</h1>
       <section className="character-list">
         <ul className="character-list__character">
           {bombardinos.map((item: BombardinoStructure) => (
