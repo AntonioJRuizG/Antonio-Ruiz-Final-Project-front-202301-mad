@@ -12,35 +12,38 @@ export function Gallery() {
 
   return (
     <>
-      <h1>Galería</h1>
+      <h1 className={style.gallery_title}>Galería</h1>
       <section className={style.gallery}>
         <ul className={style.gallery_list}>
           {bombardinos.map((item: BombardinoStructure) => (
-            <li key={item.id} className={style.gallery_list_item}>
-              <div className="character-card">
-                <Link to={`/details/${item.id}`} relative="path">
-                  <img
-                    className={style.gallery_list_item_img}
-                    src={item.image}
-                    alt={item.alias}
-                  />
-                </Link>
+            <Link to={`/details/${item.id}`} relative="path">
+              <li key={item.id} className={style.gallery_list_item}>
+                <div>
+                  <p className={style.gallery_list_item_buttons}>🖊 ✖</p>
+                </div>
+
+                <img
+                  className={style.gallery_list_item_img}
+                  src={item.image}
+                  alt={item.alias}
+                />
+
                 <div className={style.gallery_list_item_info}>
                   <ul>
                     <li>
-                      <p className={style.gallery_list_item_info_manufacturer}>
-                        {item.manufacturer}
+                      <p className={style.gallery_list_item_info_alias}>
+                        <span>Alias:</span> {item.alias}
                       </p>
                     </li>
                     <li>
-                      <p className={style.gallery_list_item_info_alias}>
-                        {item.alias}
+                      <p className={style.gallery_list_item_info_creator}>
+                        <span>Fabricante:</span> {item.manufacturer}
                       </p>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </li>
+              </li>
+            </Link>
           ))}
         </ul>
       </section>

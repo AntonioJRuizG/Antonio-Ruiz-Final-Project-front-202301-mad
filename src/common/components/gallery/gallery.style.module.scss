@@ -1,20 +1,58 @@
 @import "../../../../style/variables.scss";
 
-h1.hidden {
+$min_height_card: 300px;
+$min_width_card: 200px;
+
+.gallery_title {
   display: none;
 }
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: $body_padding;
-  background-color: $backgroud-color;
-  height: 6rem;
-  min-width: $min_screen_with;
 
-  .headerTitle {
-    font-family: $font_default_family;
-    font-size: 1.25rem;
-    color: $text_default_light_color;
+.gallery {
+  background-color: $backgroud-color;
+  font-family: $font_default_family;
+  min-height: 100vh;
+  padding-right: $body_padding;
+  padding-left: $body_padding;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  li {
+    list-style-type: none;
+  }
+
+  .gallery_list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
+    gap: 1rem;
+    padding: 0;
+
+    .gallery_list_item {
+      text-align: center;
+      background-color: $gallery_item_background_color;
+      color: $text_default_dark_color;
+      height: $min_height_card;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      .gallery_list_item_buttons {
+        text-align: right;
+      }
+
+      .gallery_list_item_img {
+        margin: auto;
+        align-content: center;
+        width: 150px;
+        height: 200px;
+      }
+      .gallery_list_item_info_alias {
+        font-size: 0.875rem;
+        color: $text_default_dark_color;
+      }
+      .gallery_list_item_info_creator {
+        font-size: 0.8rem;
+        color: $text_default_light_color;
+      }
+    }
   }
 }

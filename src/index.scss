@@ -67,3 +67,19 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/*
+Default styling
+*/
+body {
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
