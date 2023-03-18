@@ -18,7 +18,8 @@ export interface BombardinoRepoStructure {
 export class BombardinoRepo {
   url: string;
   constructor() {
-    this.url = "http://localhost:4500/bombardinos";
+    this.url =
+      "https://antonio-ruiz-final-project-2023.onrender.com/bombardinos";
   }
 
   async loadBombardinos(): Promise<ServerBombardinoResp> {

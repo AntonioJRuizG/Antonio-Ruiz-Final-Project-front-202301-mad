@@ -5,7 +5,6 @@ export class UserRepo {
   url: string;
   constructor() {
     this.url = "https://antonio-ruiz-final-project-2023.onrender.com/usuarios";
-    //this.url = "http://localhost:4500/usuarios";
   }
 
   async registerUser(user: ProtoUserStructure): Promise<UserStructure> {
