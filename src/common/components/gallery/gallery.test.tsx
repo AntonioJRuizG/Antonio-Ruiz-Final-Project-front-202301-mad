@@ -49,8 +49,8 @@ describe("Given Gallery", () => {
 
     test("Then it should list items", async () => {
       const elementNumbers = screen.getAllByRole("list");
-      for (let i = 0; i < elementNumbers.length; i++) {
-        expect(elementNumbers).toBeTruthy();
+      for (let value of elementNumbers) {
+        expect(value).toBeTruthy();
       }
     });
   });
