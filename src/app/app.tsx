@@ -10,9 +10,9 @@ export type MenuOptions = {
 };
 
 export const menuOptions: MenuOptions[] = [
-  { label: "Gallery", path: "/" },
-  { label: "Register", path: "/registro" },
-  { label: "Login", path: "/acceso" },
+  { label: "Galería", path: "/" },
+  { label: "Registro", path: "/registro" },
+  { label: "Iniciar sesión", path: "/iniciarsesion" },
 ];
 
 export default function App() {
