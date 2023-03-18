@@ -18,37 +18,37 @@
   }
 
   .gallery_list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
-    gap: 1rem;
     padding: 0;
 
     .gallery_list_item {
-      text-align: center;
       background-color: $gallery_item_background_color;
+      border-radius: 0.5rem;
       color: $text_default_dark_color;
       height: $min_height_card;
       padding: 1rem;
-      border-radius: 0.5rem;
+      text-align: center;
       .gallery_list_item_buttons {
         text-align: right;
       }
 
       .gallery_list_item_img {
-        margin: auto;
         align-content: center;
-        width: 150px;
         height: 200px;
+        margin: auto;
+        width: 150px;
       }
       .gallery_list_item_info_alias {
-        font-size: 0.875rem;
         color: $text_default_dark_color;
+        font-size: 0.875rem;
       }
       .gallery_list_item_info_creator {
-        font-size: 0.8rem;
         color: $text_default_light_color;
+        font-size: 0.8rem;
       }
     }
   }

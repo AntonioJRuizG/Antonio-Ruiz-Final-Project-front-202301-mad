@@ -1,3 +1,4 @@
+@import "../style/variables.scss";
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -72,6 +73,7 @@ h6 {
 Default styling
 */
 body {
+  background-color: $backgroud_color;
   min-height: 100vh;
 }
 
