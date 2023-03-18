@@ -4,39 +4,46 @@ import { useBombardino } from "../../../features/bombardino/hook/use.bombardino.
 import { BombardinoStructure } from "../../../features/bombardino/model/bombardino.model";
 import { BombardinoRepo } from "../../../features/bombardino/services/repository/bombardino.repo";
 
+import style from "./gallery.style.module.scss";
+
 export function Gallery() {
   const repo = useMemo(() => new BombardinoRepo(), []);
   const { bombardinos } = useBombardino(repo);
 
   return (
     <>
-      <h1>Galería</h1>
-      <section className="character-list">
-        <ul className="character-list__character">
+      <h1 className={style.gallery_title}>Galería</h1>
+      <section className={style.gallery}>
+        <ul className={style.gallery_list}>
           {bombardinos.map((item: BombardinoStructure) => (
-            <li key={item.id} className="character-colum">
-              <div className="character-card">
-                <Link to={`/details/${item.id}`} relative="path">
-                  <img
-                    className="character-card__img"
-                    src={item.image}
-                    alt={item.alias}
-                  />
-                </Link>
-                <div className="character-card__info">
+            <Link key={item.id} to={`/details/${item.id}`} relative="path">
+              <li className={style.gallery_list_item}>
+                <div>
+                  <p className={style.gallery_list_item_buttons}>🖊 ✖</p>
+                </div>
+
+                <img
+                  className={style.gallery_list_item_img}
+                  src={item.image}
+                  alt={item.alias}
+                />
+
+                <div className={style.gallery_list_item_info}>
                   <ul>
                     <li>
-                      <p className="character-card__info__name">
-                        {item.manufacturer}
+                      <p className={style.gallery_list_item_info_alias}>
+                        <span>Alias:</span> {item.alias}
                       </p>
                     </li>
                     <li>
-                      <p className="character-card__info__name">{item.alias}</p>
+                      <p className={style.gallery_list_item_info_creator}>
+                        <span>Fabricante:</span> {item.manufacturer}
+                      </p>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </li>
+              </li>
+            </Link>
           ))}
         </ul>
       </section>

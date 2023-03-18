@@ -1,0 +1,55 @@
+@import "../../../../style/variables.scss";
+
+.gallery_title {
+  display: none;
+}
+
+.gallery {
+  background-color: $backgroud-color;
+  font-family: $font_default_family;
+  min-height: 100vh;
+  padding-right: $body_padding;
+  padding-left: $body_padding;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  li {
+    list-style-type: none;
+  }
+
+  .gallery_list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+
+    .gallery_list_item {
+      background-color: $gallery_item_background_color;
+      border-radius: 0.5rem;
+      color: $text_default_dark_color;
+      height: $min_height_card;
+      padding: 1rem;
+      text-align: center;
+      .gallery_list_item_buttons {
+        text-align: right;
+      }
+
+      .gallery_list_item_img {
+        align-content: center;
+        height: 200px;
+        margin: auto;
+        width: 150px;
+      }
+      .gallery_list_item_info_alias {
+        color: $text_default_dark_color;
+        font-size: 0.875rem;
+      }
+      .gallery_list_item_info_creator {
+        color: $text_default_light_color;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

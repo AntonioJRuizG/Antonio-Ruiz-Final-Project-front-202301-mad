@@ -4,6 +4,8 @@ import { useUsers } from "../../hook/use.user.hook";
 import { ProtoUser } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
 
+import style from "./login.style.module.scss";
+
 const token = storage.get("token");
 
 export function LoginForm() {
@@ -24,23 +26,28 @@ export function LoginForm() {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="text" name="email" placeholder="Correo" required />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            required
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-    </>
+    <div className={style.login_page}>
+      <section className={style.login_section}>
+        <div className={style.login_header}>
+          <h2>Inicio de sesión</h2>
+        </div>
+        <div className={style.login_form}>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <input type="text" name="email" placeholder="Correo" required />
+            </label>
+            <label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Clave de acceso"
+                required
+              />
+            </label>
+            <button type="submit">Entrar</button>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 }

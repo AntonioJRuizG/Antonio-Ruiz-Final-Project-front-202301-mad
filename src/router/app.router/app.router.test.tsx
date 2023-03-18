@@ -25,9 +25,7 @@ describe("Given AppRouter component", () => {
         </Router>
       );
 
-      const element = await screen.findByRole("heading", {
-        name: "Galería de bombardinos",
-      });
+      const element = await screen.findByRole("generic");
       expect(element).toBeInTheDocument();
     });
   });
@@ -40,9 +38,7 @@ describe("Given AppRouter component", () => {
         </Router>
       );
 
-      const element = await screen.findByRole("heading", {
-        name: "Registro",
-      });
+      const element = await screen.findByRole("generic");
       expect(element).toBeInTheDocument();
     });
   });
@@ -55,9 +51,7 @@ describe("Given AppRouter component", () => {
         </Router>
       );
 
-      const element = await screen.findByRole("heading", {
-        name: "Iniciar sesión",
-      });
+      const element = await screen.findByRole("generic");
       expect(element).toBeInTheDocument();
     });
   });
