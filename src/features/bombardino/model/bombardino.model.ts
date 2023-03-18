@@ -1,8 +1,5 @@
-export type BombardinoId = {
+export type BombardinoStructure = {
   id: string;
-};
-
-export type ProtoBombardinoStructure = {
   alias: string;
   manufacturer: string;
   instrumentModel: string;
@@ -13,17 +10,6 @@ export type ProtoBombardinoStructure = {
   creator: {};
 };
 
-export type BombardinoStructure = BombardinoId & ProtoBombardinoStructure;
-
-export class ProtoBombardino implements ProtoBombardinoStructure {
-  constructor(
-    public alias: string,
-    public manufacturer: string,
-    public instrumentModel: string,
-    public valves: number,
-    public level: string,
-    public marchingBand: boolean,
-    public image: string,
-    public creator: {}
-  ) {}
-}
+export type ServerBombardinoResp = {
+  results: BombardinoStructure[];
+};

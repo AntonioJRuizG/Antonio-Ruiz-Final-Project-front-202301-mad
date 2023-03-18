@@ -1,17 +1,17 @@
 import {
   BombardinoStructure,
-  ProtoBombardinoStructure,
+  ServerBombardinoResp,
 } from "../../model/bombardino.model";
 
 export interface BombardinoRepoStructure {
-  loadBombardinos(): Promise<BombardinoStructure[]>;
-  getBombardino(id: BombardinoStructure["id"]): Promise<BombardinoStructure>;
+  loadBombardinos(): Promise<ServerBombardinoResp[]>;
+  getBombardino(id: BombardinoStructure["id"]): Promise<ServerBombardinoResp>;
   createBombardino(
-    bombardino: ProtoBombardinoStructure
-  ): Promise<BombardinoStructure>;
+    bombardino: BombardinoStructure
+  ): Promise<ServerBombardinoResp>;
   update(
-    bombardino: Partial<ProtoBombardinoStructure>
-  ): Promise<BombardinoStructure>;
+    bombardino: Partial<BombardinoStructure>
+  ): Promise<ServerBombardinoResp>;
   delete(id: BombardinoStructure["id"]): Promise<void>;
 }
 
@@ -21,11 +21,13 @@ export class BombardinoRepo {
     this.url = "http://localhost:4500/bombardinos";
   }
 
-  async loadBombardinos(): Promise<BombardinoStructure[]> {
+  async loadBombardinos(): Promise<ServerBombardinoResp> {
     const resp = await fetch(this.url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
-    const data = (await resp.json()) as BombardinoStructure[];
+    const data = await resp.json();
+    console.log(data);
+
     return data;
   }
   /* Extension future methods
