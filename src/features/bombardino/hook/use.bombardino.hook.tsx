@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.js";
 import * as ac from "../reducer/bombardino.action.creator";
@@ -8,17 +8,18 @@ export function useBombardino(repo: BombardinoRepo) {
   const bombardinos = useSelector((state: RootState) => state.bombardinos);
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const loadBombardinos = async () => {
-      try {
-        const data = await repo.loadBombardinos();
-        dispatch(ac.loadCreator(data.results));
-      } catch (error) {
-        console.log((error as Error).message);
-      }
-    };
-    loadBombardinos();
+  const loadBombardinos = useCallback(async () => {
+    try {
+      const data = await repo.loadBombardinos();
+      dispatch(ac.loadCreator(data.results));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
   }, [dispatch, repo]);
 
-  return { bombardinos };
+  useEffect(() => {
+    loadBombardinos();
+  }, [loadBombardinos]);
+
+  return { bombardinos, loadBombardinos };
 }
