@@ -26,8 +26,6 @@ export class BombardinoRepo {
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
     const data = await resp.json();
-    console.log(data);
-
     return data;
   }
   /* Extension future methods

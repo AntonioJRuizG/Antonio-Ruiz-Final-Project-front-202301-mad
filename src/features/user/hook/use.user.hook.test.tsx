@@ -61,7 +61,7 @@ describe("Given the useUsers hook", () => {
     elements = await screen.findAllByRole("button");
   });
 
-  describe("When click on second button", () => {
+  describe("When click on first button", () => {
     test("Then it should call the repo method registerUser", async () => {
       await fireEvent.click(elements[0]);
       expect(mockRepo.registerUser).toHaveBeenCalled();
@@ -80,7 +80,7 @@ describe("Given the useUsers hook", () => {
     });
   });
 
-  describe("When click on first button", () => {
+  describe("When click on second button", () => {
     test("Then it should call the repo method loginUser", async () => {
       await fireEvent.click(elements[1]);
       expect(mockRepo.loginUser).toHaveBeenCalled();
