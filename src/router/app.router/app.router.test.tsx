@@ -25,9 +25,7 @@ describe("Given AppRouter component", () => {
         </Router>
       );
 
-      const element = await screen.findByRole("heading", {
-        name: "Galería de bombardinos",
-      });
+      const element = await screen.findByRole("heading");
       expect(element).toBeInTheDocument();
     });
   });

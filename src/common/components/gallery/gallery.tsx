@@ -4,6 +4,8 @@ import { useBombardino } from "../../../features/bombardino/hook/use.bombardino.
 import { BombardinoStructure } from "../../../features/bombardino/model/bombardino.model";
 import { BombardinoRepo } from "../../../features/bombardino/services/repository/bombardino.repo";
 
+import style from "./gallery.style.module.scss";
+
 export function Gallery() {
   const repo = useMemo(() => new BombardinoRepo(), []);
   const { bombardinos } = useBombardino(repo);
@@ -11,27 +13,29 @@ export function Gallery() {
   return (
     <>
       <h1>Galería</h1>
-      <section className="character-list">
-        <ul className="character-list__character">
+      <section className={style.gallery}>
+        <ul className={style.gallery_list}>
           {bombardinos.map((item: BombardinoStructure) => (
-            <li key={item.id} className="character-colum">
+            <li key={item.id} className={style.gallery_list_item}>
               <div className="character-card">
                 <Link to={`/details/${item.id}`} relative="path">
                   <img
-                    className="character-card__img"
+                    className={style.gallery_list_item_img}
                     src={item.image}
                     alt={item.alias}
                   />
                 </Link>
-                <div className="character-card__info">
+                <div className={style.gallery_list_item_info}>
                   <ul>
                     <li>
-                      <p className="character-card__info__name">
+                      <p className={style.gallery_list_item_info_manufacturer}>
                         {item.manufacturer}
                       </p>
                     </li>
                     <li>
-                      <p className="character-card__info__name">{item.alias}</p>
+                      <p className={style.gallery_list_item_info_alias}>
+                        {item.alias}
+                      </p>
                     </li>
                   </ul>
                 </div>

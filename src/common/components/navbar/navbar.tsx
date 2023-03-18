@@ -1,3 +1,4 @@
+import style from "./navbar.style.module.scss";
 import { MenuOptions } from "../../../app/app";
 
 type NavProps = {
@@ -5,16 +6,18 @@ type NavProps = {
 };
 export function Navbar({ menuOptions }: NavProps) {
   return (
-    <nav>
-      <ul className="main-navbar">
+    <nav className={style.mainNavbar}>
+      <ul className={style.mainNavbar__list}>
         {menuOptions.map((item) => (
-          <a key={item.label} href={item.path}>
-            <li
-              className={`main-navbar__${item.label.toLocaleLowerCase()} main-navbar__item`}
+          <li>
+            <a
+              className={style.mainNavbar__list__link}
+              key={item.label}
+              href={item.path}
             >
               {item.label}
-            </li>
-          </a>
+            </a>
+          </li>
         ))}
       </ul>
     </nav>

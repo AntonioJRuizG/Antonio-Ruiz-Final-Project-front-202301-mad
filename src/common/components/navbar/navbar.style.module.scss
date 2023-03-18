@@ -1,0 +1,21 @@
+@import "../../../../style/variables.scss";
+
+.mainNavbar {
+  max-width: 400px;
+  .mainNavbar__list {
+    font-size: 0.8rem;
+    font-family: $font_default_family;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0.5rem;
+    padding-left: $body_padding;
+    padding-right: $body_padding;
+    list-style-type: none;
+
+    .mainNavbar__list__link {
+      text-decoration: none;
+      color: $text_default_light_color;
+    }
+  }
+}
