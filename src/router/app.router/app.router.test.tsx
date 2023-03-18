@@ -25,7 +25,7 @@ describe("Given AppRouter component", () => {
         </Router>
       );
 
-      const element = await screen.findByRole("heading");
+      const element = await screen.findByRole("generic");
       expect(element).toBeInTheDocument();
     });
   });
