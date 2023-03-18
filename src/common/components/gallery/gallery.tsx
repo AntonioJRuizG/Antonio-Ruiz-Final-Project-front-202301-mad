@@ -16,8 +16,8 @@ export function Gallery() {
       <section className={style.gallery}>
         <ul className={style.gallery_list}>
           {bombardinos.map((item: BombardinoStructure) => (
-            <Link to={`/details/${item.id}`} relative="path">
-              <li key={item.id} className={style.gallery_list_item}>
+            <Link key={item.id} to={`/details/${item.id}`} relative="path">
+              <li className={style.gallery_list_item}>
                 <div>
                   <p className={style.gallery_list_item_buttons}>🖊 ✖</p>
                 </div>

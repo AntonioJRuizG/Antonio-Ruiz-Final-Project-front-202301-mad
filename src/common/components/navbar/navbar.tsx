@@ -9,7 +9,7 @@ export function Navbar({ menuOptions }: NavProps) {
     <nav className={style.mainNavbar}>
       <ul className={style.mainNavbar__list}>
         {menuOptions.map((item) => (
-          <li>
+          <li key={item.label}>
             <a
               className={style.mainNavbar__list__link}
               key={item.label}
