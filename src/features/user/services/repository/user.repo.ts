@@ -5,11 +5,11 @@ export class UserRepo {
   url: string;
   constructor() {
     // RENDER SERVER: this.url = "https://antonio-ruiz-final-project-2023.onrender.com/users";
-    this.url = "http://localhost:4500/users";
+    this.url = "http://localhost:4500/usuarios";
   }
 
   async registerUser(user: ProtoUserStructure): Promise<UserStructure> {
-    const resp = await fetch(this.url + "/register", {
+    const resp = await fetch(this.url + "/registro", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {
@@ -24,7 +24,7 @@ export class UserRepo {
     user: ProtoUserStructure,
     token: string
   ): Promise<UserStructure> {
-    const resp = await fetch(this.url + "/login", {
+    const resp = await fetch(this.url + "/acceso", {
       method: "POST",
       body: JSON.stringify(user),
       headers: {

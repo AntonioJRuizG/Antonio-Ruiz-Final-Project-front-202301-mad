@@ -28,7 +28,7 @@ describe("Given UserRepo", () => {
       const result = await userRepo.registerUser(user);
 
       expect(fetchSpy).toHaveBeenCalled();
-      expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/register`, {
+      expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/registro`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -61,7 +61,7 @@ describe("Given UserRepo", () => {
       const result = await userRepo.loginUser(user, "test-token");
 
       expect(fetchSpy).toHaveBeenCalledTimes(1);
-      expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/login`, {
+      expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/acceso`, {
         method: "POST",
         body: JSON.stringify({ ...user, name: "" }),
         headers: {

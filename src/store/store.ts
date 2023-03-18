@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { bombardinoReducer } from "../features/user/reducer/bombardino.reducer";
+import { bombardinoReducer } from "../features/bombardino/reducer/bombardino.reducer";
 import { userReducer } from "../features/user/reducer/user.reducer";
 
 export const store = configureStore({
