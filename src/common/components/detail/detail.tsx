@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useBombardino } from "../../../features/bombardino/hook/use.bombardino.hook";
 import { BombardinoRepo } from "../../../features/bombardino/services/repository/bombardino.repo";
 
@@ -9,15 +9,16 @@ export const Detail = () => {
   let { instrumentId } = useParams();
 
   const repo = useMemo(() => new BombardinoRepo(), []);
-  const { bombardinos, loadOneBombardino } = useBombardino(repo);
+  const { bombardinos } = useBombardino(repo);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /*   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [bombardinoDetail, setBombardinoDetail] = useState<{
     [key: string]: any;
-  }>();
+  }>(); */
 
   const storeBombardino = bombardinos.find((item) => item.id === instrumentId);
 
+  /* Temporal comment
   useEffect(() => {
     const loadBombardino = async () => {
       const bombardinoDetail = await loadOneBombardino(instrumentId as string);
@@ -26,9 +27,10 @@ export const Detail = () => {
     };
     loadBombardino();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [instrumentId]);
+  }, [instrumentId]); */
 
-  /* if (bombardinoDetail === undefined) {
+  /* Temporal comment.
+  if (bombardinoDetail === undefined) {
     return (
       <div className={style.loading}>
         <p>🔄 Loading...</p>
@@ -44,7 +46,7 @@ export const Detail = () => {
           <img
             className={style.detailImg}
             src={storeBombardino?.image}
-            alt={"Detalles del bombardino de " + storeBombardino?.alias}
+            alt={"Imagen del bombardino de " + storeBombardino?.alias}
           />
 
           <div className={style.detailsList}>

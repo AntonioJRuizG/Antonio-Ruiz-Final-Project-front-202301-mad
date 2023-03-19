@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/*eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -84,8 +84,9 @@ describe("Given the useBombardino hook", () => {
 
   describe("When click on second button", () => {
     test("Then it should call the repo method loadOneBombardino", async () => {
-      await fireEvent.click(elements[1]);
+      const loadOneBombardino = await fireEvent.click(elements[1]);
       expect(mockRepo.getBombardino).toHaveBeenCalled();
+      expect(loadOneBombardino).toEqual(true);
     });
   });
 });
