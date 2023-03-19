@@ -25,6 +25,7 @@ export function useBombardino(repo: BombardinoRepo) {
     try {
       const data = await repo.getBombardino(id);
       dispatch(ac.loadCreator(data.results));
+      return data.results;
     } catch (error) {
       console.log((error as Error).message);
     }
