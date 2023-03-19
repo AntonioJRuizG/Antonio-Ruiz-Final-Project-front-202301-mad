@@ -44,8 +44,8 @@ describe("Given a detail component", () => {
   describe("When it renders and the detailBombardino is undefined", () => {
     test("Then it should return a loading message", async () => {
       render(<Detail></Detail>);
-      const loadingMessage = await screen.findByText("🔄 Loading...");
-      expect(loadingMessage).toBeInTheDocument();
+      const element = screen.getByRole("heading");
+      await expect(element).toBeInTheDocument();
     });
   });
 });

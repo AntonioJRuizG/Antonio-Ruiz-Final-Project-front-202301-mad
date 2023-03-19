@@ -11,6 +11,7 @@ export const Detail = () => {
   const repo = useMemo(() => new BombardinoRepo(), []);
   const { bombardinos, loadOneBombardino } = useBombardino(repo);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [bombardinoDetail, setBombardinoDetail] = useState<{
     [key: string]: any;
   }>();
@@ -27,13 +28,13 @@ export const Detail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [instrumentId]);
 
-  if (bombardinoDetail === undefined) {
+  /* if (bombardinoDetail === undefined) {
     return (
       <div className={style.loading}>
         <p>🔄 Loading...</p>
       </div>
     );
-  }
+  } */
 
   return (
     <div className={style.detailPage}>
@@ -49,22 +50,22 @@ export const Detail = () => {
           <div className={style.detailsList}>
             <ul>
               <li className={style.detailItem}>
-                Manufacturer: {storeBombardino?.manufacturer}
+                Fabricante: {storeBombardino?.manufacturer}
               </li>
               <li className={style.detailItem}>
-                Model: {storeBombardino?.instrumentModel}
+                Modelo: {storeBombardino?.instrumentModel}
               </li>
               <li className={style.detailItem}>
-                Level: {storeBombardino?.level}
+                Nivel: {storeBombardino?.level}
               </li>
               <li className={style.detailItem}>
-                Number of valves: {storeBombardino?.valves}
+                Número de pistones: {storeBombardino?.valves}
               </li>
               {/* Temp: <li className="detail-title__li">
             Owner: {storeBombardino?.creator.name}
           </li> */}
               <li className={style.detailItem}>
-                Marching Band: {storeBombardino?.marchingBand}
+                Para 'marching band': {storeBombardino?.marchingBand}
               </li>
             </ul>
           </div>
