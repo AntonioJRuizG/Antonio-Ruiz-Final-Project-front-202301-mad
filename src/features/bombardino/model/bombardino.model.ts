@@ -1,3 +1,5 @@
+import { UserStructure } from "../../user/model/user.model";
+
 export type BombardinoStructure = {
   id: string;
   alias: string;
@@ -7,7 +9,7 @@ export type BombardinoStructure = {
   level: string;
   marchingBand: boolean;
   image: string;
-  creator: {};
+  creator: Partial<UserStructure>;
 };
 
 export type ServerBombardinoResp = {
