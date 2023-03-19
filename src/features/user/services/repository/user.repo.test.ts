@@ -58,7 +58,7 @@ describe("Given UserRepo", () => {
         json: () => Promise.resolve(expectedUser),
       } as Response);
 
-      const result = await userRepo.loginUser(user, "test-token");
+      const result = await userRepo.loginUser(user);
 
       expect(fetchSpy).toHaveBeenCalledTimes(1);
       expect(fetchSpy).toHaveBeenCalledWith(`${userRepo.url}/acceso`, {
@@ -66,8 +66,6 @@ describe("Given UserRepo", () => {
         body: JSON.stringify({ ...user, name: "" }),
         headers: {
           "Content-type": "application/json",
-          // eslint-disable-next-line no-useless-concat
-          Authorization: "Bearer " + "test-token",
         },
       });
       expect(result).toEqual(expectedUser);

@@ -37,13 +37,10 @@ describe("Given the useUsers hook", () => {
   beforeEach(async () => {
     const TestComponent = function () {
       const { logUser, regUser } = useUsers(mockRepo);
-      const token = "mockToken";
       return (
         <div>
           <button onClick={() => regUser({} as ProtoUserStructure)}></button>
-          <button
-            onClick={() => logUser({} as ProtoUserStructure, token)}
-          ></button>
+          <button onClick={() => logUser({} as ProtoUserStructure)}></button>
         </div>
       );
     };
