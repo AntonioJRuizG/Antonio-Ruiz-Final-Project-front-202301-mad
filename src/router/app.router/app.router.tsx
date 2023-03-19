@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { MenuOptions } from "../../app/app";
+import { Detail } from "../../common/components/detail/detail";
 
 const GalleryPage = lazy(() => import("../../pages/gallery/gallery.page"));
 const RegisterPage = lazy(() => import("../../pages/register/register.page"));
@@ -22,6 +23,10 @@ export function AppRouter({ menuOptions }: AppRouterProps) {
         <Route
           path={menuOptions[2].path}
           element={<LoginPage></LoginPage>}
+        ></Route>
+        <Route
+          path={"/details/:instrumentId"}
+          element={<Detail></Detail>}
         ></Route>
       </Routes>
     </Suspense>

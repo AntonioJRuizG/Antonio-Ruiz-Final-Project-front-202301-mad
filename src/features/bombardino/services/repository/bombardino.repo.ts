@@ -26,21 +26,21 @@ export class BombardinoRepo {
     const resp = await fetch(this.url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
-    const data = await resp.json();
-    return data;
-  }
-  /* Extension future methods
-  async getBombardino(
-    id: BombardinoStructure["id"]
-  ): Promise<BombardinoStructure> {
-    const url = this.url + "/" + id;
-    const resp = await fetch(url);
-    if (!resp.ok)
-      throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
-    const data = (await resp.json()) as BombardinoStructure;
+    const data: ServerBombardinoResp = await resp.json();
     return data;
   }
 
+  async getBombardino(
+    id: BombardinoStructure["id"]
+  ): Promise<ServerBombardinoResp> {
+    const url = this.url + "/" + id;
+    const resp = await fetch(url);
+    if (!resp.ok)
+      throw new Error("Error getting instrument details " + resp.status);
+    const data: ServerBombardinoResp = await resp.json();
+    return data;
+  }
+  /* Extension future methods
   async createBombardino(
     bombardino: ProtoBombardinoStructure
   ): Promise<BombardinoStructure> {

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/*eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -42,14 +42,15 @@ describe("Given the useBombardino hook", () => {
   const mockRepo: BombardinoRepo = {
     url: "",
     loadBombardinos: jest.fn(),
+    getBombardino: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
-      const { loadBombardinos } = useBombardino(mockRepo);
+      const { loadBombardinos, loadOneBombardino } = useBombardino(mockRepo);
       return (
         <div>
           <button onClick={() => loadBombardinos()}></button>
-          <button></button>
+          <button onClick={() => loadOneBombardino("1")}></button>
         </div>
       );
     };
@@ -75,9 +76,17 @@ describe("Given the useBombardino hook", () => {
   });
 
   describe("When click on first button", () => {
-    test("Then it should call the repo method registerUser", async () => {
+    test("Then it should call the repo method loadBombardinos", async () => {
       await fireEvent.click(elements[0]);
       expect(mockRepo.loadBombardinos).toHaveBeenCalled();
+    });
+  });
+
+  describe("When click on second button", () => {
+    test("Then it should call the repo method loadOneBombardino", async () => {
+      const loadOneBombardino = await fireEvent.click(elements[1]);
+      expect(mockRepo.getBombardino).toHaveBeenCalled();
+      expect(loadOneBombardino).toEqual(true);
     });
   });
 });
