@@ -1,4 +1,4 @@
-import { ProtoUserStructure, UserStructure } from "../../model/user.model";
+import { UserStructure } from "../../model/user.model";
 
 export class UserRepo {
   url: string;
@@ -6,7 +6,7 @@ export class UserRepo {
     this.url = "https://antonio-ruiz-final-project-2023.onrender.com/usuarios";
   }
 
-  async registerUser(user: ProtoUserStructure): Promise<UserStructure> {
+  async registerUser(user: Partial<UserStructure>): Promise<UserStructure> {
     const resp = await fetch(this.url + "/registro", {
       method: "POST",
       body: JSON.stringify(user),
@@ -18,7 +18,7 @@ export class UserRepo {
     return data;
   }
 
-  async loginUser(user: Partial<ProtoUserStructure>): Promise<UserStructure> {
+  async loginUser(user: Partial<UserStructure>): Promise<UserStructure> {
     const resp = await fetch(this.url + "/acceso", {
       method: "POST",
       body: JSON.stringify(user),
