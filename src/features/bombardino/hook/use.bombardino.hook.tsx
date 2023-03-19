@@ -21,5 +21,14 @@ export function useBombardino(repo: BombardinoRepo) {
     loadBombardinos();
   }, [loadBombardinos]);
 
-  return { bombardinos, loadBombardinos };
+  const loadOneBombardino = async (id: string) => {
+    try {
+      const data = await repo.getBombardino(id);
+      dispatch(ac.loadCreator(data.results));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
+  return { bombardinos, loadBombardinos, loadOneBombardino };
 }
