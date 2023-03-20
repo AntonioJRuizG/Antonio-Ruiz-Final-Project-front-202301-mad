@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { store } from "../../../store/store";
 import { Gallery } from "./gallery";
 
-const mockBombardinos = [
+const mockEuphoniums = [
   {
     id: "1",
     manufacturer: "Mock Manufacturer",
@@ -21,10 +21,10 @@ const mockBombardinos = [
 
 const mockDelete = jest.fn();
 
-jest.mock("../../../features/bombardino/hook/use.bombardino.hook", () => ({
-  useBombardino: () => ({
-    bombardinos: mockBombardinos,
-    deleteBombardino: mockDelete,
+jest.mock("../../../features/euphonium/hook/use.euphonium.hook", () => ({
+  useEuphonium: () => ({
+    euphoniums: mockEuphoniums,
+    deleteEuphonium: mockDelete,
   }),
 }));
 

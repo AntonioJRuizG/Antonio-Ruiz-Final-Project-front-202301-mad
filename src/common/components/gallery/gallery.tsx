@@ -1,27 +1,36 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useBombardino } from "../../../features/bombardino/hook/use.bombardino.hook";
-import { BombardinoStructure } from "../../../features/bombardino/model/bombardino.model";
-import { BombardinoRepo } from "../../../features/bombardino/services/repository/bombardino.repo";
+import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
+import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
+import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
 
 import style from "./gallery.style.module.scss";
 
 export function Gallery() {
-  const repo = useMemo(() => new BombardinoRepo(), []);
-  const { bombardinos } = useBombardino(repo);
+  const repo = useMemo(() => new EuphoniumRepo(), []);
+  const { euphoniums, deleteEuphonium } = useEuphonium(repo);
 
   return (
     <>
       <h1 className={style.gallery_title}>Galería</h1>
       <section className={style.gallery}>
         <ul className={style.gallery_list}>
-          {bombardinos.map((item: BombardinoStructure) => (
-            <Link key={item.id} to={`/details/${item.id}`} relative="path">
-              <li className={style.gallery_list_item}>
-                <div>
-                  <p className={style.gallery_list_item_buttons}>🖊 ✖</p>
-                </div>
-
+          {euphoniums.map((item: EuphoniumStructure) => (
+            <li key={item.id} className={style.gallery_list_item}>
+              <div>
+                <p className={style.gallery_list_item_buttons}>
+                  🖊
+                  <button
+                    className={style.gallery_list_item_buttons}
+                    onClick={() => {
+                      deleteEuphonium(item.id);
+                    }}
+                  >
+                    ✖
+                  </button>
+                </p>
+              </div>
+              <Link to={`/details/${item.id}`} relative="path">
                 <img
                   className={style.gallery_list_item_img}
                   src={item.image}
@@ -37,13 +46,13 @@ export function Gallery() {
                     </li>
                     <li>
                       <p className={style.gallery_list_item_info_creator}>
-                        <span>Fabricante:</span> {item.manufacturer}
+                        <span>Miembro:</span> {item.creator?.name}
                       </p>
                     </li>
                   </ul>
                 </div>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
         </ul>
       </section>

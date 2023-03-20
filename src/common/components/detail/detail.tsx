@@ -1,22 +1,22 @@
 import { Link, useParams } from "react-router-dom";
 import { useMemo } from "react";
-import { useBombardino } from "../../../features/bombardino/hook/use.bombardino.hook";
-import { BombardinoRepo } from "../../../features/bombardino/services/repository/bombardino.repo";
+import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
+import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
 
 import style from "./detail.style.module.scss";
 
 export const Detail = () => {
   let { instrumentId } = useParams();
 
-  const repo = useMemo(() => new BombardinoRepo(), []);
-  const { bombardinos } = useBombardino(repo);
+  const repo = useMemo(() => new EuphoniumRepo(), []);
+  const { euphoniums } = useEuphonium(repo);
 
   /*   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [bombardinoDetail, setBombardinoDetail] = useState<{
     [key: string]: any;
   }>(); */
 
-  const storeBombardino = bombardinos.find((item) => item.id === instrumentId);
+  const storeEuphonium = euphoniums.find((item) => item.id === instrumentId);
 
   /* Temporal comment
   useEffect(() => {
@@ -41,33 +41,33 @@ export const Detail = () => {
   return (
     <div className={style.detailPage}>
       <section className={style.detail}>
-        <h2>Detalles del bombardino {" " + storeBombardino?.alias}</h2>
+        <h2>Detalles del bombardino {" " + storeEuphonium?.alias}</h2>
         <div className={style.detailCard}>
           <img
             className={style.detailImg}
-            src={storeBombardino?.image}
-            alt={"Imagen del bombardino de " + storeBombardino?.alias}
+            src={storeEuphonium?.image}
+            alt={"Imagen del bombardino de " + storeEuphonium?.alias}
           />
 
           <div className={style.detailsList}>
             <ul>
               <li className={style.detailItem}>
-                Fabricante: {storeBombardino?.manufacturer}
+                Fabricante: {storeEuphonium?.manufacturer}
               </li>
               <li className={style.detailItem}>
-                Modelo: {storeBombardino?.instrumentModel}
+                Modelo: {storeEuphonium?.instrumentModel}
               </li>
               <li className={style.detailItem}>
-                Nivel: {storeBombardino?.level}
+                Nivel: {storeEuphonium?.level}
               </li>
               <li className={style.detailItem}>
-                Número de pistones: {storeBombardino?.valves}
+                Número de pistones: {storeEuphonium?.valves}
               </li>
               {/* Temp: <li className="detail-title__li">
-            Owner: {storeBombardino?.creator.name}
+            Owner: {storeEuphonium?.creator.name}
           </li> */}
               <li className={style.detailItem}>
-                Para 'marching band': {storeBombardino?.marchingBand}
+                Para 'marching band': {storeEuphonium?.marchingBand}
               </li>
             </ul>
           </div>
