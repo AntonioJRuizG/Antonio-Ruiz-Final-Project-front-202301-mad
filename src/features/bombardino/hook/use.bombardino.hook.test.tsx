@@ -1,6 +1,9 @@
+/* eslint-disable testing-library/no-unnecessary-act */
 /*eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { mockComponent } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import { bombardinoReducer } from "../reducer/bombardino.reducer";
 import { BombardinoRepo } from "../services/repository/bombardino.repo";
@@ -43,14 +46,18 @@ describe("Given the useBombardino hook", () => {
     url: "",
     loadBombardinos: jest.fn(),
     getBombardino: jest.fn(),
+    deleteBombardino: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
-      const { loadBombardinos, loadOneBombardino } = useBombardino(mockRepo);
+      const { loadBombardinos, loadOneBombardino, deleteBombardino } =
+        useBombardino(mockRepo);
       return (
         <div>
           <button onClick={() => loadBombardinos()}></button>
           <button onClick={() => loadOneBombardino("1")}></button>
+          <button onClick={() => deleteBombardino("1")}></button>
+          <button onClick={() => deleteBombardino("id-not-found")}></button>
         </div>
       );
     };
@@ -87,6 +94,21 @@ describe("Given the useBombardino hook", () => {
       const loadOneBombardino = await fireEvent.click(elements[1]);
       expect(mockRepo.getBombardino).toHaveBeenCalled();
       expect(loadOneBombardino).toEqual(true);
+    });
+  });
+
+  describe("When click on third button", () => {
+    test("Then it should call the repo method deleteBombardino", async () => {
+      const deleteBombardino = await fireEvent.click(elements[2]);
+      expect(mockRepo.deleteBombardino).toHaveBeenCalled();
+      expect(deleteBombardino).toEqual(true);
+    });
+  });
+  describe("When click on fourth button", () => {
+    test("Then it should call the repo method deleteBombardino and fail because no id found", async () => {
+      (mockRepo.deleteBombardino as jest.Mock).mockRejectedValue("error");
+      await act(async () => fireEvent.click(elements[3]));
+      expect(mockRepo.deleteBombardino).toHaveBeenCalled();
     });
   });
 });

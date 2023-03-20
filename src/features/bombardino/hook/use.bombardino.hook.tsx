@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.js";
+import { BombardinoStructure } from "../model/bombardino.model.js";
 import * as ac from "../reducer/bombardino.action.creator";
 import { BombardinoRepo } from "../services/repository/bombardino.repo.js";
 
@@ -25,11 +26,20 @@ export function useBombardino(repo: BombardinoRepo) {
     try {
       const data = await repo.getBombardino(id);
       dispatch(ac.loadCreator(data.results));
-      // return data.results;
     } catch (error) {
       console.log((error as Error).message);
     }
   };
 
-  return { bombardinos, loadBombardinos, loadOneBombardino };
+  const deleteBombardino = async (id: BombardinoStructure["id"]) => {
+    try {
+      const itemId: string = id;
+      await repo.deleteBombardino(itemId);
+      dispatch(ac.deleteCreator(itemId));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
+  return { bombardinos, loadBombardinos, loadOneBombardino, deleteBombardino };
 }
