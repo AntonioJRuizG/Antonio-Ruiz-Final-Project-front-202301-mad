@@ -45,4 +45,27 @@ describe("Given BombardinoRepo", () => {
       await expect(result).rejects.toThrow();
     });
   });
+
+  describe("When deleteBombardino method is called with an item id", () => {
+    test("Then it should fetch with DELETE method", async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({
+          id: "1",
+          alias: "test",
+        }),
+      });
+      const result = await bombardinoRepo.deleteBombardino("1");
+      expect(result).toEqual(undefined);
+    });
+
+    test("Then it should throw an error if fetch fails", async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: false,
+        json: jest.fn().mockResolvedValue({}),
+      });
+      const result = bombardinoRepo.deleteBombardino("1");
+      await expect(result).rejects.toThrow();
+    });
+  });
 });
