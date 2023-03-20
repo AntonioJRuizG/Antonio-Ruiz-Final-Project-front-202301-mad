@@ -1,10 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { BombardinoStructure } from "../model/bombardino.model";
-import * as ac from "./bombardino.action.creator";
+import { EuphoniumStructure } from "../model/euphonium.model";
+import * as ac from "./euphonium.action.creator";
 
-const initialState: BombardinoStructure[] = [];
+const initialState: EuphoniumStructure[] = [];
 
-export const bombardinoReducer = createReducer(initialState, (builder) => {
+export const euphoniumReducer = createReducer(initialState, (builder) => {
   builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
   builder.addCase(ac.addCreator, (state, { payload }) => [...state, payload]);
   builder.addCase(ac.updateCreator, (state, { payload }) =>

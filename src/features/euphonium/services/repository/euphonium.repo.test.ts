@@ -1,33 +1,33 @@
-import { BombardinoRepo } from "./bombardino.repo";
+import { EuphoniumRepo } from "./euphonium.repo";
 
-describe("Given BombardinoRepo", () => {
-  let bombardinoRepo: BombardinoRepo;
+describe("Given EuphoniumRepo", () => {
+  let euphoniumMockRepo: EuphoniumRepo;
 
   beforeEach(() => {
-    bombardinoRepo = new BombardinoRepo();
+    euphoniumMockRepo = new EuphoniumRepo();
   });
 
-  describe("When loadBombardinos method is called", () => {
-    test("Then it should fetch and return de bombardinos list", async () => {
+  describe("When loadEuphoniums method is called", () => {
+    test("Then it should fetch and return de euphoniums list", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({
           alias: "test",
         }),
       });
-      const result = await bombardinoRepo.loadBombardinos();
+      const result = await euphoniumMockRepo.loadEuphoniums();
       expect(result).toEqual({ alias: "test" });
     });
 
     test("Then it should throw error fetch returns no data", async () => {
       global.fetch = jest.fn().mockResolvedValue("error");
-      const result = bombardinoRepo.loadBombardinos();
+      const result = euphoniumMockRepo.loadEuphoniums();
       await expect(result).rejects.toThrow();
     });
   });
 
-  describe("When getBombardino method is called", () => {
-    test("Then it should fetch and return de bombardino with the given id", async () => {
+  describe("When getEuphonium method is called", () => {
+    test("Then it should fetch and return de euphoniums with the given id", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({
@@ -35,18 +35,18 @@ describe("Given BombardinoRepo", () => {
           alias: "test",
         }),
       });
-      const result = await bombardinoRepo.getBombardino("1");
+      const result = await euphoniumMockRepo.getEuphonium("1");
       expect(result).toEqual({ id: "1", alias: "test" });
     });
 
     test("Then it should throw an error if it returns no data", async () => {
       global.fetch = jest.fn().mockResolvedValue("error");
-      const result = bombardinoRepo.getBombardino("1");
+      const result = euphoniumMockRepo.getEuphonium("1");
       await expect(result).rejects.toThrow();
     });
   });
 
-  describe("When deleteBombardino method is called with an item id", () => {
+  describe("When deleteEuphonium method is called with an item id", () => {
     test("Then it should fetch with DELETE method", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
@@ -55,7 +55,7 @@ describe("Given BombardinoRepo", () => {
           alias: "test",
         }),
       });
-      const result = await bombardinoRepo.deleteBombardino("1");
+      const result = await euphoniumMockRepo.deleteEuphonium("1");
       expect(result).toEqual(undefined);
     });
 
@@ -64,7 +64,7 @@ describe("Given BombardinoRepo", () => {
         ok: false,
         json: jest.fn().mockResolvedValue({}),
       });
-      const result = bombardinoRepo.deleteBombardino("1");
+      const result = euphoniumMockRepo.deleteEuphonium("1");
       await expect(result).rejects.toThrow();
     });
   });

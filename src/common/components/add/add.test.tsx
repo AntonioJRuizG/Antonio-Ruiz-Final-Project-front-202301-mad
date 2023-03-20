@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { Detail } from "./detail";
+import { Add } from "./add";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -39,7 +39,7 @@ describe("Given a detail component", () => {
     test("Then it should return a loading message", async () => {
       render(
         <MemoryRouter>
-          <Detail></Detail>
+          <Add></Add>
         </MemoryRouter>
       );
       const element = screen.getByRole("heading");

@@ -1,5 +1,5 @@
-import * as ac from "./bombardino.action.creator";
-import { bombardinoReducer } from "./bombardino.reducer";
+import * as ac from "./euphonium.action.creator";
+import { euphoniumReducer } from "./euphonium.reducer";
 
 describe("Given bombardinosReducer", () => {
   const bombardino1 = {
@@ -26,27 +26,27 @@ describe("Given bombardinosReducer", () => {
     creator: { name: "test-2" },
   };
 
-  const bombardinos = [bombardino1, bombardino2];
+  const euphoniums = [bombardino1, bombardino2];
 
   describe("When it is called", () => {
     test("Then it should return the initial state", () => {
       return expect(
-        bombardinoReducer(undefined, {
+        euphoniumReducer(undefined, {
           type: undefined,
         })
       ).toEqual([]);
     });
 
-    test("Then it should handle loadCreator and load bombardinos", () => {
-      expect(bombardinoReducer([], ac.loadCreator(bombardinos))).toEqual(
-        bombardinos
+    test("Then it should handle loadCreator and load euphoniums", () => {
+      expect(euphoniumReducer([], ac.loadCreator(euphoniums))).toEqual(
+        euphoniums
       );
     });
 
     test("Then it should handle addCreator and add bombardino2", () => {
       expect(
-        bombardinoReducer([bombardino1], ac.addCreator(bombardino2))
-      ).toEqual(bombardinos);
+        euphoniumReducer([bombardino1], ac.addCreator(bombardino2))
+      ).toEqual(euphoniums);
     });
 
     test("Then it should handle updateCreator", () => {
@@ -56,13 +56,13 @@ describe("Given bombardinosReducer", () => {
       };
       const updatedbombardinos = [bombardino1, updatedbombardino2];
       expect(
-        bombardinoReducer(bombardinos, ac.updateCreator(updatedbombardino2))
+        euphoniumReducer(euphoniums, ac.updateCreator(updatedbombardino2))
       ).toEqual(updatedbombardinos);
     });
 
-    test("Then it should handle deleteCreator and delete bombardino 1", () => {
+    test("Then it should handle deleteCreator and delete euphoniums 1", () => {
       expect(
-        bombardinoReducer(bombardinos, ac.deleteCreator(bombardino1.id))
+        euphoniumReducer(euphoniums, ac.deleteCreator(bombardino1.id))
       ).toEqual([bombardino2]);
     });
   });

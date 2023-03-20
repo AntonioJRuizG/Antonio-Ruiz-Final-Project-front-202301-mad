@@ -5,17 +5,17 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockComponent } from "react-dom/test-utils";
 import { Provider } from "react-redux";
-import { bombardinoReducer } from "../reducer/bombardino.reducer";
-import { BombardinoRepo } from "../services/repository/bombardino.repo";
-import { useBombardino } from "./use.bombardino.hook";
+import { euphoniumReducer } from "../reducer/euphonium.reducer";
+import { EuphoniumRepo } from "../services/repository/euphonium.repo";
+import { useEuphonium } from "./use.euphonium.hook";
 
-describe("Given the useBombardino hook", () => {
+describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { bombardinos: bombardinoReducer },
+    reducer: { euphoniums: euphoniumReducer },
     preloadedState: {
-      bombardinos: [
+      euphoniums: [
         {
           id: "1",
           alias: "test",
@@ -42,22 +42,23 @@ describe("Given the useBombardino hook", () => {
     },
   });
 
-  const mockRepo: BombardinoRepo = {
+  const mockRepo: EuphoniumRepo = {
     url: "",
-    loadBombardinos: jest.fn(),
-    getBombardino: jest.fn(),
-    deleteBombardino: jest.fn(),
+    loadEuphoniums: jest.fn(),
+    getEuphonium: jest.fn(),
+    deleteEuphonium: jest.fn(),
+    createEuphonium: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
-      const { loadBombardinos, loadOneBombardino, deleteBombardino } =
-        useBombardino(mockRepo);
+      const { loadEuphoniums, loadOneBombardino, deleteEuphonium } =
+        useEuphonium(mockRepo);
       return (
         <div>
-          <button onClick={() => loadBombardinos()}></button>
+          <button onClick={() => loadEuphoniums()}></button>
           <button onClick={() => loadOneBombardino("1")}></button>
-          <button onClick={() => deleteBombardino("1")}></button>
-          <button onClick={() => deleteBombardino("id-not-found")}></button>
+          <button onClick={() => deleteEuphonium("1")}></button>
+          <button onClick={() => deleteEuphonium("id-not-found")}></button>
         </div>
       );
     };
@@ -83,32 +84,32 @@ describe("Given the useBombardino hook", () => {
   });
 
   describe("When click on first button", () => {
-    test("Then it should call the repo method loadBombardinos", async () => {
+    test("Then it should call the repo method loadEuphoniums", async () => {
       await fireEvent.click(elements[0]);
-      expect(mockRepo.loadBombardinos).toHaveBeenCalled();
+      expect(mockRepo.loadEuphoniums).toHaveBeenCalled();
     });
   });
 
   describe("When click on second button", () => {
     test("Then it should call the repo method loadOneBombardino", async () => {
       const loadOneBombardino = await fireEvent.click(elements[1]);
-      expect(mockRepo.getBombardino).toHaveBeenCalled();
+      expect(mockRepo.getEuphonium).toHaveBeenCalled();
       expect(loadOneBombardino).toEqual(true);
     });
   });
 
   describe("When click on third button", () => {
-    test("Then it should call the repo method deleteBombardino", async () => {
-      const deleteBombardino = await fireEvent.click(elements[2]);
-      expect(mockRepo.deleteBombardino).toHaveBeenCalled();
-      expect(deleteBombardino).toEqual(true);
+    test("Then it should call the repo method deleteEuphonium", async () => {
+      const deleteEuphonium = await fireEvent.click(elements[2]);
+      expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
+      expect(deleteEuphonium).toEqual(true);
     });
   });
   describe("When click on fourth button", () => {
-    test("Then it should call the repo method deleteBombardino and fail because no id found", async () => {
-      (mockRepo.deleteBombardino as jest.Mock).mockRejectedValue("error");
+    test("Then it should call the repo method deleteEuphonium and fail because no id found", async () => {
+      (mockRepo.deleteEuphonium as jest.Mock).mockRejectedValue("error");
       await act(async () => fireEvent.click(elements[3]));
-      expect(mockRepo.deleteBombardino).toHaveBeenCalled();
+      expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
     });
   });
 });
