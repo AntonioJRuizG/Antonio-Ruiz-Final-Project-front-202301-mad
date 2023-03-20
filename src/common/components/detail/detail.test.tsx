@@ -1,16 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { Detail } from "./detail";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({ instrumentId: "test-id" }),
-}));
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  Link: jest
-    .fn()
-    .mockImplementation(({ to, children }) => <a href={to}>{children}</a>),
 }));
 
 jest.mock("../../../features/bombardino/hook/use.bombardino.hook", () => ({
@@ -43,7 +37,11 @@ jest.mock("../../../features/bombardino/hook/use.bombardino.hook", () => ({
 describe("Given a detail component", () => {
   describe("When it renders and the detailBombardino is undefined", () => {
     test("Then it should return a loading message", async () => {
-      render(<Detail></Detail>);
+      render(
+        <MemoryRouter>
+          <Detail></Detail>
+        </MemoryRouter>
+      );
       const element = screen.getByRole("heading");
       await expect(element).toBeInTheDocument();
     });

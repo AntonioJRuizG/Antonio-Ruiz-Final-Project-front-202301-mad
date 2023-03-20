@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { store } from "../../../store/store";
 import { Gallery } from "./gallery";
 
@@ -18,17 +19,13 @@ const mockBombardinos = [
   },
 ];
 
+const mockDelete = jest.fn();
+
 jest.mock("../../../features/bombardino/hook/use.bombardino.hook", () => ({
   useBombardino: () => ({
     bombardinos: mockBombardinos,
+    deleteBombardino: mockDelete,
   }),
-}));
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  Link: jest
-    .fn()
-    .mockImplementation(({ to, children }) => <a href={to}>{children}</a>),
 }));
 
 describe("Given Gallery", () => {
@@ -36,9 +33,11 @@ describe("Given Gallery", () => {
     beforeEach(() => {
       // eslint-disable-next-line testing-library/no-render-in-setup
       render(
-        <Provider store={store}>
-          <Gallery></Gallery>
-        </Provider>
+        <MemoryRouter>
+          <Provider store={store}>
+            <Gallery></Gallery>
+          </Provider>
+        </MemoryRouter>
       );
     });
 
