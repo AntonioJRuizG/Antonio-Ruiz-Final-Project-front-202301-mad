@@ -70,22 +70,19 @@ export class EuphoniumRepo {
     return data;
   }
 
-  /* Extension future methods
-
-  async update(
+  async updateEuphonium(
     euphonium: Partial<EuphoniumStructure>
-  ): Promise<EuphoniumStructure> {
+  ): Promise<ServerEuphoniumResp> {
     const url = this.url + "/" + euphonium.id;
     const resp = await fetch(url, {
       method: "PATCH",
       body: JSON.stringify(euphonium),
       headers: {
         "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
-    const data = (await resp.json()) as EuphoniumStructure;
+    const data = await resp.json();
     return data;
   }
-
-   */
 }

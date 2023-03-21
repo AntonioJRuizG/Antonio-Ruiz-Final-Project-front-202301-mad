@@ -41,10 +41,19 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const addBombardino = async (euphoniums: EuphoniumStructure) => {
+  const addEuphonium = async (euphoniums: EuphoniumStructure) => {
     try {
       await repo.createEuphonium(euphoniums);
       dispatch(ac.addCreator(euphoniums));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
+  const updateEuphonium = async (euphonium: EuphoniumStructure) => {
+    try {
+      await repo.updateEuphonium(euphonium);
+      dispatch(ac.updateCreator(euphonium));
     } catch (error) {
       console.log((error as Error).message);
     }
@@ -55,6 +64,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
     loadEuphoniums,
     loadOneBombardino,
     deleteEuphonium,
-    addBombardino,
+    updateEuphonium,
+    addEuphonium,
   };
 }

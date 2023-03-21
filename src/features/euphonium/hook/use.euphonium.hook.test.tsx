@@ -48,6 +48,7 @@ describe("Given the useEuphonium hook", () => {
     getEuphonium: jest.fn(),
     deleteEuphonium: jest.fn(),
     createEuphonium: jest.fn(),
+    updateEuphonium: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
