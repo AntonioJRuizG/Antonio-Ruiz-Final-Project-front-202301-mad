@@ -30,7 +30,7 @@ export class UserRepo {
       },
     });
     const data = (await resp.json()) as UserStructure;
-    localStorage.setItem("token", JSON.stringify(data.token));
+    if (data.token) localStorage.setItem("token", data.token);
     return data;
   }
 }

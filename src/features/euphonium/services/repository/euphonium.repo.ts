@@ -40,13 +40,15 @@ export class EuphoniumRepo {
   }
 
   async deleteEuphonium(id: EuphoniumStructure["id"]): Promise<void> {
-    const token = localStorage.getItem("token");
     const url = this.url + "/" + id;
+
+    let token = JSON.parse(localStorage.getItem("token")!);
+    if (!token) token = "";
     const resp = await fetch(url, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
-        Authorizaion: "Bearer " + token,
+        Authorization: "Bearer " + token,
       },
     });
     if (!resp.ok) throw new Error("Delete not possible");
@@ -55,13 +57,12 @@ export class EuphoniumRepo {
   async createEuphonium(
     euphonium: Partial<EuphoniumStructure>
   ): Promise<ServerEuphoniumResp> {
-    let token = localStorage.getItem("token");
     const resp = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify(euphonium),
       headers: {
         "Content-type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     const data = await resp.json();
