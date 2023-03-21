@@ -34,12 +34,25 @@
       text-align: center;
       .gallery_list_item_buttons {
         text-align: right;
+        height: 1.7rem;
+        margin-bottom: 0.7rem;
+
+        .card_button {
+          background-color: transparent;
+          border: 0;
+          width: fit-content;
+          height: fit-content;
+          margin-left: 0.5rem;
+          padding: 0.2rem;
+          cursor: pointer;
+        }
       }
 
       .gallery_list_item_img {
         align-content: center;
-        height: 200px;
+        height: 190px;
         margin: auto;
+        padding-bottom: 0.5rem;
         width: 150px;
       }
       .gallery_list_item_info_alias {

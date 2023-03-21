@@ -3,12 +3,21 @@ import { Link } from "react-router-dom";
 import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
 import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
 import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
+import { useUsers } from "../../../features/user/hook/use.user.hook";
+import { UserRepo } from "../../../features/user/services/repository/user.repo";
 
 import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums, deleteEuphonium } = useEuphonium(repo);
+
+  const repoUser = useMemo(() => new UserRepo(), []);
+
+  const { users } = useUsers(repoUser);
+  console.log("aqui estamos ahora");
+  console.log(users);
+  if (users !== undefined) console.log(users[0]?.id);
 
   return (
     <>
@@ -19,15 +28,27 @@ export function Gallery() {
             <li key={item.id} className={style.gallery_list_item}>
               <div>
                 <p className={style.gallery_list_item_buttons}>
-                  🖊
-                  <button
-                    className={style.gallery_list_item_buttons}
-                    onClick={() => {
-                      deleteEuphonium(item.id);
-                    }}
-                  >
-                    ✖
-                  </button>
+                  {localStorage.getItem("userid") === item.creator?.id && (
+                    <>
+                      <button
+                        className={style.card_button}
+                        onClick={() => {
+                          deleteEuphonium(item.id);
+                        }}
+                      >
+                        🖊
+                      </button>
+
+                      <button
+                        className={style.card_button}
+                        onClick={() => {
+                          deleteEuphonium(item.id);
+                        }}
+                      >
+                        ✖
+                      </button>
+                    </>
+                  )}
                 </p>
               </div>
               <Link to={`/details/${item.id}`} relative="path">
@@ -36,7 +57,6 @@ export function Gallery() {
                   src={item.image}
                   alt={item.alias}
                 />
-
                 <div className={style.gallery_list_item_info}>
                   <ul>
                     <li>
