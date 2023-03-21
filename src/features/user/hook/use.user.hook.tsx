@@ -7,10 +7,10 @@ import * as ac from "../reducer/user.action.creator";
 export function useUsers(repo: UserRepo) {
   const users = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch<AppDispatch>();
+
   const regUser = async (user: Partial<UserStructure>) => {
     try {
-      const newUser = await repo.registerUser(user);
-      dispatch(ac.addCreator(newUser));
+      await repo.registerUser(user);
     } catch (error) {
       console.log((error as Error).message);
     }
@@ -18,8 +18,9 @@ export function useUsers(repo: UserRepo) {
 
   const logUser = async (user: Partial<UserStructure>) => {
     try {
-      const newUser = await repo.loginUser(user);
-      dispatch(ac.addCreator(newUser));
+      const userData = await repo.loginUser(user);
+      dispatch(ac.loadCreator(userData.user));
+      return userData;
     } catch (error) {
       console.log((error as Error).message);
     }
