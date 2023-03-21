@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { SyntheticEvent, useMemo, useState } from "react";
-
-import style from "./detail.style.module.scss";
+import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
 import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
 import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
+
+import style from "./add.style.module.scss";
 
 export const Add = () => {
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -38,7 +37,7 @@ export const Add = () => {
   return (
     <>
       <h2>Formulario controlado</h2>
-      <form action="" onSubmit={handleSubmit}>
+      <form className={style.detail} action="" onSubmit={handleSubmit}>
         <div className="formControl">
           <label htmlFor="alias">Alias</label>
           <input
