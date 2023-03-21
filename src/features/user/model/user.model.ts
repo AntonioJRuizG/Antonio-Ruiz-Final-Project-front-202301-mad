@@ -6,6 +6,11 @@ export type UserStructure = {
   token?: string;
 };
 
+export type loginServerResStructure = {
+  token: string;
+  user: UserStructure;
+};
+
 export class ProtoUser implements Partial<UserStructure> {
   constructor(public name: string, public email: string, public pw: string) {}
 }

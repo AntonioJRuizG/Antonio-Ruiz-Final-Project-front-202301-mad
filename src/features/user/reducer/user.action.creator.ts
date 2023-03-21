@@ -2,7 +2,7 @@ import { createAction } from "@reduxjs/toolkit";
 import { UserStructure } from "../model/user.model";
 import { usersActions } from "./user.actions.types";
 
-export const loadCreator = createAction<UserStructure[]>(usersActions.load);
+export const loadCreator = createAction<UserStructure>(usersActions.load);
 
 export const addCreator = createAction<UserStructure>(usersActions.add);
 
