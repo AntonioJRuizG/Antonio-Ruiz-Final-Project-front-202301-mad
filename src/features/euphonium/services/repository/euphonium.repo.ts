@@ -42,7 +42,7 @@ export class EuphoniumRepo {
   async deleteEuphonium(id: EuphoniumStructure["id"]): Promise<void> {
     const url = this.url + "/" + id;
 
-    let token = JSON.parse(localStorage.getItem("token")!);
+    let token = localStorage.getItem("token");
     if (!token) token = "";
     const resp = await fetch(url, {
       method: "DELETE",
