@@ -10,14 +10,13 @@ import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const { euphoniums, deleteEuphonium } = useEuphonium(repo);
+  const { euphoniums, deleteEuphonium, updateEuphonium } = useEuphonium(repo);
 
-  const repoUser = useMemo(() => new UserRepo(), []);
-
+  /*  Subir al estado un usuario para saber la id del que esta logeado.
+ const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
-  console.log("aqui estamos ahora");
-  console.log(users);
-  if (users !== undefined) console.log(users[0]?.id);
+
+  if (users !== undefined) console.log(users[0]?.id); */
 
   return (
     <>
@@ -30,13 +29,8 @@ export function Gallery() {
                 <p className={style.gallery_list_item_buttons}>
                   {localStorage.getItem("userid") === item.creator?.id && (
                     <>
-                      <button
-                        className={style.card_button}
-                        onClick={() => {
-                          deleteEuphonium(item.id);
-                        }}
-                      >
-                        🖊
+                      <button className={style.card_button}>
+                        <Link to={"/edititem"}>🖊</Link>
                       </button>
 
                       <button
@@ -52,11 +46,11 @@ export function Gallery() {
                 </p>
               </div>
               <Link to={`/details/${item.id}`} relative="path">
-                <img
-                  className={style.gallery_list_item_img}
-                  src={item.image}
-                  alt={item.alias}
-                />
+                <div className={style.gallery_img_box}>
+                  <div className={style.gallery_list_item_img}>
+                    <img src={item.image} alt={item.alias} />
+                  </div>
+                </div>
                 <div className={style.gallery_list_item_info}>
                   <ul>
                     <li>
