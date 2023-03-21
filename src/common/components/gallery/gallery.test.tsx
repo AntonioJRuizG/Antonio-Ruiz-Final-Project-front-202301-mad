@@ -4,6 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import { store } from "../../../store/store";
 import { Gallery } from "./gallery";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockEuphoniums = [
   {
     id: "1",
@@ -19,28 +20,21 @@ const mockEuphoniums = [
   },
 ];
 
-const mockDelete = jest.fn();
-
-jest.mock("../../../features/euphonium/hook/use.euphonium.hook", () => ({
-  useEuphonium: () => ({
-    euphoniums: mockEuphoniums,
-    deleteEuphonium: mockDelete,
-  }),
-}));
+// jest.mock("../../../features/euphonium/hook/use.euphonium.hook");
 
 describe("Given Gallery", () => {
-  describe("When it is render", () => {
-    beforeEach(() => {
-      // eslint-disable-next-line testing-library/no-render-in-setup
-      render(
-        <MemoryRouter>
-          <Provider store={store}>
-            <Gallery></Gallery>
-          </Provider>
-        </MemoryRouter>
-      );
-    });
+  beforeEach(() => {
+    // eslint-disable-next-line testing-library/no-render-in-setup
+    render(
+      <MemoryRouter>
+        <Provider store={store}>
+          <Gallery></Gallery>
+        </Provider>
+      </MemoryRouter>
+    );
+  });
 
+  describe("When it is render", () => {
     test("Then it should be called", async () => {
       const element = screen.getByRole("heading");
       expect(element).toBeInTheDocument();
@@ -52,5 +46,10 @@ describe("Given Gallery", () => {
         expect(value).toBeTruthy();
       }
     });
+
+    /* test("Then it should be buttons", async () => {
+      const element = screen.getByRole("button");
+      expect(element).toBeInTheDocument();
+    }); */
   });
 });

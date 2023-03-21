@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
 import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
 import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
-import { useUsers } from "../../../features/user/hook/use.user.hook";
-import { UserRepo } from "../../../features/user/services/repository/user.repo";
 
 import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const { euphoniums, deleteEuphonium, updateEuphonium } = useEuphonium(repo);
+  const { euphoniums, deleteEuphonium } = useEuphonium(repo);
 
   /*  Subir al estado un usuario para saber la id del que esta logeado.
  const repoUser = useMemo(() => new UserRepo(), []);
@@ -30,7 +28,7 @@ export function Gallery() {
                   {localStorage.getItem("userid") === item.creator?.id && (
                     <>
                       <button className={style.card_button}>
-                        <Link to={"/edititem"}>🖊</Link>
+                        <Link to={"/editar"}>🖊</Link>
                       </button>
 
                       <button
