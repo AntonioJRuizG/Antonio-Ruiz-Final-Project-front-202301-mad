@@ -78,11 +78,11 @@ export const Add = () => {
         <div>
           <fieldset onChange={handleChange}>
             <legend>Número de válvulas</legend>
-            <input type="radio" name="gender" id="three" value="3" />
+            <input type="radio" name="valves" id="radio" value="3" />
             <label htmlFor="tres">3</label>
-            <input type="radio" name="gender" id="four" value="4" />
+            <input type="radio" name="valves" id="radio" value="4" />
             <label htmlFor="four">4</label>
-            <input type="radio" name="gender" id="other" value="other" />
+            <input type="radio" name="valves" id="radio" value="other" />
             <label htmlFor="other">Otros</label>
           </fieldset>
         </div>
