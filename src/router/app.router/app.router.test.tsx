@@ -13,10 +13,10 @@ const pathsEntries = ["/", "/add", "/register", "/login"];
 
 describe("Given AppRouter component", () => {
   const mockOptions: MenuOptions[] = [
-    { label: "Gallery", path: "/" },
-    { label: "Add", path: "/add" },
-    { label: "Register", path: "register" },
-    { label: "Login", path: "/login" },
+    { id: "1", label: "Gallery", path: "/" },
+    { id: "2", label: "Add", path: "/add" },
+    { id: "3", label: "Register", path: "register" },
+    { id: "4", label: "Login", path: "/login" },
   ];
 
   describe("When it is reder and the path is '/'", () => {

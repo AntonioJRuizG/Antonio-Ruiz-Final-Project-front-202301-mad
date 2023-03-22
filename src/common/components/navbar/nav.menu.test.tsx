@@ -8,6 +8,7 @@ describe("Given Navbar component", () => {
     test("Then it should render in the header component", () => {
       const mockOptions: MenuOptions[] = [
         {
+          id: "2",
           label: "test",
           path: "/test",
         },

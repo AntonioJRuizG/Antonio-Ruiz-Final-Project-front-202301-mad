@@ -1,5 +1,6 @@
 import style from "./navbar.style.module.scss";
 import { MenuOptions } from "../../../app/app";
+import { Link } from "react-router-dom";
 
 type NavProps = {
   menuOptions: MenuOptions[];
@@ -9,14 +10,10 @@ export function Navbar({ menuOptions }: NavProps) {
     <nav className={style.mainNavbar}>
       <ul className={style.mainNavbar__list}>
         {menuOptions.map((item) => (
-          <li key={item.label}>
-            <a
-              className={style.mainNavbar__list__link}
-              key={item.label}
-              href={item.path}
-            >
+          <li key={item.id}>
+            <Link to={item.path} className={style.mainNavbar__list__link}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

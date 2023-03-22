@@ -31,7 +31,10 @@ export function AppRouter({ menuOptions }: AppRouterProps) {
           path={"/details/:instrumentId"}
           element={<Detail></Detail>}
         ></Route>
-        <Route path={"/editar"} element={<EditPage></EditPage>}></Route>
+        <Route
+          path={"/editar/:instrumentDetailId"}
+          element={<EditPage></EditPage>}
+        ></Route>
       </Routes>
     </Suspense>
   );
