@@ -4,16 +4,16 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter as Router } from "react-router-dom";
+import { store } from "../../../../store/store";
+import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
-import { useUsers } from "../../../user/hook/use.user.hook";
-import { store } from "../../../../store/store";
 import { Gallery } from "./gallery";
 
-jest.mock("../../../features/euphonium/hook/use.euphonium.hook");
-jest.mock("../../../features/user/services/repository/user.repo");
-jest.mock("../../../features/euphonium/hook/use.euphonium.hook");
-jest.mock("../../../features/user/hook/use.user.hook");
+jest.mock("../../services/repository/euphonium.repo");
+jest.mock("../../../user/services/repository/user.repo");
+jest.mock("../../hook/use.euphonium.hook");
+jest.mock("../../../user/hook/use.user.hook");
 
 describe("Given Gallery", () => {
   const mockEuphoniumRepo = {} as EuphoniumRepo;

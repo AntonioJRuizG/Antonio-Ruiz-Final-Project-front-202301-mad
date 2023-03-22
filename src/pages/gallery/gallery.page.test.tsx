@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { Gallery } from "../../features/euphonium/components/gallery/gallery";
 import GalleryPage from "./gallery.page";
 
-jest.mock("../../common/components/gallery/gallery");
+jest.mock("../../features/euphonium/components/gallery/gallery");
 
 describe("Given GalleryPage component", () => {
   describe("When it is render", () => {

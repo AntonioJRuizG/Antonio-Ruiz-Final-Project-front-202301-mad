@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { Detail } from "./detail";
 
 jest.mock("react-router-dom", () => ({
@@ -7,7 +8,7 @@ jest.mock("react-router-dom", () => ({
   useParams: () => ({ instrumentId: "test-id" }),
 }));
 
-jest.mock("../../../features/euphonium/hook/use.euphonium.hook", () => ({
+jest.mock("../../hook/use.euphonium.hook", () => ({
   useEuphonium: () => ({
     euphoniums: [
       {

@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { Form } from "../../features/euphonium/components/form/form";
 import EditPage from "./edit.page";
 
-jest.mock("../../common/components/form/form");
+jest.mock("../../features/euphonium/components/form/form");
 
 describe("Given GalleryPage component", () => {
   describe("When it is render", () => {

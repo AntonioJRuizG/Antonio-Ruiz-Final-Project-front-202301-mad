@@ -1,9 +1,7 @@
+/* eslint-disable testing-library/no-render-in-setup */
 /* eslint-disable testing-library/no-unnecessary-act */
-/*eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { mockComponent } from "react-dom/test-utils";
 import { Provider } from "react-redux";
 import { euphoniumReducer } from "../reducer/euphonium.reducer";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo";
@@ -78,9 +76,7 @@ describe("Given the useEuphonium hook", () => {
       );
     };
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
-      // eslint-disable-next-line testing-library/no-render-in-setup
       render(
         <Provider store={mockStore}>
           <TestComponent></TestComponent>

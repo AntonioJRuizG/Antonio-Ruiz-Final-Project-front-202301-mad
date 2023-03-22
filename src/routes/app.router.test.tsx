@@ -4,10 +4,10 @@ import { AppRouter } from "./app.router";
 import "@testing-library/jest-dom";
 import { MenuOptions } from "../app/app";
 
-jest.mock("../../common/components/gallery/gallery");
-jest.mock("../../features/user/components/login/login");
-jest.mock("../../features/user/components/register/register");
-jest.mock("../../pages/add/add.page");
+jest.mock("../features/euphonium/components/gallery/gallery");
+jest.mock("../features/user/components/login/login");
+jest.mock("../features/user/components/register/register");
+jest.mock("../pages/add/add.page");
 
 const pathsEntries = ["/", "/add", "/register", "/login"];
 
