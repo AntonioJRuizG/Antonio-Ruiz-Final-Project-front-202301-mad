@@ -1,16 +1,11 @@
-export type UserStructure = {
+export type UserProps = {
   id: string;
   name: string;
   email: string;
   pw: string;
-  token?: string;
 };
 
-export type loginServerResStructure = {
+export type UserResponseBody = {
   token: string;
-  user: UserStructure;
+  user: UserProps;
 };
-
-export class ProtoUser implements Partial<UserStructure> {
-  constructor(public name: string, public email: string, public pw: string) {}
-}

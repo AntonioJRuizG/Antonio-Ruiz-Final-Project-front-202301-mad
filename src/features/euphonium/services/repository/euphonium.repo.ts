@@ -1,14 +1,14 @@
 import {
-  EuphoniumStructure,
-  ServerEuphoniumResp,
+  EuphoniumProps,
+  EuphoniumResponseBody,
 } from "../../model/euphonium.model";
 
 export interface EuphoniumRepoStructure {
-  loadEuphoniums(): Promise<ServerEuphoniumResp[]>;
-  getEuphonium(id: EuphoniumStructure["id"]): Promise<ServerEuphoniumResp>;
-  createEuphonium(euphonium: EuphoniumStructure): Promise<ServerEuphoniumResp>;
-  update(euphonium: Partial<EuphoniumStructure>): Promise<ServerEuphoniumResp>;
-  delete(id: EuphoniumStructure["id"]): Promise<void>;
+  loadEuphoniums(): Promise<EuphoniumResponseBody[]>;
+  getEuphonium(id: EuphoniumProps["id"]): Promise<EuphoniumResponseBody>;
+  createEuphonium(euphonium: EuphoniumProps): Promise<EuphoniumResponseBody>;
+  update(euphonium: Partial<EuphoniumProps>): Promise<EuphoniumResponseBody>;
+  delete(id: EuphoniumProps["id"]): Promise<void>;
 }
 
 export class EuphoniumRepo {
@@ -21,30 +21,28 @@ export class EuphoniumRepo {
     this.url = "http://localhost:4500/bombardinos";
   }
 
-  async loadEuphoniums(): Promise<ServerEuphoniumResp> {
+  async loadEuphoniums(): Promise<EuphoniumResponseBody> {
     const resp = await fetch(this.url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
-    const data: ServerEuphoniumResp = await resp.json();
+    const data: EuphoniumResponseBody = await resp.json();
     return data;
   }
 
-  async getEuphonium(
-    id: EuphoniumStructure["id"]
-  ): Promise<ServerEuphoniumResp> {
+  async getEuphonium(id: EuphoniumProps["id"]): Promise<EuphoniumResponseBody> {
     const url = this.url + "/" + id;
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error getting instrument details " + resp.status);
-    const data: ServerEuphoniumResp = await resp.json();
+    const data: EuphoniumResponseBody = await resp.json();
     return data;
   }
 
-  async deleteEuphonium(id: EuphoniumStructure["id"]): Promise<void> {
+  async deleteEuphonium(
+    id: EuphoniumProps["id"],
+    token: string
+  ): Promise<void> {
     const url = this.url + "/" + id;
-
-    let token = localStorage.getItem("token");
-    if (!token) token = "";
     const resp = await fetch(url, {
       method: "DELETE",
       headers: {
@@ -56,14 +54,15 @@ export class EuphoniumRepo {
   }
 
   async createEuphonium(
-    euphonium: Partial<EuphoniumStructure>
-  ): Promise<ServerEuphoniumResp> {
+    euphonium: Partial<EuphoniumProps>,
+    token: string
+  ): Promise<EuphoniumResponseBody> {
     const resp = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify(euphonium),
       headers: {
         "Content-type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + token,
       },
     });
     const data = await resp.json();
@@ -71,15 +70,16 @@ export class EuphoniumRepo {
   }
 
   async updateEuphonium(
-    euphonium: Partial<EuphoniumStructure>
-  ): Promise<ServerEuphoniumResp> {
+    euphonium: Partial<EuphoniumProps>,
+    token: string
+  ): Promise<EuphoniumResponseBody> {
     const url = this.url + "/" + euphonium.id;
     const resp = await fetch(url, {
       method: "PATCH",
       body: JSON.stringify(euphonium),
       headers: {
         "Content-type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + token,
       },
     });
     const data = await resp.json();

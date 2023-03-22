@@ -1,8 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { EuphoniumStructure } from "../model/euphonium.model";
+import { EuphoniumProps } from "../model/euphonium.model";
 import * as ac from "./euphonium.action.creator";
 
-const initialState: EuphoniumStructure[] = [];
+const initialState: EuphoniumProps[] = [];
 
 export const euphoniumReducer = createReducer(initialState, (builder) => {
   builder.addCase(ac.loadCreator, (_state, { payload }) => payload);

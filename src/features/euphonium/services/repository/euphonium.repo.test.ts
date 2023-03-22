@@ -55,7 +55,7 @@ describe("Given EuphoniumRepo", () => {
           alias: "test",
         }),
       });
-      const result = await euphoniumMockRepo.deleteEuphonium("1");
+      const result = await euphoniumMockRepo.deleteEuphonium("1", "test-token");
       expect(result).toEqual(undefined);
     });
 
@@ -68,17 +68,8 @@ describe("Given EuphoniumRepo", () => {
           Authorization: "Bearer testToken",
         },
       });
-      const result = euphoniumMockRepo.deleteEuphonium("1");
+      const result = euphoniumMockRepo.deleteEuphonium("1", "test-token");
       await expect(result).rejects.toThrow();
-    });
-    test("Then data is added into local storage", () => {
-      localStorage.setItem("mockToken", "test-token");
-      expect(localStorage.getItem("mockToken")).toEqual("test-token");
-    });
-    test("Then token should be '' if there is no token in localStorage", () => {
-      const mockNullToken = null;
-      localStorage.setItem("mockToken", mockNullToken!);
-      expect(localStorage.getItem("mockToken")).toEqual("null");
     });
   });
 
@@ -91,7 +82,10 @@ describe("Given EuphoniumRepo", () => {
           alias: "test",
         }),
       });
-      const result = await euphoniumMockRepo.createEuphonium({ alias: "test" });
+      const result = await euphoniumMockRepo.createEuphonium(
+        { alias: "test" },
+        "test-token"
+      );
       expect(result).toEqual({ id: "1", alias: "test" });
     });
   });
@@ -105,10 +99,13 @@ describe("Given EuphoniumRepo", () => {
           alias: "test-2",
         }),
       });
-      const result = await euphoniumMockRepo.updateEuphonium({
-        id: "1",
-        alias: "test-2",
-      });
+      const result = await euphoniumMockRepo.updateEuphonium(
+        {
+          id: "1",
+          alias: "test-2",
+        },
+        "test-id"
+      );
       expect(result).toEqual({ id: "1", alias: "test-2" });
     });
   });

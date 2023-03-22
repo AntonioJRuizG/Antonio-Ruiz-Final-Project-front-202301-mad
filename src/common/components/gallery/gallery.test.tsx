@@ -1,14 +1,12 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter as Router } from "react-router-dom";
 import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumProps } from "../../../features/euphonium/model/euphonium.model";
 import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
 import { useUsers } from "../../../features/user/hook/use.user.hook";
-import { UserRepo } from "../../../features/user/services/repository/user.repo";
 import { store } from "../../../store/store";
 import { Gallery } from "./gallery";
 
@@ -18,22 +16,7 @@ jest.mock("../../../features/euphonium/hook/use.euphonium.hook");
 jest.mock("../../../features/user/hook/use.user.hook");
 
 describe("Given Gallery", () => {
-  const mockUserRepo = {} as UserRepo;
   const mockEuphoniumRepo = {} as EuphoniumRepo;
-
-  const mockEuphonium1 = {
-    id: "1",
-    manufacturer: "Mock Manufacturer",
-    alias: "Mock Alias",
-    image: "mock-image-url",
-  } as unknown as EuphoniumProps;
-
-  const mockEuphonium2 = {
-    id: "2",
-    manufacturer: "Another Mock Manufacturer",
-    alias: "Another Mock Alias",
-    image: "another-mock-image-url",
-  } as unknown as EuphoniumProps;
 
   (useEuphonium as jest.Mock).mockReturnValue({
     euphoniums: jest.fn(),

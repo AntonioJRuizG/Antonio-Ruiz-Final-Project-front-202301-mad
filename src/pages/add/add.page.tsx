@@ -1,9 +1,9 @@
-import { AddUpdateForm } from "../../common/components/form/addupd.form";
+import { Form } from "../../common/components/form/form";
 
 export default function AddPage() {
   return (
     <>
-      <AddUpdateForm></AddUpdateForm>
+      <Form></Form>
     </>
   );
 }

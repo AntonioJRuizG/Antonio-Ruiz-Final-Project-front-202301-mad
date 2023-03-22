@@ -1,6 +1,6 @@
-import { UserStructure } from "../../user/model/user.model";
+import { UserProps } from "../../user/model/user.model";
 
-export type EuphoniumStructure = {
+export type EuphoniumProps = {
   id: string;
   alias: string;
   manufacturer: string;
@@ -9,20 +9,9 @@ export type EuphoniumStructure = {
   level: string;
   marchingBand: boolean;
   image: string;
-  creator: Partial<UserStructure>;
+  creator: Partial<UserProps>;
 };
 
-export type ServerEuphoniumResp = {
-  results: EuphoniumStructure[];
+export type EuphoniumResponseBody = {
+  results: EuphoniumProps[];
 };
-
-export class ProtoEuphonium implements Partial<EuphoniumStructure> {
-  constructor(
-    public alias: string,
-    public manufacturer: string,
-    public instrumentModel: string,
-    public valves: number,
-    public marchingBand: boolean,
-    public image: string
-  ) {}
-}

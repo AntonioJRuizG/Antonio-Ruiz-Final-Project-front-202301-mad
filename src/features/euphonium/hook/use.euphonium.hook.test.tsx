@@ -64,10 +64,16 @@ describe("Given the useEuphonium hook", () => {
         <div>
           <button onClick={() => loadEuphoniums()}></button>
           <button onClick={() => loadOneBombardino("1")}></button>
-          <button onClick={() => deleteEuphonium("1")}></button>
-          <button onClick={() => deleteEuphonium("id-not-found")}></button>
-          <button onClick={() => addEuphonium(euphoniums[0])}></button>
-          <button onClick={() => updateEuphonium(euphoniums[0])}></button>
+          <button onClick={() => deleteEuphonium("1", "test-token")}></button>
+          <button
+            onClick={() => deleteEuphonium("id-not-found", "test-token")}
+          ></button>
+          <button
+            onClick={() => addEuphonium(euphoniums[0], "test-token")}
+          ></button>
+          <button
+            onClick={() => updateEuphonium(euphoniums[0], "test-token")}
+          ></button>
         </div>
       );
     };
