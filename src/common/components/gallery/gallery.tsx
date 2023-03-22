@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumStructure } from "../../../features/euphonium/model/euphonium.model";
+import { EuphoniumProps } from "../../../features/euphonium/model/euphonium.model";
 import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
+import { useUsers } from "../../../features/user/hook/use.user.hook";
+import { UserRepo } from "../../../features/user/services/repository/user.repo";
 
 import style from "./gallery.style.module.scss";
 
@@ -10,31 +12,30 @@ export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums, deleteEuphonium } = useEuphonium(repo);
 
-  /*  Subir al estado un usuario para saber la id del que esta logeado.
- const repoUser = useMemo(() => new UserRepo(), []);
+  const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
-
-  if (users !== undefined) console.log(users[0]?.id); */
 
   return (
     <>
       <h1 className={style.gallery_title}>Galería</h1>
       <section className={style.gallery}>
         <ul className={style.gallery_list}>
-          {euphoniums.map((item: EuphoniumStructure) => (
+          {euphoniums.map((item: EuphoniumProps) => (
             <li key={item.id} className={style.gallery_list_item}>
               <div>
                 <p className={style.gallery_list_item_buttons}>
-                  {localStorage.getItem("userid") === item.creator?.id && (
+                  {users.user?.id === item.creator?.id && (
                     <>
                       <button className={style.card_button}>
-                        <Link to={"/editar"}>🖊</Link>
+                        <Link to={`/editar/${item.id}`} relative="path">
+                          🖊
+                        </Link>
                       </button>
 
                       <button
                         className={style.card_button}
                         onClick={() => {
-                          deleteEuphonium(item.id);
+                          deleteEuphonium(item.id, users.token);
                         }}
                       >
                         ✖
