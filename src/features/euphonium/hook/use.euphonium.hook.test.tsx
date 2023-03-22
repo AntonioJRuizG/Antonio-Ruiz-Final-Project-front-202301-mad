@@ -52,14 +52,22 @@ describe("Given the useEuphonium hook", () => {
   };
   beforeEach(async () => {
     const TestComponent = function () {
-      const { loadEuphoniums, loadOneBombardino, deleteEuphonium } =
-        useEuphonium(mockRepo);
+      const {
+        euphoniums,
+        loadEuphoniums,
+        loadOneBombardino,
+        deleteEuphonium,
+        addEuphonium,
+        updateEuphonium,
+      } = useEuphonium(mockRepo);
       return (
         <div>
           <button onClick={() => loadEuphoniums()}></button>
           <button onClick={() => loadOneBombardino("1")}></button>
           <button onClick={() => deleteEuphonium("1")}></button>
           <button onClick={() => deleteEuphonium("id-not-found")}></button>
+          <button onClick={() => addEuphonium(euphoniums[0])}></button>
+          <button onClick={() => updateEuphonium(euphoniums[0])}></button>
         </div>
       );
     };
@@ -111,6 +119,31 @@ describe("Given the useEuphonium hook", () => {
       (mockRepo.deleteEuphonium as jest.Mock).mockRejectedValue("error");
       await act(async () => fireEvent.click(elements[3]));
       expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
+    });
+  });
+
+  describe("When click on fifth button", () => {
+    test("Then it should call the repo method addEuphonium", async () => {
+      const addEuphonium = await fireEvent.click(elements[4]);
+      expect(mockRepo.createEuphonium).toHaveBeenCalled();
+      expect(addEuphonium).toEqual(true);
+    });
+    test("Then it should throw error if fails", async () => {
+      (mockRepo.createEuphonium as jest.Mock).mockRejectedValue("error");
+      await act(async () => fireEvent.click(elements[4]));
+      expect(mockRepo.createEuphonium).toHaveBeenCalled();
+    });
+  });
+  describe("When click on sixth button", () => {
+    test("Then it should call the repo method updateEuphonium", async () => {
+      const updateEuphonium = await fireEvent.click(elements[5]);
+      expect(mockRepo.updateEuphonium).toHaveBeenCalled();
+      expect(updateEuphonium).toEqual(true);
+    });
+    test("Then it should throw error if fails", async () => {
+      (mockRepo.updateEuphonium as jest.Mock).mockRejectedValue("error");
+      await act(async () => fireEvent.click(elements[5]));
+      expect(mockRepo.updateEuphonium).toHaveBeenCalled();
     });
   });
 });
