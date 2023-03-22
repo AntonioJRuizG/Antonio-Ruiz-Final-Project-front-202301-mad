@@ -1,12 +1,13 @@
 import { render } from "@testing-library/react";
 import { AddUpdateForm } from "../../common/components/form/addupd.form";
-import AddPage from "./add.page";
+import EditPage from "./edit.page";
 
 jest.mock("../../common/components/form/addupd.form");
-describe("Given Add Page component", () => {
+
+describe("Given GalleryPage component", () => {
   describe("When it is render", () => {
     test("Then it should be called", () => {
-      render(<AddPage></AddPage>);
+      render(<EditPage></EditPage>);
       expect(AddUpdateForm).toHaveBeenCalled();
     });
   });
