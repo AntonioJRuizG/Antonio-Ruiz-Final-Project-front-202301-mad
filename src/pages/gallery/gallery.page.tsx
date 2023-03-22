@@ -1,4 +1,4 @@
-import { Gallery } from "../../common/components/gallery/gallery";
+import { Gallery } from "../../features/euphonium/components/gallery/gallery";
 
 export default function GalleryPage() {
   return (

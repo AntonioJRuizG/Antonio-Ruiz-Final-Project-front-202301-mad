@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
-import { MenuOptions } from "../../../app/app";
+import { MenuOptions } from "../../app/app";
 import { Navbar } from "./navbar";
 
 describe("Given Navbar component", () => {

@@ -1,4 +1,4 @@
-import { Form } from "../../common/components/form/form";
+import { Form } from "../../features/euphonium/components/form/form";
 
 export default function EditPage() {
   return (

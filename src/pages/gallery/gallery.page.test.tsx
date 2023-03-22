@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Gallery } from "../../common/components/gallery/gallery";
+import { Gallery } from "../../features/euphonium/components/gallery/gallery";
 import GalleryPage from "./gallery.page";
 
 jest.mock("../../common/components/gallery/gallery");

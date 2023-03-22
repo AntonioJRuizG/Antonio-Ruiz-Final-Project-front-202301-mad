@@ -1,6 +1,6 @@
 import style from "./navbar.style.module.scss";
-import { MenuOptions } from "../../../app/app";
 import { Link } from "react-router-dom";
+import { MenuOptions } from "../../app/app";
 
 type NavProps = {
   menuOptions: MenuOptions[];

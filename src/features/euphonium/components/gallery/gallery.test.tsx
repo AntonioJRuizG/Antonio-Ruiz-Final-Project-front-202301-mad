@@ -4,10 +4,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter as Router } from "react-router-dom";
-import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
-import { useUsers } from "../../../features/user/hook/use.user.hook";
-import { store } from "../../../store/store";
+import { useEuphonium } from "../../hook/use.euphonium.hook";
+import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
+import { useUsers } from "../../../user/hook/use.user.hook";
+import { store } from "../../../../store/store";
 import { Gallery } from "./gallery";
 
 jest.mock("../../../features/euphonium/hook/use.euphonium.hook");

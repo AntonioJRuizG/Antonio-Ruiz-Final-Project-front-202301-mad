@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Form } from "../../common/components/form/form";
+import { Form } from "../../features/euphonium/components/form/form";
 import EditPage from "./edit.page";
 
 jest.mock("../../common/components/form/form");

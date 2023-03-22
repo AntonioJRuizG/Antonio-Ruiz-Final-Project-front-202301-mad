@@ -1,6 +1,6 @@
-import { Header } from "../common/components/header/header";
-import { Navbar } from "../common/components/navbar/navbar";
-import { AppRouter } from "../router/app.router/app.router";
+import { Header } from "../components/header/header";
+import { Navbar } from "../components/navbar/navbar";
+import { AppRouter } from "../routes/app.router";
 import "./app.css";
 
 export type MenuOptions = {

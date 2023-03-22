@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumProps } from "../../../features/euphonium/model/euphonium.model";
-import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
-import { useUsers } from "../../../features/user/hook/use.user.hook";
-import { UserRepo } from "../../../features/user/services/repository/user.repo";
+import { useEuphonium } from "../../hook/use.euphonium.hook";
+import { EuphoniumProps } from "../../model/euphonium.model";
+import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
+import { useUsers } from "../../../user/hook/use.user.hook";
+import { UserRepo } from "../../../user/services/repository/user.repo";
 
 import style from "./gallery.style.module.scss";
 

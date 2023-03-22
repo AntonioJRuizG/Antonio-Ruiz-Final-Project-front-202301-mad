@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { AppRouter } from "./app.router";
 import "@testing-library/jest-dom";
-import { MenuOptions } from "../../app/app";
+import { MenuOptions } from "../app/app";
 
 jest.mock("../../common/components/gallery/gallery");
 jest.mock("../../features/user/components/login/login");

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useMemo } from "react";
-import { useEuphonium } from "../../../features/euphonium/hook/use.euphonium.hook";
-import { EuphoniumRepo } from "../../../features/euphonium/services/repository/euphonium.repo";
+import { useEuphonium } from "../../hook/use.euphonium.hook";
+import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 
 import style from "./detail.style.module.scss";
 
