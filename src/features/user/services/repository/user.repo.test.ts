@@ -1,4 +1,4 @@
-import { UserStructure } from "../../model/user.model";
+import { UserProps } from "../../model/user.model";
 import { UserRepo } from "./user.repo";
 
 describe("Given UserRepo", () => {
@@ -10,13 +10,13 @@ describe("Given UserRepo", () => {
 
   describe("When registerUser method is called", () => {
     test("Then it should make a POST request to the /register endpoint with the given user data", async () => {
-      const user: UserStructure = {
+      const user: UserProps = {
         id: "1",
         email: "test@test.com",
         name: "testname",
         pw: "1234",
       };
-      const expectedUser: UserStructure = {
+      const expectedUser: UserProps = {
         id: "1",
         email: "test@test.com",
         name: "testname",
@@ -44,13 +44,13 @@ describe("Given UserRepo", () => {
 
   describe("When loginUser method is called", () => {
     it("Then it should make a POST request to the /login endpoint with the given user data (with empty name field)", async () => {
-      const user: UserStructure = {
+      const user: UserProps = {
         id: "1",
         name: "",
         email: "test@test.com",
         pw: "1234",
       };
-      const expectedUser: UserStructure = {
+      const expectedUser: UserProps = {
         id: "1",
         email: "test@test.com",
         name: "",

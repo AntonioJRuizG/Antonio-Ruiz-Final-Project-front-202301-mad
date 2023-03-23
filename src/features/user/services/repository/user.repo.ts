@@ -1,12 +1,12 @@
-import { UserStructure } from "../../model/user.model";
-
+import { UserResponseBody, UserProps } from "../../model/user.model";
 export class UserRepo {
   url: string;
   constructor() {
-    this.url = "https://antonio-ruiz-final-project-2023.onrender.com/usuarios";
+    /* RENDER URL this.url="https://antonio-ruiz-final-project-2023.onrender.com/usuarios",*/
+    this.url = "http://localhost:4500/usuarios";
   }
 
-  async registerUser(user: Partial<UserStructure>): Promise<UserStructure> {
+  async registerUser(user: Partial<UserProps>): Promise<UserProps> {
     const resp = await fetch(this.url + "/registro", {
       method: "POST",
       body: JSON.stringify(user),
@@ -14,11 +14,11 @@ export class UserRepo {
         "Content-type": "application/json",
       },
     });
-    const data = (await resp.json()) as UserStructure;
+    const data = (await resp.json()) as UserProps;
     return data;
   }
 
-  async loginUser(user: Partial<UserStructure>): Promise<UserStructure> {
+  async loginUser(user: Partial<UserProps>): Promise<UserResponseBody> {
     const resp = await fetch(this.url + "/acceso", {
       method: "POST",
       body: JSON.stringify(user),
@@ -26,8 +26,7 @@ export class UserRepo {
         "Content-type": "application/json",
       },
     });
-    const data = (await resp.json()) as UserStructure;
-    localStorage.setItem("token", JSON.stringify(data.token));
+    const data = (await resp.json()) as UserResponseBody;
     return data;
   }
 }

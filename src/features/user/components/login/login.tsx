@@ -1,7 +1,6 @@
 import { SyntheticEvent, useMemo } from "react";
-
 import { useUsers } from "../../hook/use.user.hook";
-import { ProtoUser } from "../../model/user.model";
+import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
 
 import style from "./login.style.module.scss";
@@ -10,13 +9,16 @@ export function LoginForm() {
   const repo = useMemo(() => new UserRepo(), []);
   const { logUser } = useUsers(repo);
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const inputs = form.querySelectorAll("input");
 
-    const newUser = new ProtoUser("", inputs[0].value, inputs[1].value);
-    logUser(newUser);
+    const currentUser: Partial<UserProps> = {
+      email: inputs[0].value,
+      pw: inputs[1].value,
+    };
+    logUser(currentUser);
     form.reset();
   };
 

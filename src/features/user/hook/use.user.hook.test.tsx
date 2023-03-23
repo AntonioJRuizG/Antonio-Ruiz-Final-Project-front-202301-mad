@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { UserStructure } from "../model/user.model";
+import { UserProps } from "../model/user.model";
 import { userReducer } from "../reducer/user.reducer";
 import { UserRepo } from "../services/repository/user.repo";
 import { useUsers } from "./use.user.hook";
@@ -12,20 +12,15 @@ describe("Given the useUsers hook", () => {
   const mockStore = configureStore({
     reducer: { users: userReducer },
     preloadedState: {
-      users: [
-        {
+      users: {
+        token: "test-token",
+        user: {
           id: "1",
           name: "Test",
           email: "test",
           pw: "test",
         },
-        {
-          id: "2",
-          name: "Test2",
-          email: "test2",
-          pw: "test2",
-        },
-      ],
+      },
     },
   });
 
@@ -39,8 +34,8 @@ describe("Given the useUsers hook", () => {
       const { logUser, regUser } = useUsers(mockRepo);
       return (
         <div>
-          <button onClick={() => regUser({} as UserStructure)}></button>
-          <button onClick={() => logUser({} as UserStructure)}></button>
+          <button onClick={() => regUser({} as UserProps)}></button>
+          <button onClick={() => logUser({} as UserProps)}></button>
         </div>
       );
     };

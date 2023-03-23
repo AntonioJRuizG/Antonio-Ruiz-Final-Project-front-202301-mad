@@ -1,6 +1,6 @@
 import { SyntheticEvent, useMemo } from "react";
 import { useUsers } from "../../hook/use.user.hook";
-import { ProtoUser } from "../../model/user.model";
+import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
 
 import style from "./register.style.module.scss";
@@ -14,12 +14,13 @@ export function RegisterForm() {
     const form = event.target as HTMLFormElement;
     const inputs = form.querySelectorAll("input");
 
-    const newUser = new ProtoUser(
-      inputs[0].value,
-      inputs[1].value,
-      inputs[2].value
-    );
-    regUser(newUser);
+    const registerUser: Partial<UserProps> = {
+      name: inputs[0].value,
+      email: inputs[1].value,
+      pw: inputs[2].value,
+    };
+
+    regUser(registerUser);
     form.reset();
   };
 
