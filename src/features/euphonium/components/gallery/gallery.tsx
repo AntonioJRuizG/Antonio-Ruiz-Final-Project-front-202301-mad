@@ -44,7 +44,7 @@ export function Gallery() {
                   )}
                 </p>
               </div>
-              <Link to={`/details/${item.id}`} relative="path">
+              <Link to={`/detalles/${item.id}`} relative="path">
                 <div className={style.gallery_img_box}>
                   <div className={style.gallery_list_item_img}>
                     <img src={item.image} alt={item.alias} />

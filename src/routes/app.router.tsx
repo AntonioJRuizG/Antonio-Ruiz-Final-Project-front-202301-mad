@@ -28,11 +28,11 @@ export function AppRouter({ menuOptions }: AppRouterProps) {
           element={<LoginPage></LoginPage>}
         ></Route>
         <Route
-          path={"/details/:instrumentId"}
+          path={"/detalles/:instrumentId"}
           element={<Detail></Detail>}
         ></Route>
         <Route
-          path={"/editar/:instrumentDetailId"}
+          path={"/editar/:instrumentEditId"}
           element={<EditPage></EditPage>}
         ></Route>
       </Routes>
