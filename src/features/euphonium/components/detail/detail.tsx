@@ -63,11 +63,8 @@ export const Detail = () => {
               <li className={style.detailItem}>
                 Número de pistones: {storeEuphonium?.valves}
               </li>
-              {/* Temp: <li className="detail-title__li">
-            Owner: {storeEuphonium?.creator.name}
-          </li> */}
               <li className={style.detailItem}>
-                Para 'marching band': {storeEuphonium?.marchingBand}
+                Owner: {storeEuphonium?.creator.name}
               </li>
             </ul>
           </div>

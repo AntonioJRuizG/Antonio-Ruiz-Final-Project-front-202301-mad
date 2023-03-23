@@ -4,7 +4,7 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 
 import style from "./form.style.module.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 
@@ -50,76 +50,124 @@ export const AddEditForm = () => {
   };
 
   return (
-    <div className={style.addPage}>
-      <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
-      <form className={style.detail} action="" onSubmit={handleSubmit}>
-        <div className="formControl">
-          <label htmlFor="alias">Alias</label>
-          <input
-            type="text"
-            id="alias"
-            name="alias"
-            onChange={handleChange}
-            placeholder="Alias"
-            defaultValue={storeEuphonium?.alias}
-            required
+    <div className={style.formPage}>
+      <section className={style.form}>
+        <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
+        <div className={style.formContainer}>
+          <img
+            className={style.detailImg}
+            src={storeEuphonium?.image}
+            alt={"Imagen del bombardino de " + storeEuphonium?.alias}
           />
-        </div>
-        <div className="formControl">
-          <label htmlFor="manufacturer">Fabricante</label>
-          <input
-            type="manufacturer"
-            id="manufacturer"
-            name="manufacturer"
-            onChange={handleChange}
-            placeholder="Fabricante"
-            defaultValue={storeEuphonium?.manufacturer}
-            required
-          />
-        </div>
-        <div className="formControl">
-          <label htmlFor="instrumentModel">Modelo</label>
-          <input
-            type="instrumentModel"
-            id="instrumentModel"
-            name="instrumentModel"
-            onChange={handleChange}
-            placeholder="Modelo"
-            defaultValue={storeEuphonium?.instrumentModel}
-            required
-          />
-        </div>
+          <form className={style.formList} action="" onSubmit={handleSubmit}>
+            <div className={style.formInputContainer}>
+              <div>
+                <label htmlFor="alias">Alias</label>
+              </div>
+              <div>
+                <input
+                  className={style.formInput}
+                  type="text"
+                  id="alias"
+                  name="alias"
+                  onChange={handleChange}
+                  placeholder="Alias"
+                  defaultValue={storeEuphonium?.alias}
+                  required
+                />
+              </div>
+            </div>
 
-        <div>
-          <select
-            name="valves"
-            id="valves"
-            onChange={handleChange}
-            defaultValue={storeEuphonium?.valves}
-            required
-          >
-            <option></option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
+            <div className={style.formInputContainer}>
+              <div>
+                <label htmlFor="manufacturer">Fabricante</label>
+              </div>
 
-        <div>
-          <select
-            name="level"
-            id="level"
-            onChange={handleChange}
-            defaultValue={storeEuphonium?.level}
-            required
-          >
-            <option></option>
-            <option value="Principiante">Principiante</option>
-            <option value="Intermedio">Intermedio</option>
-            <option value="Profesional">Profesional</option>
-          </select>
+              <div>
+                <input
+                  className={style.formInput}
+                  type="manufacturer"
+                  id="manufacturer"
+                  name="manufacturer"
+                  onChange={handleChange}
+                  placeholder="Fabricante"
+                  defaultValue={storeEuphonium?.manufacturer}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={style.formInputContainer}>
+              <div>
+                <label htmlFor="instrumentModel">Modelo</label>
+              </div>
+              <div>
+                <input
+                  className={style.formInput}
+                  type="instrumentModel"
+                  id="instrumentModel"
+                  name="instrumentModel"
+                  onChange={handleChange}
+                  placeholder="Modelo"
+                  defaultValue={storeEuphonium?.instrumentModel}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className={style.formInputContainer}>
+              <div>
+                <label htmlFor="valves">Nº de pistones</label>
+              </div>
+              <div>
+                <select
+                  className={style.formSelector}
+                  name="valves"
+                  id="valves"
+                  onChange={handleChange}
+                  defaultValue={storeEuphonium?.valves}
+                  required
+                >
+                  <option></option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+            </div>
+
+            <div className={style.formInputContainer}>
+              <div>
+                <div>
+                  <label htmlFor="level">Nivel: </label>
+                </div>
+                <div>
+                  <select
+                    className={style.formSelector}
+                    name="level"
+                    id="level"
+                    onChange={handleChange}
+                    defaultValue={storeEuphonium?.level}
+                    required
+                  >
+                    <option></option>
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Profesional">Profesional</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button className={style.formButton} type="submit">
+                {AddMode ? "Añadir" : "Editar"}
+              </button>
+            </div>
+          </form>
         </div>
-        <button type="submit">{AddMode ? "Añadir" : "Editar"}</button>
-      </form>
+        <div className={style.back}>
+          <Link to="/">⬅ Volver</Link>
+        </div>
+      </section>
     </div>
   );
 };

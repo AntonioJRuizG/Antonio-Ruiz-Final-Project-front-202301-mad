@@ -19,6 +19,7 @@ jest.mock("../../hook/use.euphonium.hook", () => ({
         level: "Intermediate",
         valves: 3,
         marchingBand: true,
+        creator: {},
       },
     ],
     loadOneBombardino: jest.fn(() => ({
@@ -30,6 +31,7 @@ jest.mock("../../hook/use.euphonium.hook", () => ({
       level: "Intermediate",
       valves: 3,
       marchingBand: true,
+      creator: { name: "test-name" },
     })),
   }),
 }));
