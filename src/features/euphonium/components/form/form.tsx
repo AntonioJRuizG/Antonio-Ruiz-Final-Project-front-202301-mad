@@ -9,15 +9,15 @@ import { UserRepo } from "../../../user/services/repository/user.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 
 export const AddEditForm = () => {
-  let { instrumentDetailId } = useParams();
-  const AddMode = !instrumentDetailId;
+  let { instrumentEditId } = useParams();
+  const AddMode = !instrumentEditId;
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { addEuphonium, euphoniums, updateEuphonium } = useEuphonium(repo);
   const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
 
   const storeEuphonium = euphoniums.find(
-    (item) => item.id === instrumentDetailId
+    (item) => item.id === instrumentEditId
   );
 
   const initialItemData: EuphoniumProps = {
@@ -32,17 +32,16 @@ export const AddEditForm = () => {
 
   const handleChange = (ev: SyntheticEvent) => {
     const element = ev.target as HTMLFormElement;
-    const type = element.getAttribute("type");
     setEuphiumData({
       ...euphiumData,
-      [element.name]: type === "radio" ? element.checked : element.value,
+      [element.name]: element.value,
     });
   };
 
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     if (!AddMode) {
-      euphiumData.id = instrumentDetailId!;
+      euphiumData.id = instrumentEditId!;
       updateEuphonium(euphiumData, users.token);
     } else {
       ev.preventDefault();
