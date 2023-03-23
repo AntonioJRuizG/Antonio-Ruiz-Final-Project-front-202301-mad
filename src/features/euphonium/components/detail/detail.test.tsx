@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { Detail } from "./detail";
 
 jest.mock("react-router-dom", () => ({
@@ -37,14 +36,14 @@ jest.mock("../../hook/use.euphonium.hook", () => ({
 
 describe("Given a detail component", () => {
   describe("When it renders and the detailBombardino is undefined", () => {
-    test("Then it should return a loading message", async () => {
+    test("Then it should return a loading message", () => {
       render(
         <MemoryRouter>
           <Detail></Detail>
         </MemoryRouter>
       );
       const element = screen.getByRole("heading");
-      await expect(element).toBeInTheDocument();
+      expect(element).toBeInTheDocument();
     });
   });
 });
