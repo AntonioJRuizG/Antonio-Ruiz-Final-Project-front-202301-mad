@@ -116,7 +116,7 @@ describe("Given Add component", () => {
       await act(async () => {
         await userEvent.type(elements[2], mockText);
       });
-      expect(elements[2]).toHaveValue("ttest");
+      expect(elements[2]).toHaveValue("test");
     });
 
     test("Then submit button and update hook should be called if clicked", async () => {
