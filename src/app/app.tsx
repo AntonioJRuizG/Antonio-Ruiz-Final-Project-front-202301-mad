@@ -11,7 +11,7 @@ export type MenuOptions = {
 
 export const menuOptions: MenuOptions[] = [
   { id: "1", label: "Galería", path: "/" },
-  { id: "2", label: "Add", path: "/añadir_bombardino" },
+  { id: "2", label: "Add", path: "/nuevo_bombardino" },
   { id: "3", label: "Registro", path: "/registro" },
   { id: "4", label: "Iniciar sesión", path: "/iniciar_sesion" },
 ];

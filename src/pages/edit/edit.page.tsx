@@ -1,8 +1,9 @@
-// Temp  import { Form } from "../../features/euphonium/components/form/form";
+import { AddEditForm } from "../../features/euphonium/components/form/form";
 
 export default function EditPage() {
   return (
-    <></>
-    // Temp <Form></Form>
+    <>
+      <AddEditForm></AddEditForm>
+    </>
   );
 }
