@@ -1,9 +1,8 @@
-import { Form } from "../../features/euphonium/components/form/form";
+// Temp import { Form } from "../../features/euphonium/components/form/form";
 
 export default function AddPage() {
   return (
-    <>
-      <Form></Form>
-    </>
+    <></>
+    // Temp <Form></Form>
   );
 }
