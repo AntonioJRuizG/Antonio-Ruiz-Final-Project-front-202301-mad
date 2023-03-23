@@ -1,4 +1,4 @@
-import { UserResponseBody, UserProps } from "../../model/user.model";
+import { UserResponseBody, UserProps } from "../../model/user.model.js";
 export class UserRepo {
   url: string;
   constructor() {

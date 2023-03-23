@@ -23,7 +23,10 @@ describe("Given userReducer", () => {
         userReducer(undefined, {
           type: undefined,
         })
-      ).toEqual([]);
+      ).toEqual({
+        user: null,
+        token: "",
+      });
     });
     test("Then it should handle addCreator and add an user", () => {
       expect(userReducer(user, ac.loadCreator(user1))).toEqual(user1);
