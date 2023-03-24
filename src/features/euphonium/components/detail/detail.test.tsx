@@ -22,7 +22,7 @@ jest.mock("../../hook/use.euphonium.hook", () => ({
         creator: {},
       },
     ],
-    loadOneBombardino: jest.fn(() => ({
+    loadOneEuphonium: jest.fn(() => ({
       id: "test-id",
       manufacturer: "Yamaha",
       alias: "YBH-301MS",

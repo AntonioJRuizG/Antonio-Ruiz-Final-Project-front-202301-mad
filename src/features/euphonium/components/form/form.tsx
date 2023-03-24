@@ -21,6 +21,7 @@ export const AddEditForm = () => {
   );
 
   const initialItemData: EuphoniumProps = {
+    id: "",
     alias: "",
     manufacturer: "",
     instrumentModel: "",
@@ -28,24 +29,26 @@ export const AddEditForm = () => {
     valves: 4,
   } as EuphoniumProps;
 
-  const [euphiumData, setEuphiumData] = useState(initialItemData);
+  const [euphoniumData, setEuphoniumData] = useState(initialItemData);
 
   const handleChange = (ev: SyntheticEvent) => {
     const element = ev.target as HTMLFormElement;
-    setEuphiumData({
-      ...euphiumData,
+    setEuphoniumData({
+      ...euphoniumData,
       [element.name]: element.value,
     });
   };
 
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
+    const formData = ev.currentTarget as HTMLFormElement;
+    let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
+
     if (!AddMode) {
-      euphiumData.id = instrumentEditId!;
-      updateEuphonium(euphiumData, users.token);
+      instrumentEditId && (euphoniumData.id = instrumentEditId);
+      updateEuphonium(euphoniumData, users.token, image);
     } else {
-      ev.preventDefault();
-      addEuphonium(euphiumData, users.token);
+      addEuphonium(euphoniumData, users.token, image);
     }
   };
 
@@ -54,11 +57,13 @@ export const AddEditForm = () => {
       <section className={style.form}>
         <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
         <div className={style.formContainer}>
-          <img
-            className={style.detailImg}
-            src={storeEuphonium?.image}
-            alt={"Imagen del bombardino de " + storeEuphonium?.alias}
-          />
+          {!AddMode && (
+            <img
+              className={style.detailImg}
+              src={storeEuphonium?.image}
+              alt={"Imagen del bombardino de " + storeEuphonium?.alias}
+            />
+          )}
           <form className={style.formList} action="" onSubmit={handleSubmit}>
             <div className={style.formInputContainer}>
               <div>
@@ -154,6 +159,22 @@ export const AddEditForm = () => {
                     <option value="Intermedio">Intermedio</option>
                     <option value="Profesional">Profesional</option>
                   </select>
+                </div>
+              </div>
+            </div>
+            <div className={style.formInputContainer}>
+              <div>
+                <div>
+                  <label htmlFor="level">Imagen: </label>
+                </div>
+                <div>
+                  <input
+                    className={style.formImgInput}
+                    type="file"
+                    name="image"
+                    id="image"
+                    placeholder="Image"
+                  />
                 </div>
               </div>
             </div>

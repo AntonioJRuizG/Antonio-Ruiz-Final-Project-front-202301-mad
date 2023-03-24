@@ -7,6 +7,9 @@ import { euphoniumReducer } from "../reducer/euphonium.reducer";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo";
 import { useEuphonium } from "./use.euphonium.hook";
 
+jest.mock("../services/firebase/firebase-user");
+const mockFile = new File(["image"], "test.jpeg");
+
 describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
@@ -53,7 +56,7 @@ describe("Given the useEuphonium hook", () => {
       const {
         euphoniums,
         loadEuphoniums,
-        loadOneBombardino,
+        loadOneEuphonium,
         deleteEuphonium,
         addEuphonium,
         updateEuphonium,
@@ -61,16 +64,18 @@ describe("Given the useEuphonium hook", () => {
       return (
         <div>
           <button onClick={() => loadEuphoniums()}></button>
-          <button onClick={() => loadOneBombardino("1")}></button>
+          <button onClick={() => loadOneEuphonium("1")}></button>
           <button onClick={() => deleteEuphonium("1", "test-token")}></button>
           <button
             onClick={() => deleteEuphonium("id-not-found", "test-token")}
           ></button>
           <button
-            onClick={() => addEuphonium(euphoniums[0], "test-token")}
+            onClick={() => addEuphonium(euphoniums[0], "test-token", mockFile)}
           ></button>
           <button
-            onClick={() => updateEuphonium(euphoniums[0], "test-token")}
+            onClick={() =>
+              updateEuphonium(euphoniums[0], "test-token", mockFile)
+            }
           ></button>
         </div>
       );
@@ -102,10 +107,10 @@ describe("Given the useEuphonium hook", () => {
   });
 
   describe("When click on second button", () => {
-    test("Then it should call the repo method loadOneBombardino", async () => {
-      const loadOneBombardino = await fireEvent.click(elements[1]);
+    test("Then it should call the repo method loadOneEuphonium", async () => {
+      const loadOneEuphonium = await fireEvent.click(elements[1]);
       expect(mockRepo.getEuphonium).toHaveBeenCalled();
-      expect(loadOneBombardino).toEqual(true);
+      expect(loadOneEuphonium).toEqual(true);
     });
   });
 
