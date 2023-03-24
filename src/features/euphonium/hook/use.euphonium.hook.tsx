@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.js";
 import { EuphoniumProps } from "../model/euphonium.model.js";
 import * as ac from "../reducer/euphonium.action.creator";
+import { newImage } from "../services/firebase/firebase-user";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo.js";
 
 export function useEuphonium(repo: EuphoniumRepo) {
@@ -40,8 +41,13 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const addEuphonium = async (euphoniums: EuphoniumProps, token: string) => {
+  const addEuphonium = async (
+    euphoniums: EuphoniumProps,
+    token: string,
+    file: File
+  ) => {
     try {
+      await newImage(euphoniums, file);
       await repo.createEuphonium(euphoniums, token);
       dispatch(ac.addCreator(euphoniums));
     } catch (error) {

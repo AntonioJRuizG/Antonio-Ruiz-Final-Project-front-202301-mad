@@ -7,6 +7,9 @@ import { euphoniumReducer } from "../reducer/euphonium.reducer";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo";
 import { useEuphonium } from "./use.euphonium.hook";
 
+jest.mock("../services/firebase/firebase-user");
+const mockFile = new File(["image"], "test.jpeg");
+
 describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
@@ -67,7 +70,7 @@ describe("Given the useEuphonium hook", () => {
             onClick={() => deleteEuphonium("id-not-found", "test-token")}
           ></button>
           <button
-            onClick={() => addEuphonium(euphoniums[0], "test-token")}
+            onClick={() => addEuphonium(euphoniums[0], "test-token", mockFile)}
           ></button>
           <button
             onClick={() => updateEuphonium(euphoniums[0], "test-token")}

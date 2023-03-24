@@ -39,15 +39,14 @@ export const AddEditForm = () => {
   };
 
   const handleSubmit = (ev: SyntheticEvent) => {
-    const formData = ev.currentTarget as HTMLFormElement;
-    const image = (formData.elements[1] as HTMLFormElement).files?.item(0);
-
     ev.preventDefault();
+    const formData = ev.currentTarget as HTMLFormElement;
+    const image = (formData.elements[6] as HTMLFormElement).files?.item(0);
+
     if (!AddMode) {
       euphiumData.id = instrumentEditId!;
       updateEuphonium(euphiumData, users.token);
     } else {
-      ev.preventDefault();
       addEuphonium(euphiumData, users.token, image);
     }
   };

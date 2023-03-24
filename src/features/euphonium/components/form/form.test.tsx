@@ -23,7 +23,7 @@ describe("Given Add component", () => {
 
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
-        euphoniums: [{ id: "1234", alias: "test" }],
+        euphoniums: [{ id: "1234" }],
         addEuphonium: jest.fn(),
         updateEuphonium: jest.fn(),
       });
@@ -56,9 +56,9 @@ describe("Given Add component", () => {
     test("Then it should be in the screen", async () => {
       const mockText = "test";
       await act(async () => {
-        userEvent.type(elements[1], mockText);
+        await userEvent.type(elements[2], mockText);
       });
-      expect(elements[1]).toHaveValue(mockText);
+      await expect(elements[2]).toHaveValue(mockText);
     });
 
     test("Then submit button and update hook should be called if clicked", async () => {
@@ -81,7 +81,7 @@ describe("Given Add component", () => {
 
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
-        euphoniums: [{ id: "1234", alias: "test" }],
+        euphoniums: [{ id: "1234" }],
         addEuphonium: jest.fn(),
         updateEuphonium: jest.fn(),
       });
@@ -107,11 +107,12 @@ describe("Given Add component", () => {
     });
 
     test("Then it should be in the screen", async () => {
-      const mockText = "test";
+      const mockText2 = "test";
+
       await act(async () => {
-        await userEvent.type(elements[2], mockText);
+        await userEvent.type(elements[2], mockText2);
       });
-      expect(elements[2]).toHaveValue("test");
+      expect(elements[2]).toHaveValue(mockText2);
     });
 
     test("Then submit button and update hook should be called if clicked", async () => {
