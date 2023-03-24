@@ -21,7 +21,7 @@ export const Detail = () => {
   /* Temporal comment
   useEffect(() => {
     const loadBombardino = async () => {
-      const bombardinoDetail = await loadOneBombardino(instrumentId as string);
+      const bombardinoDetail = await loadOneEuphonium(instrumentId as string);
       console.log(bombardinoDetail);
       setBombardinoDetail(bombardinoDetail);
     };

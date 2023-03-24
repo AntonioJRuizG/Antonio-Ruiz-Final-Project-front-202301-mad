@@ -22,7 +22,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
     loadEuphoniums();
   }, [loadEuphoniums]);
 
-  const loadOneBombardino = async (id: string) => {
+  const loadOneEuphonium = async (id: string) => {
     try {
       const data = await repo.getEuphonium(id);
       dispatch(ac.loadCreator(data.results));
@@ -42,21 +42,26 @@ export function useEuphonium(repo: EuphoniumRepo) {
   };
 
   const addEuphonium = async (
-    euphoniums: EuphoniumProps,
+    euphonium: EuphoniumProps,
     token: string,
     file: File
   ) => {
     try {
-      await newImage(euphoniums, file);
-      await repo.createEuphonium(euphoniums, token);
-      dispatch(ac.addCreator(euphoniums));
+      file && (await newImage(euphonium, file));
+      await repo.createEuphonium(euphonium, token);
+      dispatch(ac.addCreator(euphonium));
     } catch (error) {
       console.log((error as Error).message);
     }
   };
 
-  const updateEuphonium = async (euphonium: EuphoniumProps, token: string) => {
+  const updateEuphonium = async (
+    euphonium: EuphoniumProps,
+    token: string,
+    file: File
+  ) => {
     try {
+      await newImage(euphonium, file);
       await repo.updateEuphonium(euphonium, token);
       dispatch(ac.updateCreator(euphonium));
     } catch (error) {
@@ -67,7 +72,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   return {
     euphoniums,
     loadEuphoniums,
-    loadOneBombardino,
+    loadOneEuphonium,
     deleteEuphonium,
     updateEuphonium,
     addEuphonium,
