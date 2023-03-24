@@ -39,13 +39,16 @@ export const AddEditForm = () => {
   };
 
   const handleSubmit = (ev: SyntheticEvent) => {
+    const formData = ev.currentTarget as HTMLFormElement;
+    const image = (formData.elements[1] as HTMLFormElement).files?.item(0);
+
     ev.preventDefault();
     if (!AddMode) {
       euphiumData.id = instrumentEditId!;
       updateEuphonium(euphiumData, users.token);
     } else {
       ev.preventDefault();
-      addEuphonium(euphiumData, users.token);
+      addEuphonium(euphiumData, users.token, image);
     }
   };
 
@@ -54,11 +57,13 @@ export const AddEditForm = () => {
       <section className={style.form}>
         <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
         <div className={style.formContainer}>
-          <img
-            className={style.detailImg}
-            src={storeEuphonium?.image}
-            alt={"Imagen del bombardino de " + storeEuphonium?.alias}
-          />
+          {!AddMode && (
+            <img
+              className={style.detailImg}
+              src={storeEuphonium?.image}
+              alt={"Imagen del bombardino de " + storeEuphonium?.alias}
+            />
+          )}
           <form className={style.formList} action="" onSubmit={handleSubmit}>
             <div className={style.formInputContainer}>
               <div>
@@ -154,6 +159,23 @@ export const AddEditForm = () => {
                     <option value="Intermedio">Intermedio</option>
                     <option value="Profesional">Profesional</option>
                   </select>
+                </div>
+              </div>
+            </div>
+            <div className={style.formInputContainer}>
+              <div>
+                <div>
+                  <label htmlFor="level">Imagen: </label>
+                </div>
+                <div>
+                  <input
+                    className={style.formImgInput}
+                    type="file"
+                    name="image"
+                    id="image"
+                    required
+                    placeholder="Image"
+                  />
                 </div>
               </div>
             </div>
