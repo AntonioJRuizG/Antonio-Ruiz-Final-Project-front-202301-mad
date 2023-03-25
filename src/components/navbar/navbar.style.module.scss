@@ -1,16 +1,16 @@
 @import "../../style/variables.scss";
 
 .mainNavbar {
+  text-align: left;
+  min-width: 240px;
   max-width: 400px;
   .mainNavbar__list {
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
     font-family: $font_default_family;
-    justify-content: space-around;
+    justify-content: space-between;
     list-style-type: none;
-    padding-left: $body_padding;
-    padding-right: $body_padding;
 
     .mainNavbar__list__link {
       color: $text_default_light_color;
