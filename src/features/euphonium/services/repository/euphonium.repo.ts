@@ -29,6 +29,17 @@ export class EuphoniumRepo {
     return data;
   }
 
+  async loadEuphoniumsPaginated(
+    offset: string
+  ): Promise<EuphoniumResponseBody> {
+    const url = `${this.url}?offset=${offset}`;
+    const resp = await fetch(url);
+    if (!resp.ok)
+      throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
+    const data: EuphoniumResponseBody = await resp.json();
+    return data;
+  }
+
   async getEuphonium(id: EuphoniumProps["id"]): Promise<EuphoniumResponseBody> {
     const url = this.url + "/" + id;
     const resp = await fetch(url);

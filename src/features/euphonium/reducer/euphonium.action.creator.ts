@@ -6,6 +6,9 @@ export const loadCreator = createAction<EuphoniumProps[]>(
   euphoniumActions.load
 );
 export const addCreator = createAction<EuphoniumProps>(euphoniumActions.add);
+export const addListCreator = createAction<EuphoniumProps[]>(
+  euphoniumActions.addList
+);
 export const updateCreator = createAction<EuphoniumProps>(
   euphoniumActions.update
 );
