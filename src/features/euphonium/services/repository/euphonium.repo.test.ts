@@ -8,7 +8,7 @@ describe("Given EuphoniumRepo", () => {
   });
 
   describe("When loadEuphoniums method is called", () => {
-    test("Then it should fetch and return de euphoniums list", async () => {
+    test("Then it should fetch and return the euphoniums list", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({
@@ -26,8 +26,29 @@ describe("Given EuphoniumRepo", () => {
     });
   });
 
+  describe("When loadEuphoniumsPaginated method is called", () => {
+    test("Then it should fetch and return paginated euphoniums list", async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({
+          alias: "test",
+        }),
+      });
+      const result = await euphoniumMockRepo.loadEuphoniumsPaginated(
+        "test-offset"
+      );
+      expect(result).toEqual({ alias: "test" });
+    });
+
+    test("Then it should throw error fetch returns no data", async () => {
+      global.fetch = jest.fn().mockResolvedValue("error");
+      const result = euphoniumMockRepo.loadEuphoniumsPaginated("test-offset");
+      await expect(result).rejects.toThrow();
+    });
+  });
+
   describe("When getEuphonium method is called", () => {
-    test("Then it should fetch and return de euphoniums with the given id", async () => {
+    test("Then it should fetch and return the euphoniums with the given id", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({
@@ -91,7 +112,7 @@ describe("Given EuphoniumRepo", () => {
   });
 
   describe("When updateEuphonium method is called", () => {
-    test("Then it should fetch and return de updated euphonium", async () => {
+    test("Then it should fetch and return the updated euphonium", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({
