@@ -14,5 +14,9 @@ export const euphoniumReducer = createReducer(initialState, (builder) => {
     state.filter((item) => item.id !== payload)
   );
 
+  builder.addCase(ac.addListCreator, (state, { payload }) => [
+    ...state,
+    ...payload,
+  ]);
   builder.addDefaultCase((state) => state);
 });

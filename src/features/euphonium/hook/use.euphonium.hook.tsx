@@ -69,10 +69,20 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
+  const loadEuphoniumsPaginated = async (offset: string) => {
+    try {
+      const data = await repo.loadEuphoniumsPaginated(offset);
+      dispatch(ac.addListCreator(data.results));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
   return {
     euphoniums,
     loadEuphoniums,
     loadOneEuphonium,
+    loadEuphoniumsPaginated,
     deleteEuphonium,
     updateEuphonium,
     addEuphonium,

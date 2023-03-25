@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
@@ -10,10 +10,18 @@ import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const { euphoniums, deleteEuphonium } = useEuphonium(repo);
+  const { euphoniums, deleteEuphonium, loadEuphoniumsPaginated } =
+    useEuphonium(repo);
 
   const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
+
+  const [visibleItems, setVisibleItems] = useState<number>(2);
+
+  const showMoreHandler = () => {
+    setVisibleItems(visibleItems + 1);
+    loadEuphoniumsPaginated(visibleItems.toString());
+  };
 
   return (
     <>
@@ -68,6 +76,14 @@ export function Gallery() {
             </li>
           ))}
         </ul>
+        <button
+          className={style.showMoreBtn}
+          onClick={() => {
+            showMoreHandler();
+          }}
+        >
+          Show more
+        </button>
       </section>
     </>
   );
