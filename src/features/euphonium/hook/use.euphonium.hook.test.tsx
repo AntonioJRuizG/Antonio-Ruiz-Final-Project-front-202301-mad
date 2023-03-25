@@ -61,6 +61,7 @@ describe("Given the useEuphonium hook", () => {
         deleteEuphonium,
         addEuphonium,
         updateEuphonium,
+        loadEuphoniumsPaginated,
       } = useEuphonium(mockRepo);
       return (
         <div>
@@ -77,6 +78,9 @@ describe("Given the useEuphonium hook", () => {
             onClick={() =>
               updateEuphonium(euphoniums[0], "test-token", mockFile)
             }
+          ></button>
+          <button
+            onClick={() => loadEuphoniumsPaginated("test-offset")}
           ></button>
         </div>
       );
@@ -142,6 +146,7 @@ describe("Given the useEuphonium hook", () => {
       expect(mockRepo.createEuphonium).toHaveBeenCalled();
     });
   });
+
   describe("When click on sixth button", () => {
     test("Then it should call the repo method updateEuphonium", async () => {
       const updateEuphonium = await fireEvent.click(elements[5]);
@@ -152,6 +157,14 @@ describe("Given the useEuphonium hook", () => {
       (mockRepo.updateEuphonium as jest.Mock).mockRejectedValue("error");
       await act(async () => fireEvent.click(elements[5]));
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
+    });
+  });
+
+  describe("When click on seventh button", () => {
+    test("Then it should call the repo method loadEuphoniumsPaginated", async () => {
+      const loadEuphoniumsPaginated = await fireEvent.click(elements[6]);
+      expect(mockRepo.loadEuphoniumsPaginated).toHaveBeenCalled();
+      expect(loadEuphoniumsPaginated).toEqual(true);
     });
   });
 });
