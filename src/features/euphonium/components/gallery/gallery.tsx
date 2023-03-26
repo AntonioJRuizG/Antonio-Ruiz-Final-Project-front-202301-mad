@@ -22,6 +22,7 @@ export function Gallery() {
   const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [filter, setFilter] = useState({ value: "", filtered: false });
   const [visibleItems, setVisibleItems] = useState<number>(2);
 
