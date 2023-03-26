@@ -2,7 +2,7 @@ export type UserProps = {
   id: string;
   name: string;
   email: string;
-  pw: string;
+  password: string;
 };
 
 export type UserResponseBody = {

@@ -16,7 +16,7 @@ export function LoginForm() {
 
     const currentUser: Partial<UserProps> = {
       email: inputs[0].value,
-      pw: inputs[1].value,
+      password: inputs[1].value,
     };
     logUser(currentUser);
     form.reset();

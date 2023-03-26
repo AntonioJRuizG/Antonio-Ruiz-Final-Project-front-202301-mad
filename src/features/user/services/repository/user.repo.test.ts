@@ -14,13 +14,13 @@ describe("Given UserRepo", () => {
         id: "1",
         email: "test@test.com",
         name: "testname",
-        pw: "1234",
+        password: "1234",
       };
       const expectedUser: UserProps = {
         id: "1",
         email: "test@test.com",
         name: "testname",
-        pw: "1234",
+        password: "1234",
       };
       const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue({
         json: () => Promise.resolve(expectedUser),
@@ -48,13 +48,13 @@ describe("Given UserRepo", () => {
         id: "1",
         name: "",
         email: "test@test.com",
-        pw: "1234",
+        password: "1234",
       };
       const expectedUser: UserProps = {
         id: "1",
         email: "test@test.com",
         name: "",
-        pw: "1234",
+        password: "1234",
       };
       const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue({
         json: () => Promise.resolve(expectedUser),

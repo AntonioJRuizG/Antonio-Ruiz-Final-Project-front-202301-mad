@@ -18,7 +18,7 @@ describe("Given the useUsers hook", () => {
           id: "1",
           name: "Test",
           email: "test",
-          pw: "test",
+          password: "test",
         },
       },
     },

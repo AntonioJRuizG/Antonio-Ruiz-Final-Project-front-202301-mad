@@ -7,7 +7,7 @@ describe("Given userReducer", () => {
       id: "1",
       name: "test1",
       email: "test1@test.com",
-      pw: "test1",
+      password: "test1",
     },
     token: "test-token",
   };

@@ -47,7 +47,7 @@ describe("Given Register component", () => {
       expect(useUsers(mockUserRepo).regUser).toHaveBeenCalledWith({
         name: "",
         email: "",
-        pw: "",
+        password: "",
       });
     });
   });

@@ -17,7 +17,7 @@ export function RegisterForm() {
     const registerUser: Partial<UserProps> = {
       name: inputs[0].value,
       email: inputs[1].value,
-      pw: inputs[2].value,
+      password: inputs[2].value,
     };
 
     regUser(registerUser);
