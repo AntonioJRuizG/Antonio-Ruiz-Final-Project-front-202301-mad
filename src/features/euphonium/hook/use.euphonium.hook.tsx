@@ -42,11 +42,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   };
 
   const clearEuphoniumsList = async () => {
-    try {
-      dispatch(ac.clearCreator([]));
-    } catch (error) {
-      console.log((error as Error).message);
-    }
+    dispatch(ac.clearCreator([]));
   };
 
   const addEuphonium = async (
