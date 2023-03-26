@@ -47,6 +47,31 @@ describe("Given EuphoniumRepo", () => {
     });
   });
 
+  describe("When loadEuphoniumsFiltered method is called", () => {
+    test("Then it should fetch and return paginated and filtered euphoniums list", async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({
+          alias: "test",
+        }),
+      });
+      const result = await euphoniumMockRepo.loadEuphoniumsFiltered(
+        "test-offset",
+        "test-filter"
+      );
+      expect(result).toEqual({ alias: "test" });
+    });
+
+    test("Then it should throw error fetch returns no data", async () => {
+      global.fetch = jest.fn().mockResolvedValue("error");
+      const result = euphoniumMockRepo.loadEuphoniumsFiltered(
+        "test-offset",
+        "test-filter"
+      );
+      await expect(result).rejects.toThrow();
+    });
+  });
+
   describe("When getEuphonium method is called", () => {
     test("Then it should fetch and return the euphoniums with the given id", async () => {
       global.fetch = jest.fn().mockResolvedValue({

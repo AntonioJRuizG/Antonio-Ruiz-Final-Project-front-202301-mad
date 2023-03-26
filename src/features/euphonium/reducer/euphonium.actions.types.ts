@@ -4,4 +4,5 @@ export const euphoniumActions = {
   addList: "euphonium@addList",
   update: "euphonium@update",
   delete: "euphonium@delete",
+  clear: "euphonium@clear",
 };

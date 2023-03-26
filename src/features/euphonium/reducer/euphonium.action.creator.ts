@@ -15,3 +15,6 @@ export const updateCreator = createAction<EuphoniumProps>(
 export const deleteCreator = createAction<EuphoniumProps["id"]>(
   euphoniumActions.delete
 );
+export const clearCreator = createAction<EuphoniumProps[]>(
+  euphoniumActions.clear
+);

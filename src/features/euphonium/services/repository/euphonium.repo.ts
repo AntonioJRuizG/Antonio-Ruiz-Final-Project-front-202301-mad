@@ -32,7 +32,19 @@ export class EuphoniumRepo {
   async loadEuphoniumsPaginated(
     offset: string
   ): Promise<EuphoniumResponseBody> {
-    const url = `${this.url}?offset=${offset}`;
+    const url = this.url + "?offset=" + offset;
+    const resp = await fetch(url);
+    if (!resp.ok)
+      throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
+    const data: EuphoniumResponseBody = await resp.json();
+    return data;
+  }
+
+  async loadEuphoniumsFiltered(
+    offset: string,
+    level: string
+  ): Promise<EuphoniumResponseBody> {
+    const url = this.url + "/filter?offset=" + offset + "&level=" + level;
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
