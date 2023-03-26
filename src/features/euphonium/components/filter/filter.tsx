@@ -6,13 +6,25 @@ import style from "./filter.style.module.scss";
 
 export function FilterMenu() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const { euphoniums } = useEuphonium(repo);
+  const {
+    loadEuphoniumsPaginated,
+    loadEuphoniumsFiltered,
+    clearEuphoniumsList,
+  } = useEuphonium(repo);
 
-  const filterHandler = (filter: string) => {};
+  const filterHandler = (filter: string) => {
+    clearEuphoniumsList();
+    loadEuphoniumsFiltered("2", filter);
+  };
+
+  const removeFilterHandler = () => {
+    clearEuphoniumsList();
+    loadEuphoniumsPaginated("2");
+  };
 
   return (
     <>
-      {/* <nav className={style.mainNavbar}>
+      <nav className={style.mainNavbar}>
         <ul className={style.mainNavbar__list}>
           <li>Filter:</li>
           <li>
@@ -56,7 +68,7 @@ export function FilterMenu() {
             </button>
           </li>
         </ul>
-      </nav> */}
+      </nav>
     </>
   );
 }
