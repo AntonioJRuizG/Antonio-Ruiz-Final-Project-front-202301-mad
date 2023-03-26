@@ -143,7 +143,7 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="material">Nivel: </label>
+                  <label htmlFor="material">Material: </label>
                 </div>
                 <div>
                   <select
@@ -155,9 +155,9 @@ export const AddEditForm = () => {
                     required
                   >
                     <option></option>
-                    <option value="Principiante">Principiante</option>
-                    <option value="Intermedio">Intermedio</option>
-                    <option value="Profesional">Profesional</option>
+                    <option value="Plateado">Plateado</option>
+                    <option value="Dorado">Dorado</option>
+                    <option value="Otros">Otros</option>
                   </select>
                 </div>
               </div>
@@ -165,7 +165,7 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="material">Imagen: </label>
+                  <label htmlFor="image">Imagen: </label>
                 </div>
                 <div>
                   <input

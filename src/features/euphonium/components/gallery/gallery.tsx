@@ -67,37 +67,37 @@ export function Gallery() {
                 removeFilterHandler();
               }}
             >
-              ✖
+              ✖ Clear
             </button>
           </li>
           <li>
             <button
               className={style.mainNavbar__list__link}
               onClick={() => {
-                filterHandler("Principiante");
+                filterHandler("Plateado");
               }}
             >
-              Principiante
+              Plateado
             </button>
           </li>
           <li>
             <button
               className={style.mainNavbar__list__link}
               onClick={() => {
-                filterHandler("Intermedio");
+                filterHandler("Dorado");
               }}
             >
-              Intermedio
+              Dorado
             </button>
           </li>
           <li>
             <button
               className={style.mainNavbar__list__link}
               onClick={() => {
-                filterHandler("Profesional");
+                filterHandler("Otros");
               }}
             >
-              Profesional
+              Otros
             </button>
           </li>
         </ul>
