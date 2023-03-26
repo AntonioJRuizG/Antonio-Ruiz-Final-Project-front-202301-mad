@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
@@ -10,22 +11,94 @@ import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const { euphoniums, deleteEuphonium, loadEuphoniumsPaginated } =
-    useEuphonium(repo);
+  const {
+    euphoniums,
+    loadEuphoniumsPaginated,
+    loadEuphoniumsFiltered,
+    clearEuphoniumsList,
+    deleteEuphonium,
+  } = useEuphonium(repo);
 
   const repoUser = useMemo(() => new UserRepo(), []);
   const { users } = useUsers(repoUser);
 
+  const [filter, setFilter] = useState({ value: "", filtered: false });
   const [visibleItems, setVisibleItems] = useState<number>(2);
 
   const showMoreHandler = () => {
-    setVisibleItems(visibleItems + 1);
-    loadEuphoniumsPaginated(visibleItems.toString());
+    if (filter.filtered) {
+      loadEuphoniumsFiltered((visibleItems + 1).toString(), filter.value);
+    } else {
+      loadEuphoniumsPaginated((visibleItems + 1).toString());
+    }
+    setVisibleItems((visibleItems) => visibleItems + 1);
   };
+
+  const filterHandler = useCallback(
+    (value: string) => {
+      setVisibleItems(1);
+      setFilter({ value, filtered: true });
+      clearEuphoniumsList();
+      loadEuphoniumsFiltered("1", value);
+    },
+    [setVisibleItems]
+  );
+
+  const removeFilterHandler = useCallback(() => {
+    setVisibleItems(1);
+    setFilter({ value: "", filtered: false });
+    clearEuphoniumsList();
+    loadEuphoniumsPaginated("1");
+  }, []);
 
   return (
     <>
       <h1 className={style.gallery_title}>Galería</h1>
+      <nav className={style.mainNavbar}>
+        <ul className={style.mainNavbar__list}>
+          <li>Filter:</li>
+          <li>
+            <button
+              className={style.mainNavbar__list__link}
+              onClick={() => {
+                removeFilterHandler();
+              }}
+            >
+              ✖
+            </button>
+          </li>
+          <li>
+            <button
+              className={style.mainNavbar__list__link}
+              onClick={() => {
+                filterHandler("Principiante");
+              }}
+            >
+              Principiante
+            </button>
+          </li>
+          <li>
+            <button
+              className={style.mainNavbar__list__link}
+              onClick={() => {
+                filterHandler("Intermedio");
+              }}
+            >
+              Intermedio
+            </button>
+          </li>
+          <li>
+            <button
+              className={style.mainNavbar__list__link}
+              onClick={() => {
+                filterHandler("Profesional");
+              }}
+            >
+              Profesional
+            </button>
+          </li>
+        </ul>
+      </nav>
       <section className={style.gallery}>
         <ul className={style.gallery_list}>
           {euphoniums.map((item: EuphoniumProps) => (

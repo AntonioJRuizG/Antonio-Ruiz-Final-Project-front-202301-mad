@@ -41,6 +41,14 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
+  const clearEuphoniumsList = async () => {
+    try {
+      dispatch(ac.clearCreator([]));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
   const addEuphonium = async (
     euphonium: EuphoniumProps,
     token: string,
@@ -78,12 +86,23 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
+  const loadEuphoniumsFiltered = async (offset: string, level: string) => {
+    try {
+      const data = await repo.loadEuphoniumsFiltered(offset, level);
+      dispatch(ac.addListCreator(data.results));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
   return {
     euphoniums,
     loadEuphoniums,
     loadOneEuphonium,
     loadEuphoniumsPaginated,
+    loadEuphoniumsFiltered,
     deleteEuphonium,
+    clearEuphoniumsList,
     updateEuphonium,
     addEuphonium,
   };

@@ -51,6 +51,7 @@ describe("Given the useEuphonium hook", () => {
     createEuphonium: jest.fn(),
     updateEuphonium: jest.fn(),
     loadEuphoniumsPaginated: jest.fn(),
+    loadEuphoniumsFiltered: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
