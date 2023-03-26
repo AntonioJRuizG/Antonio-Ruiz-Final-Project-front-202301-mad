@@ -1,11 +1,12 @@
-import style from "./navbar.style.module.scss";
+import style from "./menu.style.module.scss";
 import { Link } from "react-router-dom";
 import { MenuOptions } from "../../app/app";
 
 type NavProps = {
   menuOptions: MenuOptions[];
 };
-export function Navbar({ menuOptions }: NavProps) {
+
+export function Menu({ menuOptions }: NavProps) {
   return (
     <nav className={style.mainNavbar}>
       <ul className={style.mainNavbar__list}>

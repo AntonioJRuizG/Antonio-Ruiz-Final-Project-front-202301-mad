@@ -1,5 +1,5 @@
 import { Header } from "../components/header/header";
-import { Navbar } from "../components/navbar/navbar";
+import { Menu } from "../components/menu/menu";
 import { AppRouter } from "../routes/app.router";
 import "./app.css";
 
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <>
       <Header>
-        <Navbar menuOptions={menuOptions}></Navbar>
+        <Menu menuOptions={menuOptions}></Menu>
       </Header>
       <AppRouter menuOptions={menuOptions}></AppRouter>
     </>
