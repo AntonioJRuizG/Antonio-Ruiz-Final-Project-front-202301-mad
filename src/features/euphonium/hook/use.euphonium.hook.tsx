@@ -82,9 +82,9 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const loadEuphoniumsFiltered = async (offset: string, level: string) => {
+  const loadEuphoniumsFiltered = async (offset: string, material: string) => {
     try {
-      const data = await repo.loadEuphoniumsFiltered(offset, level);
+      const data = await repo.loadEuphoniumsFiltered(offset, material);
       dispatch(ac.addListCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);

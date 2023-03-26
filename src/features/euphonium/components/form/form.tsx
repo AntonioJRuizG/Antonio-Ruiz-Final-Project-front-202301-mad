@@ -25,7 +25,7 @@ export const AddEditForm = () => {
     alias: "",
     manufacturer: "",
     instrumentModel: "",
-    level: "",
+    material: "",
     valves: 4,
   } as EuphoniumProps;
 
@@ -143,15 +143,15 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="level">Nivel: </label>
+                  <label htmlFor="material">Nivel: </label>
                 </div>
                 <div>
                   <select
                     className={style.formSelector}
-                    name="level"
-                    id="level"
+                    name="material"
+                    id="material"
                     onChange={handleChange}
-                    defaultValue={storeEuphonium?.level}
+                    defaultValue={storeEuphonium?.material}
                     required
                   >
                     <option></option>
@@ -165,7 +165,7 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="level">Imagen: </label>
+                  <label htmlFor="material">Imagen: </label>
                 </div>
                 <div>
                   <input

@@ -58,7 +58,7 @@ export const Detail = () => {
                 Modelo: {storeEuphonium?.instrumentModel}
               </li>
               <li className={style.detailItem}>
-                Nivel: {storeEuphonium?.level}
+                Nivel: {storeEuphonium?.material}
               </li>
               <li className={style.detailItem}>
                 Número de pistones: {storeEuphonium?.valves}
