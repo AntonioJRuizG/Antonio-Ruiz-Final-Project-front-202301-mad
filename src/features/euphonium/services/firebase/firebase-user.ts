@@ -7,7 +7,7 @@ const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
 export const newImage = async (info: Partial<EuphoniumProps>, file: File) => {
-  const storageRef = ref(storage, `product-images/${info.alias}`);
+  const storageRef = ref(storage, info.alias);
   await uploadBytes(storageRef, file);
 
   const imgUrl = await getDownloadURL(storageRef);
