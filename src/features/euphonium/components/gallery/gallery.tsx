@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
