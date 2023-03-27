@@ -1,10 +1,10 @@
 @import "../../../../style/variables.scss";
 
-.register_page {
+.registerPage {
   background-color: $backgroud-color;
   min-height: 100vh;
 
-  .register_section {
+  .registerSection {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     padding: 1rem;
     width: 20.6rem;
 
-    .register_header {
+    .registerHeader {
       align-items: left;
       padding-bottom: 1rem;
       text-align: left;
@@ -26,7 +26,7 @@
       }
     }
 
-    .register_form {
+    .registerForm {
       background-color: white;
       border-radius: 0.6rem;
       padding-left: 1.2rem;

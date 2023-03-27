@@ -1,10 +1,10 @@
 @import "../../style/variables.scss";
 
-.mainNavbar {
+.mainMenu {
   text-align: left;
   min-width: 240px;
   max-width: 400px;
-  .mainNavbar__list {
+  .mainMenuList {
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
@@ -12,7 +12,7 @@
     justify-content: space-between;
     list-style-type: none;
 
-    .mainNavbar__list__link {
+    .mainMenuListLink {
       color: $text_default_light_color;
       text-decoration: none;
     }

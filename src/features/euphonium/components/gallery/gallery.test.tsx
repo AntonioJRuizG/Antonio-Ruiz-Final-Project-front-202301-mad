@@ -2,6 +2,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
@@ -47,7 +48,9 @@ describe("Given Gallery", () => {
     describe("When click the first Link", () => {
       test("Then it should call the removeFilterHandler", async () => {
         const buttons = screen.getAllByRole("button");
-        await userEvent.click(buttons[0]);
+        await act(async () => {
+          userEvent.click(buttons[0]);
+        });
         expect(buttons[0]).toBeInTheDocument();
       });
     });
@@ -146,10 +149,12 @@ describe("Given Gallery", () => {
       });
     });
 
-    /* Temp describe("When click the seventh Button with no filter active", () => {
+    /* Temp.
+    describe("When click the seventh Button with no filter active", () => {
       test("Then it should call the loadEuphoniumsFiltered", async () => {
+        const initialState = true;
 
-        (useState as jest.Mock).mockResolvedValue(true);
+        React.useState = jest.fn().mockReturnValue([initialState, {}]);
 
         const buttons = screen.getAllByRole("button");
         await act(async () => {

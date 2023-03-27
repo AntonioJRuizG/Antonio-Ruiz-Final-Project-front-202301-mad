@@ -6,7 +6,7 @@ export type EuphoniumProps = {
   manufacturer: string;
   instrumentModel: string;
   valves: number;
-  level: string;
+  material: string;
   marchingBand: boolean;
   image: string;
   creator: Partial<UserProps>;

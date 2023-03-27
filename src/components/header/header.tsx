@@ -1,12 +1,14 @@
+import { Menu, menuOptions } from "../menu/menu";
 import style from "./header.style.module.scss";
-type HeaderProps = { children: JSX.Element };
-export function Header({ children }: HeaderProps) {
+export function Header() {
   return (
     <header className={style.header}>
       <div>
         <h1 className={style.headerTitle}>Comunidad del bombardino</h1>
       </div>
-      <div>{children}</div>
+      <div>
+        <Menu menuOptions={menuOptions}></Menu>
+      </div>
     </header>
   );
 }

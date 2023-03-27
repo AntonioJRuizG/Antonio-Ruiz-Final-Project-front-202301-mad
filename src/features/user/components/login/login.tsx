@@ -1,4 +1,6 @@
 import { SyntheticEvent, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
@@ -6,6 +8,8 @@ import { UserRepo } from "../../services/repository/user.repo";
 import style from "./login.style.module.scss";
 
 export function LoginForm() {
+  const navigate = useNavigate();
+
   const repo = useMemo(() => new UserRepo(), []);
   const { logUser } = useUsers(repo);
 
@@ -16,19 +20,20 @@ export function LoginForm() {
 
     const currentUser: Partial<UserProps> = {
       email: inputs[0].value,
-      pw: inputs[1].value,
+      password: inputs[1].value,
     };
     logUser(currentUser);
     form.reset();
+    navigate("/");
   };
 
   return (
-    <div className={style.login_page}>
-      <section className={style.login_section}>
-        <div className={style.login_header}>
+    <div className={style.loginPage}>
+      <section className={style.loginSection}>
+        <div className={style.loginHeader}>
           <h2>Inicio de sesión</h2>
         </div>
-        <div className={style.login_form}>
+        <div className={style.loginForm}>
           <form onSubmit={handleSubmit}>
             <label>
               <input type="text" name="email" placeholder="Correo" required />
@@ -41,7 +46,12 @@ export function LoginForm() {
                 required
               />
             </label>
-            <button type="submit">Entrar</button>
+            <button
+              type="submit"
+              onClick={() => Swal.fire({ text: "Logueado!" })}
+            >
+              Entrar
+            </button>
           </form>
         </div>
       </section>

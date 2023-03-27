@@ -1,6 +1,6 @@
 @import "../../../../style/variables.scss";
 
-.gallery_title {
+.galleryTitle {
   display: none;
 }
 
@@ -19,7 +19,7 @@
     list-style-type: none;
   }
 
-  .gallery_list {
+  .galleryList {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
@@ -27,19 +27,19 @@
     margin: 0 auto;
     padding: 0;
 
-    .gallery_list_item {
+    .galleryListItem {
       background-color: $gallery_item_background_color;
       border-radius: 0.5rem;
       color: $text_default_dark_color;
       height: $min_height_card;
       padding: 1rem;
       text-align: center;
-      .gallery_list_item_buttons {
+      .galleryListItemButtons {
         height: 1.7rem;
         margin-bottom: 0.7rem;
         text-align: right;
 
-        .card_button {
+        .cardButton {
           background-color: transparent;
           border: 0;
           cursor: pointer;
@@ -49,13 +49,13 @@
           width: fit-content;
         }
       }
-      .gallery_img_box {
+      .galleryImgBox {
         height: 170px;
         margin: auto;
         margin-bottom: 0.7rem;
         width: 100px;
 
-        .gallery_list_item_img {
+        .galleryListItemImg {
           height: 100%;
           object-fit: cover;
           text-align: center;
@@ -63,11 +63,11 @@
         }
       }
 
-      .gallery_list_item_info_alias {
+      .galleryListItemInfoAlias {
         color: $text_default_dark_color;
         font-size: 0.875rem;
       }
-      .gallery_list_item_info_creator {
+      .galleryListItemInfoCreator {
         color: $text_default_light_color;
         font-size: 0.8rem;
       }
@@ -88,13 +88,13 @@
   }
 }
 
-.mainNavbar {
+.mainMenu {
   text-align: center;
   margin: auto;
   min-width: 280px;
   max-width: 400px;
   padding: $body_padding;
-  .mainNavbar__list {
+  .mainMenuList {
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
@@ -103,7 +103,7 @@
     justify-content: left;
     list-style-type: none;
 
-    .mainNavbar__list__link {
+    .mainMenuListLink {
       color: $text_default_light_color;
       text-decoration: none;
     }

@@ -42,9 +42,9 @@ export class EuphoniumRepo {
 
   async loadEuphoniumsFiltered(
     offset: string,
-    level: string
+    material: string
   ): Promise<EuphoniumResponseBody> {
-    const url = this.url + "/filter?offset=" + offset + "&level=" + level;
+    const url = this.url + "/filter?offset=" + offset + "&material=" + material;
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);

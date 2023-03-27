@@ -25,7 +25,7 @@ export const AddEditForm = () => {
     alias: "",
     manufacturer: "",
     instrumentModel: "",
-    level: "",
+    material: "",
     valves: 4,
   } as EuphoniumProps;
 
@@ -49,6 +49,7 @@ export const AddEditForm = () => {
       updateEuphonium(euphoniumData, users.token, image);
     } else {
       addEuphonium(euphoniumData, users.token, image);
+      formData.reset();
     }
   };
 
@@ -143,21 +144,21 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="level">Nivel: </label>
+                  <label htmlFor="material">Material: </label>
                 </div>
                 <div>
                   <select
                     className={style.formSelector}
-                    name="level"
-                    id="level"
+                    name="material"
+                    id="material"
                     onChange={handleChange}
-                    defaultValue={storeEuphonium?.level}
+                    defaultValue={storeEuphonium?.material}
                     required
                   >
                     <option></option>
-                    <option value="Principiante">Principiante</option>
-                    <option value="Intermedio">Intermedio</option>
-                    <option value="Profesional">Profesional</option>
+                    <option value="Plateado">Plateado</option>
+                    <option value="Dorado">Dorado</option>
+                    <option value="Otros">Otros</option>
                   </select>
                 </div>
               </div>
@@ -165,7 +166,7 @@ export const AddEditForm = () => {
             <div className={style.formInputContainer}>
               <div>
                 <div>
-                  <label htmlFor="level">Imagen: </label>
+                  <label htmlFor="image">Imagen: </label>
                 </div>
                 <div>
                   <input
