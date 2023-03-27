@@ -15,11 +15,11 @@ export const menuOptions: MenuOptions[] = [
 
 export function Menu({ menuOptions }: NavProps) {
   return (
-    <nav className={style.mainNavbar}>
-      <ul className={style.mainNavbar__list}>
+    <nav className={style.mainMenu}>
+      <ul className={style.mainMenuList}>
         {menuOptions.map((item) => (
           <li key={item.id}>
-            <Link to={item.path} className={style.mainNavbar__list__link}>
+            <Link to={item.path} className={style.mainMenuListLink}>
               {item.label}
             </Link>
           </li>

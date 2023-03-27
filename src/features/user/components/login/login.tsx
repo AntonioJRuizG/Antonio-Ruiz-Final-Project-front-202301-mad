@@ -23,12 +23,12 @@ export function LoginForm() {
   };
 
   return (
-    <div className={style.login_page}>
-      <section className={style.login_section}>
-        <div className={style.login_header}>
+    <div className={style.loginPage}>
+      <section className={style.loginSection}>
+        <div className={style.loginHeader}>
           <h2>Inicio de sesión</h2>
         </div>
-        <div className={style.login_form}>
+        <div className={style.loginForm}>
           <form onSubmit={handleSubmit}>
             <label>
               <input type="text" name="email" placeholder="Correo" required />

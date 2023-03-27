@@ -25,12 +25,12 @@ export function RegisterForm() {
   };
 
   return (
-    <div className={style.register_page}>
-      <section className={style.register_section}>
-        <div className={style.register_header}>
+    <div className={style.registerPage}>
+      <section className={style.registerSection}>
+        <div className={style.registerHeader}>
           <h2>Registro de usuario</h2>
         </div>
-        <div className={style.register_form}>
+        <div className={style.registerForm}>
           <form onSubmit={handleSubmit}>
             <label>
               <input type="text" name="firstName" placeholder="Nombre" />

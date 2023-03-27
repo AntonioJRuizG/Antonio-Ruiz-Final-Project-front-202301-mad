@@ -56,13 +56,13 @@ export function Gallery() {
 
   return (
     <>
-      <h1 className={style.gallery_title}>Galería</h1>
-      <nav className={style.mainNavbar}>
-        <ul className={style.mainNavbar__list}>
+      <h1 className={style.galleryTitle}>Galería</h1>
+      <nav className={style.mainMenu}>
+        <ul className={style.mainMenuList}>
           <li>Filter:</li>
           <li>
             <button
-              className={style.mainNavbar__list__link}
+              className={style.mainMenuListLink}
               onClick={() => {
                 removeFilterHandler();
               }}
@@ -72,7 +72,7 @@ export function Gallery() {
           </li>
           <li>
             <button
-              className={style.mainNavbar__list__link}
+              className={style.mainMenuListLink}
               onClick={() => {
                 filterHandler("Plateado");
               }}
@@ -82,7 +82,7 @@ export function Gallery() {
           </li>
           <li>
             <button
-              className={style.mainNavbar__list__link}
+              className={style.mainMenuListLink}
               onClick={() => {
                 filterHandler("Dorado");
               }}
@@ -92,7 +92,7 @@ export function Gallery() {
           </li>
           <li>
             <button
-              className={style.mainNavbar__list__link}
+              className={style.mainMenuListLink}
               onClick={() => {
                 filterHandler("Otros");
               }}
@@ -103,21 +103,21 @@ export function Gallery() {
         </ul>
       </nav>
       <section className={style.gallery}>
-        <ul className={style.gallery_list}>
+        <ul className={style.galleryList}>
           {euphoniums.map((item: EuphoniumProps) => (
-            <li key={item.id} className={style.gallery_list_item}>
+            <li key={item.id} className={style.galleryListItem}>
               <div>
-                <p className={style.gallery_list_item_buttons}>
+                <p className={style.galleryListItemButtons}>
                   {users.user?.id === item.creator?.id && (
                     <>
-                      <button className={style.card_button}>
+                      <button className={style.cardButton}>
                         <Link to={`/editar/${item.id}`} relative="path">
                           🖊
                         </Link>
                       </button>
 
                       <button
-                        className={style.card_button}
+                        className={style.cardButton}
                         onClick={() => {
                           deleteEuphonium(item.id, users.token);
                         }}
@@ -129,20 +129,20 @@ export function Gallery() {
                 </p>
               </div>
               <Link to={`/detalles/${item.id}`} relative="path">
-                <div className={style.gallery_img_box}>
-                  <div className={style.gallery_list_item_img}>
+                <div className={style.galleryImgBox}>
+                  <div className={style.galleryListItemImg}>
                     <img src={item.image} alt={item.alias} />
                   </div>
                 </div>
-                <div className={style.gallery_list_item_info}>
+                <div className={style.galleryListItemInfo}>
                   <ul>
                     <li>
-                      <p className={style.gallery_list_item_info_alias}>
+                      <p className={style.galleryListItemInfoAlias}>
                         <span>Alias:</span> {item.alias}
                       </p>
                     </li>
                     <li>
-                      <p className={style.gallery_list_item_info_creator}>
+                      <p className={style.galleryListItemInfoCreator}>
                         <span>Miembro:</span> {item.creator?.name}
                       </p>
                     </li>
