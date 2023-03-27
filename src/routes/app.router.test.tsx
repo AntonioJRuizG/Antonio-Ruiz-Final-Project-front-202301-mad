@@ -22,8 +22,8 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/'", () => {
     test("Then the gallery apge should be in the screen", async () => {
-      await act(() => {
-        render(
+      await act(async () => {
+        await render(
           <Router initialEntries={pathsEntries} initialIndex={0}>
             <AppRouter menuOptions={mockOptions}></AppRouter>
           </Router>
@@ -37,8 +37,8 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/register'", () => {
     test("Then the register form should be in the screen", async () => {
-      await act(() => {
-        render(
+      await act(async () => {
+        await render(
           <Router initialEntries={pathsEntries} initialIndex={1}>
             <AppRouter menuOptions={mockOptions}></AppRouter>
           </Router>
@@ -52,8 +52,8 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/add'", () => {
     test("Then the add form should be in the screen", async () => {
-      await act(() => {
-        render(
+      await act(async () => {
+        await render(
           <Router initialEntries={pathsEntries} initialIndex={2}>
             <AppRouter menuOptions={mockOptions}></AppRouter>
           </Router>
@@ -67,8 +67,8 @@ describe("Given AppRouter component", () => {
 
   describe("When it is render and the path is '/login'", () => {
     test("Then the login form should be in the screen", async () => {
-      await act(() => {
-        render(
+      await act(async () => {
+        await render(
           <Router initialEntries={pathsEntries} initialIndex={3}>
             <AppRouter menuOptions={mockOptions}></AppRouter>
           </Router>

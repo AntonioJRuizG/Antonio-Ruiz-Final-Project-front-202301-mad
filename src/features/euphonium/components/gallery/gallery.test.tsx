@@ -32,13 +32,11 @@ describe("Given Gallery", () => {
       },
     });
 
-    await act(async () => {
-      await render(
-        <Router>
-          <Gallery></Gallery>
-        </Router>
-      );
-    });
+    render(
+      <Router>
+        <Gallery></Gallery>
+      </Router>
+    );
   });
 
   describe("When it is render", () => {
@@ -50,7 +48,9 @@ describe("Given Gallery", () => {
     describe("When click the first Link", () => {
       test("Then it should call the removeFilterHandler", async () => {
         const buttons = screen.getAllByRole("button");
-        await userEvent.click(buttons[0]);
+        await act(async () => {
+          userEvent.click(buttons[0]);
+        });
         expect(buttons[0]).toBeInTheDocument();
       });
     });
@@ -149,7 +149,8 @@ describe("Given Gallery", () => {
       });
     });
 
-    /* Temp. describe("When click the seventh Button with no filter active", () => {
+    /* Temp.
+    describe("When click the seventh Button with no filter active", () => {
       test("Then it should call the loadEuphoniumsFiltered", async () => {
         const initialState = true;
 
