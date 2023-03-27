@@ -5,7 +5,7 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 
 import style from "./detail.style.module.scss";
 
-export const Detail = () => {
+export default function Detail() {
   let { instrumentId } = useParams();
 
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -77,4 +77,4 @@ export const Detail = () => {
       </section>
     </div>
   );
-};
+}

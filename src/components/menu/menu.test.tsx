@@ -10,24 +10,21 @@ jest.mock("../../features/user/hook/use.user.hook");
 
 describe("Given menu component", () => {
   describe("When it renders and no user is logged", () => {
-    (useUsers as jest.Mock).mockReturnValue({
-      user: {},
-    });
-    render(<Menu></Menu>);
-    test("Then it should render the PublicMenu", () => {
+    test("Then it should render the PublicMenu", async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {},
+      });
+      await render(<Menu></Menu>);
       expect(PublicMenu).toHaveBeenCalled();
     });
   });
 
   describe("When it renders and there is a logged user", () => {
-    (useUsers as jest.Mock).mockReturnValue({
-      user: {
-        user: { id: "1" },
-        token: "token-test",
-      },
-    });
-    render(<Menu></Menu>);
-    test("Then it should render the PrivateMenu", () => {
+    test("Then it should render the PrivateMenu", async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: { token: "token-test", user: { id: "1" } },
+      });
+      await render(<Menu></Menu>);
       expect(PrivateMenu).toHaveBeenCalled();
     });
   });
