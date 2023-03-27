@@ -1,4 +1,4 @@
-import { Menu, menuOptions } from "../menu/menu";
+import { Menu } from "../menu/menu";
 import style from "./header.style.module.scss";
 export function Header() {
   return (
@@ -7,7 +7,7 @@ export function Header() {
         <h1 className={style.headerTitle}>Comunidad del bombardino</h1>
       </div>
       <div>
-        <Menu menuOptions={menuOptions}></Menu>
+        <Menu></Menu>
       </div>
     </header>
   );

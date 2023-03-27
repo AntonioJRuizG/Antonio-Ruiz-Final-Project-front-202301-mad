@@ -1,30 +1,19 @@
-import style from "./menu.style.module.scss";
-import { Link } from "react-router-dom";
-import { MenuOptions } from "../../app/app";
+import { useMemo } from "react";
+import { UserRepo } from "../../features/user/services/repository/user.repo";
+import { useUsers } from "../../features/user/hook/use.user.hook";
+import { menuOptionsPrivate, PrivateMenu } from "./private.menu/private.menu";
+import { menuOptionsPublic, PublicMenu } from "./public.menu/public.menu";
 
-type NavProps = {
-  menuOptions: MenuOptions[];
-};
-
-export const menuOptions: MenuOptions[] = [
-  { id: "1", label: "Galería", path: "/" },
-  { id: "2", label: "Add", path: "/nuevo_bombardino" },
-  { id: "3", label: "Registro", path: "/registro" },
-  { id: "4", label: "Iniciar sesión", path: "/iniciar_sesion" },
-];
-
-export function Menu({ menuOptions }: NavProps) {
+export function Menu() {
+  const repoUser = useMemo(() => new UserRepo(), []);
+  const { user } = useUsers(repoUser);
   return (
-    <nav className={style.mainMenu}>
-      <ul className={style.mainMenuList}>
-        {menuOptions.map((item) => (
-          <li key={item.id}>
-            <Link to={item.path} className={style.mainMenuListLink}>
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      {user.token ? (
+        <PrivateMenu menuOptionsPrivate={menuOptionsPrivate}></PrivateMenu>
+      ) : (
+        <PublicMenu menuOptionsPublic={menuOptionsPublic}></PublicMenu>
+      )}
+    </>
   );
 }
