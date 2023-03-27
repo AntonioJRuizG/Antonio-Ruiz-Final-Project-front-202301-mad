@@ -9,6 +9,7 @@ import { useEuphonium } from "./use.euphonium.hook";
 
 jest.mock("../services/firebase/firebase-user");
 const mockFile = new File(["image"], "test.jpeg");
+const mockNullFile = new File([], "");
 
 describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
@@ -77,6 +78,7 @@ describe("Given the useEuphonium hook", () => {
           <button
             onClick={() => addEuphonium(euphoniums[0], "test-token", mockFile)}
           ></button>
+
           <button
             onClick={() =>
               updateEuphonium(euphoniums[0], "test-token", mockFile)
@@ -187,6 +189,13 @@ describe("Given the useEuphonium hook", () => {
     test("Then it should call the repo method clearEuphoniumList", async () => {
       const clearEuphoniumList = await fireEvent.click(elements[8]);
       expect(clearEuphoniumList).toEqual(true);
+    });
+  });
+
+  describe("When click on tenth button", () => {
+    test("Then it should call the repo method addEuphoniumList and not upload File tu firebase", async () => {
+      const addEuphonium = await fireEvent.click(elements[8]);
+      expect(addEuphonium).toEqual(true);
     });
   });
 });

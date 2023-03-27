@@ -27,7 +27,7 @@ describe("Given Gallery", () => {
     });
 
     (useUsers as jest.Mock).mockReturnValue({
-      users: {
+      user: {
         user: { id: "1" },
       },
     });
