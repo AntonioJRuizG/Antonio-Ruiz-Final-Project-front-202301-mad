@@ -25,9 +25,23 @@ export function useUsers(repo: UserRepo) {
     }
   };
 
+  const loggoutUser = async () => {
+    try {
+      dispatch(
+        ac.deleteCreator({
+          user: { id: "", name: "", email: "", password: "" },
+          token: "",
+        })
+      );
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
+
   return {
     user,
     regUser,
     logUser,
+    loggoutUser,
   };
 }
