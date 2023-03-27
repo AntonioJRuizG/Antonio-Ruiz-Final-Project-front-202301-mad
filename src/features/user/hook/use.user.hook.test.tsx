@@ -10,9 +10,9 @@ describe("Given the useUsers hook", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { users: userReducer },
+    reducer: { user: userReducer },
     preloadedState: {
-      users: {
+      user: {
         token: "test-token",
         user: {
           id: "1",

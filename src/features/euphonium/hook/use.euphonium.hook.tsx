@@ -51,7 +51,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
     file: File
   ) => {
     try {
-      await newImage(euphonium, file);
+      !file && (await newImage(euphonium, file));
       await repo.createEuphonium(euphonium, token);
       dispatch(ac.addCreator(euphonium));
     } catch (error) {
