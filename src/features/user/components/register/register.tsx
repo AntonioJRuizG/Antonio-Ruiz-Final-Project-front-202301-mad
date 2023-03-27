@@ -1,4 +1,5 @@
 import { SyntheticEvent, useMemo } from "react";
+import Swal from "sweetalert2";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
@@ -46,7 +47,23 @@ export function RegisterForm() {
                 required
               />
             </label>
-            <button type="submit">Registro</button>
+            <button
+              type="submit"
+              onClick={() =>
+                Swal.fire({
+                  text: "Registrado!",
+                  width: 250,
+                  padding: "1em",
+                  color: "#fff",
+                  background: "#4d4d4d",
+                  backdrop: `
+    rgba(123,123,123,0.4)
+  `,
+                })
+              }
+            >
+              Registro
+            </button>
           </form>
         </div>
       </section>
