@@ -49,6 +49,7 @@ export const AddEditForm = () => {
       updateEuphonium(euphoniumData, users.token, image);
     } else {
       addEuphonium(euphoniumData, users.token, image);
+      formData.reset();
     }
   };
 

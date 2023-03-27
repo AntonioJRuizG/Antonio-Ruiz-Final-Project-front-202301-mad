@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyCtp80N43enrrGW89-8aVp21zflu9yyOv0",
+  apiKey: process.env.DB_KEY,
   authDomain: "finalprojectbombardino.firebaseapp.com",
   projectId: "finalprojectbombardino",
   storageBucket: "finalprojectbombardino.appspot.com",

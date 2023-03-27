@@ -1,4 +1,5 @@
 import { SyntheticEvent, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserProps } from "../../model/user.model";
@@ -7,6 +8,8 @@ import { UserRepo } from "../../services/repository/user.repo";
 import style from "./login.style.module.scss";
 
 export function LoginForm() {
+  const navigate = useNavigate();
+
   const repo = useMemo(() => new UserRepo(), []);
   const { logUser } = useUsers(repo);
 
@@ -21,6 +24,7 @@ export function LoginForm() {
     };
     logUser(currentUser);
     form.reset();
+    navigate("/");
   };
 
   return (
@@ -44,7 +48,7 @@ export function LoginForm() {
             </label>
             <button
               type="submit"
-              onClick={() => Swal.fire({ text: "Registrado!" })}
+              onClick={() => Swal.fire({ text: "Logueado!" })}
             >
               Entrar
             </button>

@@ -3,7 +3,12 @@ import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { store } from "../../../../store/store";
 import { LoginForm } from "./login";
+const mockedUsedNavigate = jest.fn();
 
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as any),
+  useNavigate: () => mockedUsedNavigate,
+}));
 describe("Given Login component", () => {
   let elements: HTMLElement[];
   beforeEach(async () => {

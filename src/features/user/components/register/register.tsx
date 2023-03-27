@@ -1,5 +1,5 @@
 import { SyntheticEvent, useMemo } from "react";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
@@ -7,6 +7,8 @@ import { UserRepo } from "../../services/repository/user.repo";
 import style from "./register.style.module.scss";
 
 export function RegisterForm() {
+  const navigate = useNavigate();
+
   const repo = useMemo(() => new UserRepo(), []);
   const { regUser } = useUsers(repo);
 
@@ -23,6 +25,7 @@ export function RegisterForm() {
 
     regUser(registerUser);
     form.reset();
+    navigate("/iniciar_sesion");
   };
 
   return (
@@ -47,23 +50,7 @@ export function RegisterForm() {
                 required
               />
             </label>
-            <button
-              type="submit"
-              onClick={() =>
-                Swal.fire({
-                  text: "Registrado!",
-                  width: 250,
-                  padding: "1em",
-                  color: "#fff",
-                  background: "#4d4d4d",
-                  backdrop: `
-    rgba(123,123,123,0.4)
-  `,
-                })
-              }
-            >
-              Registro
-            </button>
+            <button type="submit">Registro</button>
           </form>
         </div>
       </section>

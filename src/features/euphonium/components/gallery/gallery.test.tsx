@@ -2,6 +2,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
@@ -31,11 +32,13 @@ describe("Given Gallery", () => {
       },
     });
 
-    render(
-      <Router>
-        <Gallery></Gallery>
-      </Router>
-    );
+    await act(async () => {
+      await render(
+        <Router>
+          <Gallery></Gallery>
+        </Router>
+      );
+    });
   });
 
   describe("When it is render", () => {
@@ -146,10 +149,11 @@ describe("Given Gallery", () => {
       });
     });
 
-    /* Temp describe("When click the seventh Button with no filter active", () => {
+    /* Temp. describe("When click the seventh Button with no filter active", () => {
       test("Then it should call the loadEuphoniumsFiltered", async () => {
+        const initialState = true;
 
-        (useState as jest.Mock).mockResolvedValue(true);
+        React.useState = jest.fn().mockReturnValue([initialState, {}]);
 
         const buttons = screen.getAllByRole("button");
         await act(async () => {
