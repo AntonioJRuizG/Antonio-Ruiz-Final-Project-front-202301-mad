@@ -9,10 +9,10 @@ export function LogoutBtn() {
   const navigate = useNavigate();
 
   const repo = useMemo(() => new UserRepo(), []);
-  const { loggoutUser } = useUsers(repo);
+  const { logoutUser } = useUsers(repo);
 
   const handlerLogout = async () => {
-    loggoutUser();
+    logoutUser();
     navigate("/");
   };
 

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { UserProps } from "../model/user.model";
+import { UserProps, UserResponseBody } from "../model/user.model";
 import { userReducer } from "../reducer/user.reducer";
 import { UserRepo } from "../services/repository/user.repo";
 import { useUsers } from "./use.user.hook";
@@ -10,16 +10,16 @@ describe("Given the useUsers hook", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { user: userReducer },
+    reducer: { loggedUser: userReducer },
     preloadedState: {
-      user: {
-        token: "test-token",
+      loggedUser: {
         user: {
           id: "1",
           name: "Test",
           email: "test",
           password: "test",
         },
+        token: "test-token",
       },
     },
   });
@@ -29,13 +29,15 @@ describe("Given the useUsers hook", () => {
     loginUser: jest.fn(),
     registerUser: jest.fn(),
   };
+
   beforeEach(async () => {
     const TestComponent = function () {
-      const { logUser, regUser } = useUsers(mockRepo);
+      const { logUser, regUser, logoutUser } = useUsers(mockRepo);
       return (
         <div>
           <button onClick={() => regUser({} as UserProps)}></button>
           <button onClick={() => logUser({} as UserProps)}></button>
+          <button onClick={() => logoutUser()}></button>
         </div>
       );
     };
@@ -88,6 +90,13 @@ describe("Given the useUsers hook", () => {
       await fireEvent.click(elements[1]);
       // eslint-disable-next-line jest/valid-expect
       expect(mockRepo.loginUser).rejects.toThrow();
+    });
+  });
+
+  describe("When click on third button", () => {
+    test("Then it should call the repo method logoutUser", async () => {
+      const logoutUser = await fireEvent.click(elements[2]);
+      expect(logoutUser).toEqual(true);
     });
   });
 });

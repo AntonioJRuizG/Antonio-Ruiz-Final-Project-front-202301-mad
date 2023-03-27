@@ -13,19 +13,12 @@ jest.mock("../pages/add/add.page");
 const pathsEntries = ["/", "/add", "/register", "/login"];
 
 describe("Given AppRouter component", () => {
-  const mockOptions: MenuOptions[] = [
-    { id: "1", label: "Gallery", path: "/" },
-    { id: "2", label: "Add", path: "/add" },
-    { id: "3", label: "Register", path: "register" },
-    { id: "4", label: "Login", path: "/login" },
-  ];
-
   describe("When it is reder and the path is '/'", () => {
     test("Then the gallery apge should be in the screen", async () => {
       await act(async () => {
         await render(
           <Router initialEntries={pathsEntries} initialIndex={0}>
-            <AppRouter menuOptions={mockOptions}></AppRouter>
+            <AppRouter></AppRouter>
           </Router>
         );
       });
@@ -40,7 +33,7 @@ describe("Given AppRouter component", () => {
       await act(async () => {
         await render(
           <Router initialEntries={pathsEntries} initialIndex={1}>
-            <AppRouter menuOptions={mockOptions}></AppRouter>
+            <AppRouter></AppRouter>
           </Router>
         );
       });
@@ -55,7 +48,7 @@ describe("Given AppRouter component", () => {
       await act(async () => {
         await render(
           <Router initialEntries={pathsEntries} initialIndex={2}>
-            <AppRouter menuOptions={mockOptions}></AppRouter>
+            <AppRouter></AppRouter>
           </Router>
         );
       });
@@ -70,7 +63,7 @@ describe("Given AppRouter component", () => {
       await act(async () => {
         await render(
           <Router initialEntries={pathsEntries} initialIndex={3}>
-            <AppRouter menuOptions={mockOptions}></AppRouter>
+            <AppRouter></AppRouter>
           </Router>
         );
       });

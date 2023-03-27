@@ -1,14 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Detail } from "../features/euphonium/components/detail/detail";
 
 const GalleryPage = lazy(() => import("../pages/gallery/gallery.page"));
 const AddPage = lazy(() => import("../pages/add/add.page"));
 const RegisterPage = lazy(() => import("../pages/register/register.page"));
 const LoginPage = lazy(() => import("../pages/login/login.page"));
 const EditPage = lazy(() => import("../pages/edit/edit.page"));
-const Detail = lazy(
-  () => import("../features/euphonium/components/detail/detail")
-);
 
 export function AppRouter() {
   return (

@@ -43,7 +43,7 @@ describe("Given UserRepo", () => {
   });
 
   describe("When loginUser method is called", () => {
-    it("Then it should make a POST request to the /login endpoint with the given user data (with empty name field)", async () => {
+    test("Then it should make a POST request to the /login endpoint with the given user data (with empty name field)", async () => {
       const user: UserProps = {
         id: "1",
         name: "",

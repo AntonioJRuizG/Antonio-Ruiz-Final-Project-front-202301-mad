@@ -4,20 +4,21 @@ import { Provider } from "react-redux";
 import App from "./app";
 import { AppRouter } from "../routes/app.router";
 import { MemoryRouter as Router } from "react-router-dom";
+import { Header } from "../components/header/header";
 
+jest.mock("../components/header/header");
 jest.mock("../routes/app.router");
 
 describe("Given App component", () => {
   describe("When it is rendered", () => {
-    test("Then AppRouter should be called", () => {
+    test("Then the Header and the AppRouter should be called", () => {
       render(
         <Router>
-          <Provider store={store}>
-            <App></App>
-          </Provider>
+          <App></App>
         </Router>
       );
 
+      expect(Header).toHaveBeenCalled();
       expect(AppRouter).toHaveBeenCalled();
     });
   });
