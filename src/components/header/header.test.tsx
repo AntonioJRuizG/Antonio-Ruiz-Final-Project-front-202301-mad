@@ -6,7 +6,7 @@ import { Header } from "./header";
 jest.mock("../menu/menu");
 describe("Given Header", () => {
   beforeEach(async () => {
-    await render(<Header></Header>);
+    render(<Header></Header>);
   });
 
   describe("When it is render", () => {

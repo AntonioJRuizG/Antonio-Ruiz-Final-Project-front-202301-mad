@@ -14,7 +14,7 @@ describe("Given menu component", () => {
       (useUsers as jest.Mock).mockReturnValue({
         user: {},
       });
-      await render(<Menu></Menu>);
+      render(<Menu></Menu>);
       expect(PublicMenu).toHaveBeenCalled();
     });
   });
@@ -24,7 +24,7 @@ describe("Given menu component", () => {
       (useUsers as jest.Mock).mockReturnValue({
         user: { token: "token-test", user: { id: "1" } },
       });
-      await render(<Menu></Menu>);
+      render(<Menu></Menu>);
       expect(PrivateMenu).toHaveBeenCalled();
     });
   });

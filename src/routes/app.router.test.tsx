@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/no-unnecessary-act */
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { AppRouter } from "./app.router";
 import "@testing-library/jest-dom";

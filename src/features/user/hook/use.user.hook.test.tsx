@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { UserProps, UserResponseBody } from "../model/user.model";
+import { UserProps } from "../model/user.model";
 import { userReducer } from "../reducer/user.reducer";
 import { UserRepo } from "../services/repository/user.repo";
 import { useUsers } from "./use.user.hook";

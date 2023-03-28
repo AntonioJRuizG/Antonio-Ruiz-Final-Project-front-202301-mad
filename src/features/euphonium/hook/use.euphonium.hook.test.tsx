@@ -129,7 +129,7 @@ describe("Given the useEuphonium hook", () => {
     test("Then it should call the repo method deleteEuphonium", async () => {
       const deleteEuphonium = await fireEvent.click(elements[2]);
       expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
-      await expect(deleteEuphonium).toEqual(true);
+      expect(deleteEuphonium).toEqual(true);
     });
   });
 

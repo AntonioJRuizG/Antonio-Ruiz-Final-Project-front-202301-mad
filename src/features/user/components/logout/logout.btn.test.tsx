@@ -2,7 +2,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Router as MemoryRouter, Router } from "react-router-dom";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserRepo } from "../../services/repository/user.repo";
 import { LogoutBtn } from "./logout.btn";
