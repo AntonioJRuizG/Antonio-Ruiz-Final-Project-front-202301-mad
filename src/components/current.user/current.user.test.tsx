@@ -13,7 +13,7 @@ describe("Given Header", () => {
           user: { id: "1" },
         },
       });
-      await render(<CurrentUserName></CurrentUserName>);
+      render(<CurrentUserName></CurrentUserName>);
     });
 
     test("Then it should be called", async () => {
