@@ -1,9 +1,12 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from "@testing-library/react";
+import { CurrentUserName } from "../current.user/current.user";
 import { Menu } from "../menu/menu";
 import { Header } from "./header";
 
 jest.mock("../menu/menu");
+jest.mock("../current.user/current.user");
+
 describe("Given Header", () => {
   beforeEach(async () => {
     render(<Header></Header>);
@@ -17,6 +20,9 @@ describe("Given Header", () => {
 
     test("Then it should be called Menu", async () => {
       expect(Menu).toHaveBeenCalled();
+    });
+    test("Then it should be called CurrentUserName", async () => {
+      expect(CurrentUserName).toHaveBeenCalled();
     });
   });
 });
