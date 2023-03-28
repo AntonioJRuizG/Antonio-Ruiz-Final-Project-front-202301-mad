@@ -9,7 +9,6 @@ import { useEuphonium } from "./use.euphonium.hook";
 
 jest.mock("../services/firebase/firebase-user");
 const mockFile = new File(["image"], "test.jpeg");
-const mockNullFile = new File([], "");
 
 describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
@@ -95,13 +94,11 @@ describe("Given the useEuphonium hook", () => {
       );
     };
 
-    await act(async () => {
-      render(
-        <Provider store={mockStore}>
-          <TestComponent></TestComponent>
-        </Provider>
-      );
-    });
+    render(
+      <Provider store={mockStore}>
+        <TestComponent></TestComponent>
+      </Provider>
+    );
 
     elements = await screen.findAllByRole("button");
   });
@@ -132,9 +129,10 @@ describe("Given the useEuphonium hook", () => {
     test("Then it should call the repo method deleteEuphonium", async () => {
       const deleteEuphonium = await fireEvent.click(elements[2]);
       expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
-      expect(deleteEuphonium).toEqual(true);
+      await expect(deleteEuphonium).toEqual(true);
     });
   });
+
   describe("When click on fourth button", () => {
     test("Then it should call the repo method deleteEuphonium and fail because no id found", async () => {
       (mockRepo.deleteEuphonium as jest.Mock).mockRejectedValue("error");

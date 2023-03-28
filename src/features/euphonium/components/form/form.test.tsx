@@ -29,10 +29,10 @@ describe("Given Add component", () => {
       });
 
       (useUsers as jest.Mock).mockReturnValue({
-        users: [],
+        user: { token: "", user: { id: "1" } },
       });
 
-      render(
+      await render(
         <MemoryRouter initialEntries={["/editar/1234"]}>
           <Routes>
             <Route path="/editar/:instrumentEditId" element={<AddEditForm />} />
@@ -87,10 +87,10 @@ describe("Given Add component", () => {
       });
 
       (useUsers as jest.Mock).mockReturnValue({
-        users: [],
+        user: { token: "", user: {} },
       });
 
-      render(
+      await render(
         <MemoryRouter initialEntries={["/editar/1234"]}>
           <Routes>
             <Route path="/editar/:instrumentEditI" element={<AddEditForm />} />

@@ -21,7 +21,7 @@ const pathsEntries = [
 describe("Given AppRouter component", () => {
   describe("When it is reder and the path is '/'", () => {
     test("Then the gallery apge should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={0}>
           <AppRouter></AppRouter>
         </Router>
@@ -34,7 +34,7 @@ describe("Given AppRouter component", () => {
 
   describe("When it is reder and the path is '/nuevo_bombardino'", () => {
     test("Then the nuevo_bombardino form should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={1}>
           <AppRouter></AppRouter>
         </Router>
@@ -60,7 +60,7 @@ describe("Given AppRouter component", () => {
 
   describe("When it is render and the path is '/login'", () => {
     test("Then the login form should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={3}>
           <AppRouter></AppRouter>
         </Router>
@@ -73,7 +73,7 @@ describe("Given AppRouter component", () => {
 
   describe("When it is render and the path is '/details'", () => {
     test("Then the details should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={4}>
           <AppRouter></AppRouter>
         </Router>
@@ -86,7 +86,7 @@ describe("Given AppRouter component", () => {
 
   describe("When it is render and the path is '/editar/:instrumentEditId'", () => {
     test("Then the '/editar/:instrumentEditId' should be in the screen", async () => {
-      render(
+      await render(
         <Router initialEntries={pathsEntries} initialIndex={5}>
           <AppRouter></AppRouter>
         </Router>
