@@ -29,7 +29,9 @@ export const AddEditForm = () => {
     valves: 4,
   } as EuphoniumProps;
 
-  const [euphoniumData, setEuphoniumData] = useState(initialItemData);
+  const [euphoniumData, setEuphoniumData] = useState(
+    storeEuphonium ? storeEuphonium : initialItemData
+  );
 
   const handleChange = (ev: SyntheticEvent) => {
     const element = ev.target as HTMLFormElement;
@@ -91,7 +93,7 @@ export const AddEditForm = () => {
               <div>
                 <input
                   className={style.formInput}
-                  type="manufacturer"
+                  type="text"
                   id="manufacturer"
                   name="manufacturer"
                   onChange={handleChange}
@@ -109,7 +111,7 @@ export const AddEditForm = () => {
               <div>
                 <input
                   className={style.formInput}
-                  type="instrumentModel"
+                  type="text"
                   id="instrumentModel"
                   name="instrumentModel"
                   onChange={handleChange}
