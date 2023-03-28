@@ -14,7 +14,7 @@ export const AddEditForm = () => {
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { addEuphonium, euphoniums, updateEuphonium } = useEuphonium(repo);
   const repoUser = useMemo(() => new UserRepo(), []);
-  const { users } = useUsers(repoUser);
+  const { user } = useUsers(repoUser);
 
   const storeEuphonium = euphoniums.find(
     (item) => item.id === instrumentEditId
@@ -46,10 +46,9 @@ export const AddEditForm = () => {
 
     if (!AddMode) {
       instrumentEditId && (euphoniumData.id = instrumentEditId);
-      updateEuphonium(euphoniumData, users.token, image);
+      updateEuphonium(euphoniumData, user.token, image);
     } else {
-      addEuphonium(euphoniumData, users.token, image);
-      formData.reset();
+      addEuphonium(euphoniumData, user.token, image);
     }
   };
 

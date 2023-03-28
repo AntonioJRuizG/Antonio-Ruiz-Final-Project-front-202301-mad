@@ -20,7 +20,7 @@ export function Gallery() {
   } = useEuphonium(repo);
 
   const repoUser = useMemo(() => new UserRepo(), []);
-  const { users } = useUsers(repoUser);
+  const { user } = useUsers(repoUser);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [filter, setFilter] = useState({ value: "", filtered: false });
@@ -106,7 +106,7 @@ export function Gallery() {
             <li key={item.id} className={style.galleryListItem}>
               <div>
                 <p className={style.galleryListItemButtons}>
-                  {users.user?.id === item.creator?.id && (
+                  {user.user?.id === item.creator?.id && (
                     <>
                       <button className={style.cardButton}>
                         <Link to={`/editar/${item.id}`} relative="path">
@@ -117,7 +117,7 @@ export function Gallery() {
                       <button
                         className={style.cardButton}
                         onClick={() => {
-                          deleteEuphonium(item.id, users.token);
+                          deleteEuphonium(item.id, user.token);
                         }}
                       >
                         ✖

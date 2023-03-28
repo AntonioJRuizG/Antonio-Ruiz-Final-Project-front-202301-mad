@@ -1,9 +1,8 @@
-@import "../../style/variables.scss";
+@import "../../../style/variables.scss";
 
 .mainMenu {
   text-align: left;
-  min-width: 240px;
-  max-width: 400px;
+  width: 220px;
   .mainMenuList {
     display: flex;
     flex-direction: row;

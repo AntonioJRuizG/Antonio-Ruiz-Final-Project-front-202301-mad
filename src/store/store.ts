@@ -4,7 +4,7 @@ import { userReducer } from "../features/user/reducer/user.reducer";
 
 export const store = configureStore({
   reducer: {
-    users: userReducer,
+    loggedUser: userReducer,
     euphoniums: euphoniumReducer,
   },
 });

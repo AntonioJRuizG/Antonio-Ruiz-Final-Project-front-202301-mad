@@ -29,7 +29,7 @@ describe("Given Add component", () => {
       });
 
       (useUsers as jest.Mock).mockReturnValue({
-        users: [],
+        user: { token: "", user: { id: "1" } },
       });
 
       render(
@@ -87,7 +87,7 @@ describe("Given Add component", () => {
       });
 
       (useUsers as jest.Mock).mockReturnValue({
-        users: [],
+        user: { token: "", user: {} },
       });
 
       render(

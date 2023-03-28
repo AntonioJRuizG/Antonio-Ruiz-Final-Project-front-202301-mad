@@ -1,0 +1,8 @@
+@import "../../../../style/variables.scss";
+
+.mainMenuBtn {
+  border: none;
+  color: $text_default_light_color;
+  cursor: pointer;
+  font-family: $font_default_family;
+}

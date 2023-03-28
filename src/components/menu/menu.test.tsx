@@ -1,25 +1,31 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter as Router } from "react-router-dom";
-import { MenuOptions } from "../../app/app";
+import { render } from "@testing-library/react";
+import { useUsers } from "../../features/user/hook/use.user.hook";
 import { Menu } from "./menu";
+import { PrivateMenu } from "./private.menu/private.menu";
+import { PublicMenu } from "./public.menu/public.menu";
+
+jest.mock("./public.menu/public.menu");
+jest.mock("./private.menu/private.menu");
+jest.mock("../../features/user/hook/use.user.hook");
 
 describe("Given menu component", () => {
-  describe("When it is rendered", () => {
-    test("Then it should render in the header component", () => {
-      const mockOptions: MenuOptions[] = [
-        {
-          id: "2",
-          label: "test",
-          path: "/test",
-        },
-      ];
-      render(
-        <Router>
-          <Menu menuOptions={mockOptions}></Menu>
-        </Router>
-      );
-      const element = screen.getByText(mockOptions[0].label);
-      expect(element).toBeInTheDocument();
+  describe("When it renders and no user is logged", () => {
+    test("Then it should render the PublicMenu", async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {},
+      });
+      render(<Menu></Menu>);
+      expect(PublicMenu).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it renders and there is a logged user", () => {
+    test("Then it should render the PrivateMenu", async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: { token: "token-test", user: { id: "1" } },
+      });
+      render(<Menu></Menu>);
+      expect(PrivateMenu).toHaveBeenCalled();
     });
   });
 });

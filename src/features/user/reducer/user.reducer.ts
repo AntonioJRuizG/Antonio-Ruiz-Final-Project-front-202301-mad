@@ -12,5 +12,6 @@ const initialState: {
 
 export const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
+  builder.addCase(ac.deleteCreator, (_state) => initialState);
   builder.addDefaultCase((state) => state);
 });

@@ -77,6 +77,7 @@ describe("Given the useEuphonium hook", () => {
           <button
             onClick={() => addEuphonium(euphoniums[0], "test-token", mockFile)}
           ></button>
+
           <button
             onClick={() =>
               updateEuphonium(euphoniums[0], "test-token", mockFile)
@@ -93,13 +94,11 @@ describe("Given the useEuphonium hook", () => {
       );
     };
 
-    await act(async () => {
-      render(
-        <Provider store={mockStore}>
-          <TestComponent></TestComponent>
-        </Provider>
-      );
-    });
+    render(
+      <Provider store={mockStore}>
+        <TestComponent></TestComponent>
+      </Provider>
+    );
 
     elements = await screen.findAllByRole("button");
   });
@@ -133,6 +132,7 @@ describe("Given the useEuphonium hook", () => {
       expect(deleteEuphonium).toEqual(true);
     });
   });
+
   describe("When click on fourth button", () => {
     test("Then it should call the repo method deleteEuphonium and fail because no id found", async () => {
       (mockRepo.deleteEuphonium as jest.Mock).mockRejectedValue("error");
@@ -187,6 +187,13 @@ describe("Given the useEuphonium hook", () => {
     test("Then it should call the repo method clearEuphoniumList", async () => {
       const clearEuphoniumList = await fireEvent.click(elements[8]);
       expect(clearEuphoniumList).toEqual(true);
+    });
+  });
+
+  describe("When click on tenth button", () => {
+    test("Then it should call the repo method addEuphoniumList and not upload File tu firebase", async () => {
+      const addEuphonium = await fireEvent.click(elements[8]);
+      expect(addEuphonium).toEqual(true);
     });
   });
 });

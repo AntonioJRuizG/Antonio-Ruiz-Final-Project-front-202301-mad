@@ -1,3 +1,4 @@
 export const usersActions = {
-  load: "users@load",
+  load: "user@load",
+  delete: "user@elete",
 };

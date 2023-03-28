@@ -5,7 +5,7 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 
 import style from "./detail.style.module.scss";
 
-export const Detail = () => {
+export default function Detail() {
   let { instrumentId } = useParams();
 
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -43,11 +43,13 @@ export const Detail = () => {
       <section className={style.detail}>
         <h2>Detalles del bombardino {" " + storeEuphonium?.alias}</h2>
         <div className={style.detailCard}>
-          <img
-            className={style.detailImg}
-            src={storeEuphonium?.image}
-            alt={"Imagen del bombardino de " + storeEuphonium?.alias}
-          />
+          <div className={style.imgContainer}>
+            <img
+              className={style.detailImg}
+              src={storeEuphonium?.image}
+              alt={"Imagen del bombardino de " + storeEuphonium?.alias}
+            />
+          </div>
 
           <div className={style.detailsList}>
             <ul>
@@ -75,4 +77,4 @@ export const Detail = () => {
       </section>
     </div>
   );
-};
+}

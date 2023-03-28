@@ -5,7 +5,7 @@ import { UserRepo } from "../services/repository/user.repo.js";
 import * as ac from "../reducer/user.action.creator";
 
 export function useUsers(repo: UserRepo) {
-  const users = useSelector((state: RootState) => state.users);
+  const user = useSelector((state: RootState) => state.loggedUser);
   const dispatch = useDispatch<AppDispatch>();
 
   const regUser = async (user: Partial<UserProps>) => {
@@ -25,9 +25,19 @@ export function useUsers(repo: UserRepo) {
     }
   };
 
+  const logoutUser = async () => {
+    dispatch(
+      ac.deleteCreator({
+        user: { id: "", name: "", email: "", password: "" },
+        token: "",
+      })
+    );
+  };
+
   return {
-    users,
+    user,
     regUser,
     logUser,
+    logoutUser,
   };
 }
