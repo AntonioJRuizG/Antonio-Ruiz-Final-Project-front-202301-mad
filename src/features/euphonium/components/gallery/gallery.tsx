@@ -27,11 +27,10 @@ export function Gallery() {
   const [visibleItems, setVisibleItems] = useState<number>(2);
 
   const showMoreHandler = () => {
-    if (filter.filtered) {
-      loadEuphoniumsFiltered((visibleItems + 1).toString(), filter.value);
-    } else {
-      loadEuphoniumsPaginated((visibleItems + 1).toString());
-    }
+    /* TEMP.
+    (filter.filtered) ?
+      loadEuphoniumsFiltered((visibleItems + 1).toString(), filter.value) : */
+    loadEuphoniumsPaginated((visibleItems + 1).toString());
     setVisibleItems((visibleItems) => visibleItems + 1);
   };
 

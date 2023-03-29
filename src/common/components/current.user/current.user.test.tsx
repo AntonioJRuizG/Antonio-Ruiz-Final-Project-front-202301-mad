@@ -1,9 +1,10 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from "@testing-library/react";
+import React from "react";
 import { useUsers } from "../../../features/user/hook/use.user.hook";
 import { CurrentUserName } from "./current.user";
 
-jest.mock("../../features/user/hook/use.user.hook");
+jest.mock("../../../features/user/hook/use.user.hook");
 
 describe("Given Header", () => {
   describe("When it is render", () => {
