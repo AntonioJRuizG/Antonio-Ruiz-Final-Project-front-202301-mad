@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MenuOptions } from "../../../app/app";
+import { MenuOptions } from "../../../../app/app";
 
 import style from "./public.menu.style.module.scss";
 

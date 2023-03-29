@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { useUsers } from "../../features/user/hook/use.user.hook";
+import { useUsers } from "../../../features/user/hook/use.user.hook";
 import { Menu } from "./menu";
 import { PrivateMenu } from "./private.menu/private.menu";
 import { PublicMenu } from "./public.menu/public.menu";

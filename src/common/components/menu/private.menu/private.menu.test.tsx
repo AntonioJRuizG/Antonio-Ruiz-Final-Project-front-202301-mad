@@ -2,8 +2,8 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { MenuOptions } from "../../../app/app";
-import { store } from "../../../store/store";
+import { MenuOptions } from "../../../../app/app";
+import { store } from "../../../../store/store";
 import { PrivateMenu } from "./private.menu";
 
 describe("Given menu component", () => {

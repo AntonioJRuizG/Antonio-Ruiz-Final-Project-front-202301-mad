@@ -19,7 +19,6 @@ export default function Detail() {
         <div className={style.detailCard}>
           <div className={style.imgContainer}>
             <img
-              width={250}
               height={300}
               className={style.detailImg}
               src={storeEuphonium?.image}
