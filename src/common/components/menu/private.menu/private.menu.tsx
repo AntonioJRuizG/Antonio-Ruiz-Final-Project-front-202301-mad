@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { MenuOptions } from "../../../app/app";
-import { LogoutBtn } from "../../../features/user/components/logout/logout.btn";
-
+import { MenuOptions } from "../../../../app/app";
+import { LogoutBtn } from "../../../../features/user/components/logout/logout.btn";
 import style from "./private.menu.style.module.scss";
 
 type NavProps = {

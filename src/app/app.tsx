@@ -1,4 +1,4 @@
-import { Header } from "../components/header/header";
+import { Header } from "../common/components/header/header";
 import { AppRouter } from "../routes/app.router";
 import "./app.css";
 

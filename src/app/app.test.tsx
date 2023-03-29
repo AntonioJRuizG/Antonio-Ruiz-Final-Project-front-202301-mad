@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import App from "./app";
 import { AppRouter } from "../routes/app.router";
 import { MemoryRouter as Router } from "react-router-dom";
-import { Header } from "../components/header/header";
+import { Header } from "../common/components/header/header";
 
 jest.mock("../components/header/header");
 jest.mock("../routes/app.router");

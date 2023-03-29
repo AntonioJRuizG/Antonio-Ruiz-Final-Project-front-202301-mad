@@ -1,7 +1,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { MenuOptions } from "../../../app/app";
+import { MenuOptions } from "../../../../app/app";
 import { PublicMenu } from "./public.menu";
 
 describe("Given menu component", () => {
