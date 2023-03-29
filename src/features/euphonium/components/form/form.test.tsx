@@ -17,7 +17,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given Add component", () => {
-  describe("When it renders with ID the form add an item", () => {
+  describe("When it renders with ID the form update an item", () => {
     jest.mock("react-router-dom", () => ({
       ...jest.requireActual("react-router-dom"),
       useParams: jest.fn().mockReturnValue({
@@ -97,9 +97,9 @@ describe("Given Add component", () => {
       });
 
       render(
-        <MemoryRouter initialEntries={["/editar/1234"]}>
+        <MemoryRouter initialEntries={["/nuevo_bombardino"]}>
           <Routes>
-            <Route path="/editar/:instrumentEditI" element={<AddEditForm />} />
+            <Route path="/nuevo_bombardino" element={<AddEditForm />} />
           </Routes>
         </MemoryRouter>
       );
