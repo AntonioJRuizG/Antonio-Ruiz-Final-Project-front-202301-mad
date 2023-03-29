@@ -10,6 +10,12 @@ import { AddEditForm } from "./form";
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
 
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 describe("Given Add component", () => {
   describe("When it renders with ID the form add an item", () => {
     jest.mock("react-router-dom", () => ({
