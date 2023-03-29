@@ -10,33 +10,7 @@ export default function Detail() {
 
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums } = useEuphonium(repo);
-
-  /*   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [bombardinoDetail, setBombardinoDetail] = useState<{
-    [key: string]: any;
-  }>(); */
-
   const storeEuphonium = euphoniums.find((item) => item.id === instrumentId);
-
-  /* Temporal comment
-  useEffect(() => {
-    const loadBombardino = async () => {
-      const bombardinoDetail = await loadOneEuphonium(instrumentId as string);
-      console.log(bombardinoDetail);
-      setBombardinoDetail(bombardinoDetail);
-    };
-    loadBombardino();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [instrumentId]); */
-
-  /* Temporal comment.
-  if (bombardinoDetail === undefined) {
-    return (
-      <div className={style.loading}>
-        <p>🔄 Loading...</p>
-      </div>
-    );
-  } */
 
   return (
     <div className={style.detailPage}>
@@ -45,6 +19,8 @@ export default function Detail() {
         <div className={style.detailCard}>
           <div className={style.imgContainer}>
             <img
+              width={250}
+              height={300}
               className={style.detailImg}
               src={storeEuphonium?.image}
               alt={"Imagen del bombardino de " + storeEuphonium?.alias}

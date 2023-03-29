@@ -2,8 +2,8 @@ import { UserResponseBody, UserProps } from "../../model/user.model";
 export class UserRepo {
   url: string;
   constructor() {
-    /* RENDER URL this.url="https://antonio-ruiz-final-project-2023.onrender.com/usuarios",*/
-    this.url = "http://localhost:4500/usuarios";
+    this.url = "https://antonio-ruiz-final-project-2023.onrender.com/usuarios";
+    // RENDER URL this.url = "http://localhost:4500/usuarios";
   }
 
   async registerUser(user: Partial<UserProps>): Promise<UserProps> {

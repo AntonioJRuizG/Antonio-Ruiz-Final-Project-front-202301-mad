@@ -4,11 +4,12 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 
 import style from "./form.style.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 
 export const AddEditForm = () => {
+  const navigate = useNavigate();
   let { instrumentEditId } = useParams();
   const AddMode = !instrumentEditId;
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -52,6 +53,7 @@ export const AddEditForm = () => {
     } else {
       addEuphonium(euphoniumData, user.token, image);
     }
+    navigate("/");
   };
 
   return (
@@ -61,6 +63,8 @@ export const AddEditForm = () => {
         <div className={style.formContainer}>
           {!AddMode && (
             <img
+              width={200}
+              height={280}
               className={style.detailImg}
               src={storeEuphonium?.image}
               alt={"Imagen del bombardino de " + storeEuphonium?.alias}

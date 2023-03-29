@@ -129,7 +129,12 @@ export function Gallery() {
               <Link to={`/detalles/${item.id}`} relative="path">
                 <div className={style.galleryImgBox}>
                   <div className={style.galleryListItemImg}>
-                    <img src={item.image} alt={item.alias} />
+                    <img
+                      width={100}
+                      height={170}
+                      src={item.image}
+                      alt={item.alias}
+                    />
                   </div>
                 </div>
                 <div className={style.galleryListItemInfo}>

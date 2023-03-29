@@ -14,11 +14,9 @@ export interface EuphoniumRepoStructure {
 export class EuphoniumRepo {
   url: string;
   constructor() {
-    /* RENDER URL
     this.url =
-      "https://antonio-ruiz-final-project-2023.onrender.com/bombardinos", */
-
-    this.url = "http://localhost:4500/bombardinos";
+      "https://antonio-ruiz-final-project-2023.onrender.com/bombardinos";
+    // RENDER URL this.url = "http://localhost:4500/bombardinos";
   }
 
   async loadEuphoniums(): Promise<EuphoniumResponseBody> {
