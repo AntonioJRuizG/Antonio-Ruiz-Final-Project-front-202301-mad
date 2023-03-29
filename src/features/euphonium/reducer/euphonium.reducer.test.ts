@@ -65,5 +65,15 @@ describe("Given bombardinosReducer", () => {
         euphoniumReducer(euphoniums, ac.deleteCreator(bombardino1.id))
       ).toEqual([bombardino2]);
     });
+
+    test("Then it should handle clearCreator1", () => {
+      expect(euphoniumReducer(euphoniums, ac.clearCreator([]))).toEqual([]);
+    });
+
+    test("Then it should handle addListCreator and push euphonium 2 2", () => {
+      expect(
+        euphoniumReducer(euphoniums, ac.addListCreator([bombardino1]))
+      ).toEqual([bombardino1, bombardino2, bombardino1]);
+    });
   });
 });
