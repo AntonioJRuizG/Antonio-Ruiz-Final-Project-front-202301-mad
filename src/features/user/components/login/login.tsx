@@ -1,11 +1,12 @@
 import { SyntheticEvent, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { useUsers } from "../../hook/use.user.hook";
 import { UserProps } from "../../model/user.model";
 import { UserRepo } from "../../services/repository/user.repo";
 
 import style from "./login.style.module.scss";
+
+import Swal from "sweetalert2";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export function LoginForm() {
                 type="password"
                 name="password"
                 placeholder="Clave de acceso"
+                autoComplete="off"
                 required
               />
             </label>

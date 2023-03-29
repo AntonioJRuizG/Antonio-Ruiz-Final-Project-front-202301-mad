@@ -47,6 +47,7 @@ export function RegisterForm() {
                 type="password"
                 name="password"
                 placeholder="Clave de acceso"
+                autoComplete="off"
                 required
               />
             </label>
