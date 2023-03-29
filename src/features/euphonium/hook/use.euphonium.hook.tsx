@@ -65,7 +65,10 @@ export function useEuphonium(repo: EuphoniumRepo) {
     file: File
   ) => {
     try {
-      await newImage(euphonium, file);
+      if (file) {
+        await newImage(euphonium, file);
+      }
+
       await repo.updateEuphonium(euphonium, token);
       dispatch(ac.updateCreator(euphonium));
     } catch (error) {

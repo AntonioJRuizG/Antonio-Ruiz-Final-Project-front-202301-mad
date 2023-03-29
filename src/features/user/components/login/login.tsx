@@ -48,7 +48,7 @@ export function LoginForm() {
             </label>
             <button
               type="submit"
-              onClick={() => Swal.fire({ text: "Bienvenido!" })}
+              onClick={() => Swal.fire({ text: "Que viva la música!" })}
             >
               Entrar
             </button>

@@ -90,6 +90,9 @@ describe("Given the useEuphonium hook", () => {
             onClick={() => loadEuphoniumsFiltered("test-offset", "test-value")}
           ></button>
           <button onClick={() => clearEuphoniumsList()}></button>
+          <button
+            onClick={() => updateEuphonium(euphoniums[0], "test-token", null!)}
+          ></button>
         </div>
       );
     };
@@ -164,6 +167,11 @@ describe("Given the useEuphonium hook", () => {
       (mockRepo.updateEuphonium as jest.Mock).mockRejectedValue("error");
       await act(async () => fireEvent.click(elements[5]));
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
+    });
+    test("Then it should update no file if there is no File", async () => {
+      const updateEuphonium = await fireEvent.click(elements[9]);
+      expect(mockRepo.updateEuphonium).toHaveBeenCalled();
+      expect(updateEuphonium).toEqual(true);
     });
   });
 
