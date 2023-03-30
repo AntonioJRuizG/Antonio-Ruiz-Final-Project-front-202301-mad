@@ -186,7 +186,7 @@ export const AddEditForm = () => {
             </div>
             <div>
               <button className={style.formButton} type="submit">
-                {AddMode ? "Añadir" : "Editar"}
+                {AddMode ? "Añadir" : "Guardar"}
               </button>
             </div>
           </form>

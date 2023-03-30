@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { useUsers } from "../../../features/user/hook/use.user.hook";
-import { UserRepo } from "../../../features/user/services/repository/user.repo";
+import { useUsers } from "../../hook/use.user.hook";
+import { UserRepo } from "../../services/repository/user.repo";
 
 import style from "./current.user.style.module.scss";
 

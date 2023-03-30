@@ -1,4 +1,4 @@
-import { CurrentUserName } from "../current.user/current.user";
+import { CurrentUserName } from "../../../features/user/components/current.user/current.user";
 import { Menu } from "../menu/menu";
 import style from "./header.style.module.scss";
 export function Header() {
