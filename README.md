@@ -1,3 +1,5 @@
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad&metric=coverage)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad)
 # 🎺🎶 Community of Euphonium Enthusiasts
 
 This is a full-stack MERN application that allows Bombardino players to share information about their instruments, such as a photo and technical specifications.
