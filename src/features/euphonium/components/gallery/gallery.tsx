@@ -52,7 +52,6 @@ export function Gallery() {
     loadEuphoniumsPaginated("1");
   }, []);
 
-  console.log(euphoniums);
   if (!euphoniums.length) {
     return (
       <div className={style.spin}>
@@ -60,6 +59,7 @@ export function Gallery() {
       </div>
     );
   }
+
   return (
     <>
       <h1 className={style.galleryTitle}>Galería</h1>
