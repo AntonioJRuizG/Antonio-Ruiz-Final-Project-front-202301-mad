@@ -1,74 +1,80 @@
-# 🎺🎶 Community of Euphonium Enthusiasts
+# 🎶 Community of Euphonium Enthusiasts
 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad&metric=coverage)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Antonio-Ruiz-Final-Project-front-202301-mad)
 
-This is a full-stack MERN application that allows Bombardino players to share information about their instruments, such as a photo and technical specifications.
+## Description
 
-## Configuración
+Web application that offers euphonium enthusiasts a social network for sharing their musical interests.
 
-El frontend se abre por defecto en el puerto 4500. Se necesitan rellenar los ficheros `.env` con las claves para configurar la conexión a MongoDB y a Firebase. Se adjuntan ficheros `sample.env` de referencia.
+✅ Link to the project: <https://beeuphonium.netlify.app/>
 
-## Installation and Setup
+## Info
 
-> npm install
+Final project of a great fullstack web development bootcamp in which I participated 🚀
 
-instala todas las dependencias para el servidor y el cliente.
+The goal is not just to develop the application, but also to collaborate with classmates and implement best practices.
 
-> npm run build
+The following screenshots of the Jest coverage file and the SonarCloud project summary show the challenge of ensuring code quality by eliminating bugs and code smells, achieving 100% test coverage and 0% code duplication through unit testing and CI/CD tools.
 
-construye los archivos estáticos para la aplicación de React.
+![Test coverage](readmeimages/jest_screenshot.jpg)
+![Test coverage](readmeimages/sonar_screenshot.jpg)
 
-> npm start
+## Full-Stack app
 
-inicia la aplicación completa MERN.
+This is the Frontend repository of a fullstack app.
 
-## The application includes the following features
+Find the repository with the Backend here:
+<https://github.com/AntonioJRuizG/Be-Euphonium_back/network>
 
-- List of Euphonium instruments
-- Details page for each instrument
-- Create instrument page with a form and a required image field
-- Edit instrument page
-- Delete instrument function
-- Pagination (infinite roll)
-- Filters (in the list itself, to filter without changing pages)
-- User login and registration
-- User feedback
-- Error handling
-- Firebase
+## Features
 
-## Frontend
+- Gallery of items.
+- Item detacil page.
+- Add/Edit page.
+- Delete item.
+- Pagination: infinite sroll.
+- Gallery filter by item characteristics.
+- User registration and login.
+- Feedback to the user.
 
-- TypeScript
-- React + Redux for state management
-- moduleCSS / styled components
-- Unit tests
-- SonarCloud 100% code analisys
-- Integration tests
+## Project characteristics
+
+### Frontend
+
+- TypeScript.
+- React: lazy loading, conditional rendering, router, controlled form.
+- State management with Redux.
+- moduleCSS / styled components.
+- Responsive design.
+- Unit testing.
+- 100% test coverage.
+- SonarCloud code analisys.
+- Zero technical debt.
+- Lighthouse metrics +90%.
+- Error handling.
+- Deploy: Netlify.
+
+### Backend
+
+- TypeScript.
+- Node.JS + Express.
+- auth0.
+- Unit testing.
 - 100% coverage
-- Zero technical debt
-- Lighthouse with metrics 100%
+- SonarCloud code analisys.
+- 0% technical debt.
+- End-to-end test.
+- Firebase images storage.
+- Postman endpoint collection.
+- Deploy: onrender.com.
 
-## Backend
+### Project managment
 
-- TypeScript
-- Node + Express
-- auth with JWT
-- Unit tests
-- SonarCloud 100% code analisys
-- Endpoint tests (supertest)
-- Saving binary files to disk / Firebase
-- Image optimization (sharp)
-- Request validation with Joi
-- 100% coverage
-- 0 technical debt
-- Postman endpoint collection exported as JSON (in the root of the project)
-- E2E
-- User login process tested with Cypress
+- Trello.
+- Component responsibilities.
+- Figma.
 
-## Project managment
+## Thanks
 
-- Figma
-- Component responsibilities
-- Backend routes
-- Trello
+Thanks to the main teacher, teaching assistants and classmates for their help and encouragement during the project. Without you I would not have got nearly as far as I did 🎉
