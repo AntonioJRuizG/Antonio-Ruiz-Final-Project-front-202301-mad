@@ -8,6 +8,7 @@ import { useUsers } from "../../../user/hook/use.user.hook";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 
 import style from "./gallery.style.module.scss";
+import { LoadingSpin } from "../../../../common/components/loading/loading";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -50,6 +51,14 @@ export function Gallery() {
     clearEuphoniumsList();
     loadEuphoniumsPaginated("1");
   }, []);
+
+  if (!euphoniums.length) {
+    return (
+      <div className={style.spin}>
+        <LoadingSpin></LoadingSpin>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -149,14 +158,16 @@ export function Gallery() {
             </li>
           ))}
         </ul>
-        <button
-          className={style.showMoreBtn}
-          onClick={() => {
-            showMoreHandler();
-          }}
-        >
-          Show more
-        </button>
+        {euphoniums !== undefined && (
+          <button
+            className={style.showMoreBtn}
+            onClick={() => {
+              showMoreHandler();
+            }}
+          >
+            Show more
+          </button>
+        )}
       </section>
     </>
   );

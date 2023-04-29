@@ -7,38 +7,40 @@ import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { Gallery } from "./gallery";
+import { LoadingSpin } from "../../../../common/components/loading/loading";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
 
+jest.mock("../../../../common/components/loading/loading");
+
 describe("Given Gallery", () => {
   const mockEuphoniumRepo = {} as EuphoniumRepo;
+  describe("When it is render with euphoniums", () => {
+    beforeEach(async () => {
+      (useEuphonium as jest.Mock).mockReturnValue({
+        euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }],
+        deleteEuphonium: jest.fn(),
+        loadEuphoniumsPaginated: jest.fn(),
+        loadEuphoniumsFiltered: jest.fn(),
+        clearEuphoniumsList: jest.fn(),
+      });
 
-  beforeEach(async () => {
-    (useEuphonium as jest.Mock).mockReturnValue({
-      euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }],
-      deleteEuphonium: jest.fn(),
-      loadEuphoniumsPaginated: jest.fn(),
-      loadEuphoniumsFiltered: jest.fn(),
-      clearEuphoniumsList: jest.fn(),
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {
+          user: { id: "1" },
+        },
+      });
+
+      render(
+        <Router>
+          <Gallery></Gallery>
+        </Router>
+      );
     });
 
-    (useUsers as jest.Mock).mockReturnValue({
-      user: {
-        user: { id: "1" },
-      },
-    });
-
-    render(
-      <Router>
-        <Gallery></Gallery>
-      </Router>
-    );
-  });
-
-  describe("When it is render", () => {
     test("Then it should be called", async () => {
       const element = screen.getByRole("heading");
       expect(element).toBeInTheDocument();
@@ -147,27 +149,38 @@ describe("Given Gallery", () => {
         ).not.toHaveBeenCalled();
       });
     });
+  });
 
-    /* Temp.
-    describe("When click the seventh Button with no filter active", () => {
-      test("Then it should call the loadEuphoniumsFiltered", async () => {
-        const initialState = true;
-
-        React.useState = jest.fn().mockReturnValue([initialState, {}]);
-
-        const buttons = screen.getAllByRole("button");
-        await act(async () => {
-          await userEvent.click(buttons[6]);
-        });
-
-        expect(buttons[6]).toBeInTheDocument();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsFiltered
-        ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsPaginated
-        ).not.toHaveBeenCalled();
+  describe("When it is render with empty euphoniums state", () => {
+    beforeEach(async () => {
+      (useEuphonium as jest.Mock).mockReturnValue({
+        euphoniums: [],
+        deleteEuphonium: jest.fn(),
+        loadEuphoniumsPaginated: jest.fn(),
+        loadEuphoniumsFiltered: jest.fn(),
+        clearEuphoniumsList: jest.fn(),
       });
-    }); */
+
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {
+          user: { id: "1" },
+        },
+      });
+
+      render(
+        <Router>
+          <Gallery></Gallery>
+        </Router>
+      );
+    });
+
+    test("Then it should be called", async () => {
+      const element = screen.getAllByRole("generic");
+      expect(element[0]).toBeInTheDocument();
+    });
+
+    test("Then de component LoadingSpin should have been called", () => {
+      expect(LoadingSpin).toHaveBeenCalled();
+    });
   });
 });
