@@ -21,5 +21,9 @@ describe("Given paginationReducer", () => {
     test("Then it should handle loadCreator and load page", () => {
       expect(paginationReducer(page1, ac.loadCreator(page2))).toEqual(page2);
     });
+
+    test("Then it should handle restartCreator and load page", () => {
+      expect(paginationReducer(page1, ac.restartCreator())).toEqual(page1);
+    });
   });
 });
