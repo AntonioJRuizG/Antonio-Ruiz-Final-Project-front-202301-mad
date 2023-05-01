@@ -1,16 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { PaginationProps } from "../../reducer/page.reducer/page.reducer";
 import * as ac from "../../reducer/page.reducer/page.action.creator";
 import { AppDispatch, RootState } from "../../../store/store";
 
-export function usePagination(pageProps: PaginationProps) {
+export function usePagination() {
   const page = useSelector((state: RootState) => state.page);
   const dispatch = useDispatch<AppDispatch>();
 
-  const nextPage = async () => {
-    pageProps.currentPage = pageProps.currentPage + 1;
-    dispatch(ac.loadCreator(pageProps));
+  const nextPage = () => {
+    const newPage = page.currentPage + 1;
+    const nextPage = {
+      currentPage: newPage,
+    };
+    dispatch(ac.loadCreator(nextPage));
   };
 
-  return { page, nextPage };
+  const restartPagination = () => {
+    dispatch(ac.restartCreator());
+  };
+
+  return { page, nextPage, restartPagination };
 }
