@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     loggedUser: userReducer,
     euphoniums: euphoniumReducer,
-    pagination: paginationReducer,
+    page: paginationReducer,
   },
 });
 export type AppDispatch = typeof store.dispatch;
