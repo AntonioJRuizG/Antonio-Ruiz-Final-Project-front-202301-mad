@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { euphoniumReducer } from "../reducer/euphonium.reducer";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo";
 import { useEuphonium } from "./use.euphonium.hook";
+import { paginationReducer } from "../../../common/reducer/page.reducer/page.reducer";
 
 jest.mock("../services/firebase/firebase-user");
 const mockFile = new File(["image"], "test.jpeg");
@@ -14,7 +15,7 @@ describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { euphoniums: euphoniumReducer },
+    reducer: { euphoniums: euphoniumReducer, page: paginationReducer },
     preloadedState: {
       euphoniums: [
         {
@@ -40,6 +41,7 @@ describe("Given the useEuphonium hook", () => {
           creator: { name: "Fabio" },
         },
       ],
+      page: { currentPage: 1 },
     },
   });
 
@@ -202,6 +204,87 @@ describe("Given the useEuphonium hook", () => {
     test("Then it should call the repo method addEuphoniumList and not upload File tu firebase", async () => {
       const addEuphonium = await fireEvent.click(elements[8]);
       expect(addEuphonium).toEqual(true);
+    });
+  });
+});
+
+describe("Given the useEuphonium hook with another page different to 1", () => {
+  let elements: HTMLElement[];
+
+  const mockStore = configureStore({
+    reducer: { euphoniums: euphoniumReducer, page: paginationReducer },
+    preloadedState: {
+      euphoniums: [
+        {
+          id: "1",
+          alias: "test",
+          manufacturer: "test",
+          instrumentModel: "test",
+          valves: 3,
+          material: "test",
+          marchingBand: true,
+          image: "test",
+          creator: { name: "Fabio" },
+        },
+        {
+          id: "2",
+          alias: "test-2",
+          manufacturer: "test-2",
+          instrumentModel: "test",
+          valves: 3,
+          material: "test",
+          marchingBand: true,
+          image: "test",
+          creator: { name: "Fabio" },
+        },
+      ],
+      page: { currentPage: 2 },
+    },
+  });
+
+  const mockRepo: EuphoniumRepo = {
+    url: "",
+    loadEuphoniums: jest.fn(),
+    getEuphonium: jest.fn(),
+    deleteEuphonium: jest.fn(),
+    createEuphonium: jest.fn(),
+    updateEuphonium: jest.fn(),
+    loadEuphoniumsPaginated: jest.fn(),
+    loadEuphoniumsFiltered: jest.fn(),
+  };
+  beforeEach(async () => {
+    const TestComponent = function () {
+      const { loadEuphoniumsPaginated } = useEuphonium(mockRepo);
+      return (
+        <div>
+          <button
+            onClick={() => loadEuphoniumsPaginated("test-offset")}
+          ></button>
+        </div>
+      );
+    };
+
+    render(
+      <Provider store={mockStore}>
+        <TestComponent></TestComponent>
+      </Provider>
+    );
+
+    elements = await screen.findAllByRole("button");
+  });
+
+  describe("When TestComponent is rendered", () => {
+    test("then button should be in the document", async () => {
+      const element = await screen.findAllByRole("button");
+      expect(element[0]).toBeInTheDocument();
+    });
+  });
+
+  describe("When click on seventh button", () => {
+    test("Then it should call the repo method loadEuphoniumsPaginated", async () => {
+      const loadEuphoniumsPaginated = await fireEvent.click(elements[0]);
+      expect(mockRepo.loadEuphoniumsPaginated).toHaveBeenCalled();
+      expect(loadEuphoniumsPaginated).toEqual(true);
     });
   });
 });
