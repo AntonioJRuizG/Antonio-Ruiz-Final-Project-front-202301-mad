@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.js";
 import { EuphoniumProps } from "../model/euphonium.model.js";
@@ -7,20 +8,24 @@ import { newImage } from "../services/firebase/firebase-user";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo.js";
 
 export function useEuphonium(repo: EuphoniumRepo) {
+  const page = useSelector((state: RootState) => state.page);
   const euphoniums = useSelector((state: RootState) => state.euphoniums);
   const dispatch = useDispatch<AppDispatch>();
-  const loadEuphoniums = useCallback(async () => {
+
+  const loadEuphoniums = async () => {
     try {
       const data = await repo.loadEuphoniums();
       dispatch(ac.loadCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
     }
-  }, [dispatch, repo]);
+  };
 
   useEffect(() => {
-    loadEuphoniums();
-  }, [loadEuphoniums]);
+    page.currentPage === 1
+      ? loadEuphoniums()
+      : loadEuphoniumsPaginated(page.currentPage.toString());
+  }, [page.currentPage]);
 
   const loadOneEuphonium = async (id: string) => {
     try {
