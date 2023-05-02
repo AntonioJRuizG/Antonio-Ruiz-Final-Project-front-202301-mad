@@ -85,7 +85,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   const loadEuphoniumsPaginated = async (offset: string, material: string) => {
     try {
       const data = await repo.loadEuphoniumsPaginated(offset, material);
-      dispatch(ac.addListCreator(data.results));
+      dispatch(ac.loadCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
     }
