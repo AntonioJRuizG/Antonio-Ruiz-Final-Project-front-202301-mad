@@ -14,9 +14,12 @@ export function useEuphonium(repo: EuphoniumRepo) {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    page.currentPage === 1 && filter.filter === ""
-      ? loadEuphoniums()
-      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
+    if (page.currentPage === 1 && filter.filter === "") {
+      loadEuphoniums();
+      return;
+    }
+
+    loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
   }, [page.currentPage, filter.filter]);
 
   const loadEuphoniums = async () => {
