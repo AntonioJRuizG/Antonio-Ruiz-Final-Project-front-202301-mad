@@ -18,7 +18,7 @@ The goal is not just to develop the application, but also to collaborate with cl
 The following screenshots of the Jest coverage file and the SonarCloud project summary show the challenge of ensuring code quality by eliminating bugs and code smells, achieving 100% test coverage and 0% code duplication through unit testing and CI/CD tools.
 
 ![Test coverage](readmeimages/jest_screenshot.jpg)
-![Test coverage](readmeimages/sonar_screenshot.jpg)
+![SonnarCloud summary](readmeimages/sonar_screenshot.jpg)
 
 ## Full-Stack app
 

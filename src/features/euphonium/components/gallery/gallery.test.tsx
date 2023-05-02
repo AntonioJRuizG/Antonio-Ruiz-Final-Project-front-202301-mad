@@ -8,15 +8,19 @@ import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { Gallery } from "./gallery";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
+import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
-
+jest.mock("../../../../common/hooks/pagination.hook/use.pagination.hook");
+jest.mock("../../../../common/hooks/filter.hook/use.filter.hook");
 jest.mock("../../../../common/components/loading/loading");
 
 describe("Given Gallery", () => {
+  let buttons: HTMLElement[];
   const mockEuphoniumRepo = {} as EuphoniumRepo;
   describe("When it is render with euphoniums", () => {
     beforeEach(async () => {
@@ -34,47 +38,46 @@ describe("Given Gallery", () => {
         },
       });
 
+      (usePagination as jest.Mock).mockReturnValue({
+        nextPage: jest.fn(),
+        restartPagination: jest.fn(),
+      });
+
+      (useFilter as jest.Mock).mockReturnValue({
+        loadFilter: jest.fn(),
+        clearFilter: jest.fn(),
+      });
+
       render(
         <Router>
           <Gallery></Gallery>
         </Router>
       );
+
+      buttons = screen.getAllByRole("button");
     });
 
-    test("Then it should be called", async () => {
+    test("Then it should be called in the document", async () => {
       const element = screen.getByRole("heading");
       expect(element).toBeInTheDocument();
+      expect(buttons[0]).toBeInTheDocument();
     });
 
     describe("When click the first Link", () => {
       test("Then it should call the removeFilterHandler", async () => {
-        const buttons = screen.getAllByRole("button");
-        await act(async () => {
-          userEvent.click(buttons[0]);
-        });
-        expect(buttons[0]).toBeInTheDocument();
-      });
-    });
-
-    describe("When click the first Button", () => {
-      test("Then it should call the removeFilterHandler", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[0]);
         });
-        expect(buttons[0]).toBeInTheDocument();
+
         expect(
           useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
         ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsPaginated
-        ).toHaveBeenCalled();
+        expect(usePagination().restartPagination).toHaveBeenCalled();
       });
     });
 
     describe("When click the second Button", () => {
       test("Then it should call the filterHandler", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[1]);
         });
@@ -82,15 +85,12 @@ describe("Given Gallery", () => {
         expect(
           useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
         ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsFiltered
-        ).toHaveBeenCalledWith("1", "Plateado");
+        expect(usePagination().restartPagination).toHaveBeenCalled();
       });
     });
 
     describe("When click the third Button", () => {
       test("Then it should call the filterHandler", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[2]);
         });
@@ -98,15 +98,12 @@ describe("Given Gallery", () => {
         expect(
           useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
         ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsFiltered
-        ).toHaveBeenCalled();
+        expect(usePagination().restartPagination).toHaveBeenCalled();
       });
     });
 
     describe("When click the fourth Button", () => {
       test("Then it should call the filterHandler", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[3]);
         });
@@ -114,15 +111,12 @@ describe("Given Gallery", () => {
         expect(
           useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
         ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsFiltered
-        ).toHaveBeenCalled();
+        expect(usePagination().restartPagination).toHaveBeenCalled();
       });
     });
 
     describe("When click the sixth Button", () => {
       test("Then it should delete the item", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[5]);
         });
@@ -133,39 +127,29 @@ describe("Given Gallery", () => {
       });
     });
 
-    describe("When click the seventh Button", () => {
+    describe("When click the seventh Button -show more", () => {
       test("Then it should call the loadEuphoniumsPaginated if no filter active", async () => {
-        const buttons = screen.getAllByRole("button");
         await act(async () => {
           await userEvent.click(buttons[6]);
         });
 
         expect(buttons[6]).toBeInTheDocument();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsPaginated
-        ).toHaveBeenCalled();
-        expect(
-          useEuphonium(mockEuphoniumRepo).loadEuphoniumsFiltered
-        ).not.toHaveBeenCalled();
+        expect(usePagination().nextPage).toHaveBeenCalled();
       });
     });
   });
 
-  describe("When it is render with empty euphoniums state", () => {
+  describe("When it renders with empty euphoniums state", () => {
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
         euphoniums: [],
-        deleteEuphonium: jest.fn(),
-        loadEuphoniumsPaginated: jest.fn(),
-        loadEuphoniumsFiltered: jest.fn(),
-        clearEuphoniumsList: jest.fn(),
       });
 
-      (useUsers as jest.Mock).mockReturnValue({
-        user: {
-          user: { id: "1" },
-        },
-      });
+      (useUsers as jest.Mock).mockReturnValue({});
+
+      (usePagination as jest.Mock).mockReturnValue({});
+
+      (useFilter as jest.Mock).mockReturnValue({});
 
       render(
         <Router>
@@ -174,12 +158,7 @@ describe("Given Gallery", () => {
       );
     });
 
-    test("Then it should be called", async () => {
-      const element = screen.getAllByRole("generic");
-      expect(element[0]).toBeInTheDocument();
-    });
-
-    test("Then de component LoadingSpin should have been called", () => {
+    test("Then de component LoadingSpin should have been called", async () => {
       expect(LoadingSpin).toHaveBeenCalled();
     });
   });

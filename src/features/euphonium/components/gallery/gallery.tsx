@@ -1,55 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { UserRepo } from "../../../user/services/repository/user.repo";
+import { LoadingSpin } from "../../../../common/components/loading/loading";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 import style from "./gallery.style.module.scss";
-import { LoadingSpin } from "../../../../common/components/loading/loading";
+import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const {
-    euphoniums,
-    loadEuphoniumsPaginated,
-    loadEuphoniumsFiltered,
-    clearEuphoniumsList,
-    deleteEuphonium,
-  } = useEuphonium(repo);
+  const { euphoniums, clearEuphoniumsList, deleteEuphonium } =
+    useEuphonium(repo);
 
   const repoUser = useMemo(() => new UserRepo(), []);
   const { user } = useUsers(repoUser);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [filter, setFilter] = useState({ value: "", filtered: false });
-  const [visibleItems, setVisibleItems] = useState<number>(2);
+  const { nextPage, restartPagination } = usePagination();
+  const { clearFilter, loadFilter } = useFilter();
 
   const showMoreHandler = () => {
-    /* TEMP.
-    (filter.filtered) ?
-      loadEuphoniumsFiltered((visibleItems + 1).toString(), filter.value) : */
-    loadEuphoniumsPaginated((visibleItems + 1).toString());
-    setVisibleItems((visibleItems) => visibleItems + 1);
+    nextPage();
   };
 
-  const filterHandler = useCallback(
-    (value: string) => {
-      setVisibleItems(1);
-      setFilter({ value, filtered: true });
-      clearEuphoniumsList();
-      loadEuphoniumsFiltered("1", value);
-    },
-    [setVisibleItems]
-  );
+  const filterHandler = useCallback((value: string) => {
+    restartPagination();
+    loadFilter(value);
+    clearEuphoniumsList();
+  }, []);
 
   const removeFilterHandler = useCallback(() => {
-    setVisibleItems(1);
-    setFilter({ value: "", filtered: false });
+    clearFilter();
     clearEuphoniumsList();
-    loadEuphoniumsPaginated("1");
+    restartPagination();
   }, []);
 
   if (!euphoniums.length) {

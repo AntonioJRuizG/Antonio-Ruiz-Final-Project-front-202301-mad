@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store/store.js";
 import { EuphoniumProps } from "../model/euphonium.model.js";
@@ -7,20 +8,25 @@ import { newImage } from "../services/firebase/firebase-user";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo.js";
 
 export function useEuphonium(repo: EuphoniumRepo) {
+  const page = useSelector((state: RootState) => state.page);
+  const filter = useSelector((state: RootState) => state.filter);
   const euphoniums = useSelector((state: RootState) => state.euphoniums);
   const dispatch = useDispatch<AppDispatch>();
-  const loadEuphoniums = useCallback(async () => {
+
+  useEffect(() => {
+    page.currentPage === 1 && filter.filter === ""
+      ? loadEuphoniums()
+      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
+  }, [page.currentPage, filter.filter]);
+
+  const loadEuphoniums = async () => {
     try {
       const data = await repo.loadEuphoniums();
       dispatch(ac.loadCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
     }
-  }, [dispatch, repo]);
-
-  useEffect(() => {
-    loadEuphoniums();
-  }, [loadEuphoniums]);
+  };
 
   const loadOneEuphonium = async (id: string) => {
     try {
@@ -76,18 +82,9 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const loadEuphoniumsPaginated = async (offset: string) => {
+  const loadEuphoniumsPaginated = async (offset: string, material: string) => {
     try {
-      const data = await repo.loadEuphoniumsPaginated(offset);
-      dispatch(ac.addListCreator(data.results));
-    } catch (error) {
-      console.log((error as Error).message);
-    }
-  };
-
-  const loadEuphoniumsFiltered = async (offset: string, material: string) => {
-    try {
-      const data = await repo.loadEuphoniumsFiltered(offset, material);
+      const data = await repo.loadEuphoniumsPaginated(offset, material);
       dispatch(ac.addListCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
@@ -99,7 +96,6 @@ export function useEuphonium(repo: EuphoniumRepo) {
     loadEuphoniums,
     loadOneEuphonium,
     loadEuphoniumsPaginated,
-    loadEuphoniumsFiltered,
     deleteEuphonium,
     clearEuphoniumsList,
     updateEuphonium,
