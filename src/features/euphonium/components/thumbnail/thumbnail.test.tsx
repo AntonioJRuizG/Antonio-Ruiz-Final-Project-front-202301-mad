@@ -8,6 +8,7 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { Thumbnail } from "./thumbnail";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { EuphoniumProps } from "../../model/euphonium.model";
+import { MemoryRouter as Router } from "react-router-dom";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
@@ -34,11 +35,13 @@ describe("Given Thumbnail component", () => {
       });
 
       render(
-        <Thumbnail
-          item={mockEuphonium}
-          deleteEuphonium={useEuphonium(mockEuphoniumRepo).deleteEuphonium}
-          user={useUsers(mockUserRepo).user}
-        ></Thumbnail>
+        <Router>
+          <Thumbnail
+            item={mockEuphonium}
+            deleteEuphonium={useEuphonium(mockEuphoniumRepo).deleteEuphonium}
+            user={useUsers(mockUserRepo).user}
+          ></Thumbnail>
+        </Router>
       );
 
       buttons = screen.getAllByRole("button");
