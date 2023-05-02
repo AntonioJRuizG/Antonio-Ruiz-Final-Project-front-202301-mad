@@ -6,12 +6,11 @@ export function useFilter() {
   const filter = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch<AppDispatch>();
 
-  const loadFilter = () => {
-    const currentFilter = filter.filter;
-    const newFilter = {
-      filter: currentFilter,
+  const loadFilter = (newFilter: string) => {
+    const filter = {
+      filter: newFilter,
     };
-    dispatch(ac.loadCreator(newFilter));
+    dispatch(ac.loadCreator(filter));
   };
 
   const clearFilter = () => {

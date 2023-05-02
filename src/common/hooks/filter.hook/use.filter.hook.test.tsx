@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { useFilter } from "./use.filter.hook";
 import { filterReducer } from "../../reducer/filter.reducer/filter.reducer";
 
-describe("Given the usePagination hook", () => {
+describe("Given the useFilter hook", () => {
   let buttons: HTMLElement[];
 
   const mockStore = configureStore({
@@ -24,7 +24,7 @@ describe("Given the usePagination hook", () => {
       return (
         <>
           <h1>{filter.filter}</h1>
-          <button onClick={() => loadFilter()}></button>
+          <button onClick={() => loadFilter(filter.filter)}></button>
           <button onClick={() => clearFilter()}></button>
         </>
       );

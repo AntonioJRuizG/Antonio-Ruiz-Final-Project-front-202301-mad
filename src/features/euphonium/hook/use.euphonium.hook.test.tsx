@@ -7,6 +7,7 @@ import { euphoniumReducer } from "../reducer/euphonium.reducer";
 import { EuphoniumRepo } from "../services/repository/euphonium.repo";
 import { useEuphonium } from "./use.euphonium.hook";
 import { paginationReducer } from "../../../common/reducer/page.reducer/page.reducer";
+import { filterReducer } from "../../../common/reducer/filter.reducer/filter.reducer";
 
 jest.mock("../services/firebase/firebase-user");
 const mockFile = new File(["image"], "test.jpeg");
@@ -202,7 +203,11 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { euphoniums: euphoniumReducer, page: paginationReducer },
+    reducer: {
+      euphoniums: euphoniumReducer,
+      page: paginationReducer,
+      filter: filterReducer,
+    },
     preloadedState: {
       euphoniums: [
         {
@@ -229,6 +234,7 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
         },
       ],
       page: { currentPage: 2 },
+      filter: { filter: "test" },
     },
   });
 

@@ -9,12 +9,14 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { Gallery } from "./gallery";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
 import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
+import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
 jest.mock("../../../../common/hooks/pagination.hook/use.pagination.hook");
+jest.mock("../../../../common/hooks/filter.hook/use.filter.hook");
 jest.mock("../../../../common/components/loading/loading");
 
 describe("Given Gallery", () => {
@@ -38,6 +40,11 @@ describe("Given Gallery", () => {
       (usePagination as jest.Mock).mockReturnValue({
         nextPage: jest.fn(),
         restartPagination: jest.fn(),
+      });
+
+      (useFilter as jest.Mock).mockReturnValue({
+        loadFilter: jest.fn(),
+        clearFilter: jest.fn(),
       });
 
       await act(async () => {
@@ -157,6 +164,11 @@ describe("Given Gallery", () => {
       (usePagination as jest.Mock).mockReturnValue({
         nextPage: jest.fn(),
         restartPagination: jest.fn(),
+      });
+
+      (useFilter as jest.Mock).mockReturnValue({
+        loadFilter: jest.fn(),
+        clearFilter: jest.fn(),
       });
 
       render(

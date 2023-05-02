@@ -9,6 +9,7 @@ import { EuphoniumRepo } from "../services/repository/euphonium.repo.js";
 
 export function useEuphonium(repo: EuphoniumRepo) {
   const page = useSelector((state: RootState) => state.page);
+  const filter = useSelector((state: RootState) => state.filter);
   const euphoniums = useSelector((state: RootState) => state.euphoniums);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -24,7 +25,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   useEffect(() => {
     page.currentPage === 1
       ? loadEuphoniums()
-      : loadEuphoniumsPaginated(page.currentPage.toString(), "");
+      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
   }, [page.currentPage]);
 
   const loadOneEuphonium = async (id: string) => {

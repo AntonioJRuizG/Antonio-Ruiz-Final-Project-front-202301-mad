@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
@@ -10,6 +10,7 @@ import { LoadingSpin } from "../../../../common/components/loading/loading";
 import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 import style from "./gallery.style.module.scss";
+import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -20,9 +21,7 @@ export function Gallery() {
   const { user } = useUsers(repoUser);
 
   const { nextPage, restartPagination } = usePagination();
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [filter, setFilter] = useState({ value: "", filtered: false });
+  const { clearFilter, loadFilter } = useFilter();
 
   const showMoreHandler = () => {
     nextPage();
@@ -30,12 +29,12 @@ export function Gallery() {
 
   const filterHandler = useCallback((value: string) => {
     restartPagination();
-    setFilter({ value, filtered: true });
+    loadFilter(value);
     clearEuphoniumsList();
   }, []);
 
   const removeFilterHandler = useCallback(() => {
-    setFilter({ value: "", filtered: false });
+    clearFilter();
     clearEuphoniumsList();
     restartPagination();
   }, []);
