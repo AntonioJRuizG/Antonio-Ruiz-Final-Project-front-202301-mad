@@ -47,8 +47,8 @@ describe("Given the useFilter hook", () => {
     test("then a heading should be in the document with current filter value", async () => {
       const element = await screen.findByRole("heading");
       expect(element).toBeInTheDocument();
-      const currentPage = screen.getByText("test-filter");
-      expect(currentPage).toHaveTextContent("test-filter");
+      const currentFilter = screen.getByText("test-filter");
+      expect(currentFilter).toHaveTextContent("test-filter");
     });
   });
 

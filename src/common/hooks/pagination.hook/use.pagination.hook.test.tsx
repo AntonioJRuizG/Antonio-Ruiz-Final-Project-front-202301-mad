@@ -1,23 +1,22 @@
-/* eslint-disable testing-library/no-render-in-setup */
 import { configureStore } from "@reduxjs/toolkit";
-import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { usePagination } from "./use.pagination.hook";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { paginationReducer } from "../../reducer/page.reducer/page.reducer";
+import { usePagination } from "./use.pagination.hook";
 
-describe("Given the usePagination hook", () => {
-  let buttons: HTMLElement[];
-  const mockStore = configureStore({
-    reducer: { page: paginationReducer },
-    preloadedState: {
-      page: {
-        currentPage: 1,
-      },
+let buttons: HTMLElement[];
+const mockStoreTool = configureStore({
+  reducer: { page: paginationReducer },
+  preloadedState: {
+    page: {
+      currentPage: 1,
     },
-  });
+  },
+});
 
+describe("Given usePagination hook", () => {
   beforeEach(async () => {
-    const TestComponent = function () {
+    const TestPageComponent = function () {
       const { page, nextPage, restartPagination } = usePagination();
       return (
         <>
@@ -28,25 +27,26 @@ describe("Given the usePagination hook", () => {
       );
     };
 
+    // eslint-disable-next-line testing-library/no-render-in-setup
     render(
-      <Provider store={mockStore}>
-        <TestComponent></TestComponent>
+      <Provider store={mockStoreTool}>
+        <TestPageComponent></TestPageComponent>
       </Provider>
     );
-
     buttons = await screen.findAllByRole("button");
   });
 
-  describe("When TestComponent renders", () => {
-    test("then buttons should be in the document", async () => {
-      expect(buttons[0]).toBeInTheDocument();
+  describe("When TestPageComponent renders", () => {
+    test("Then buttons should be in the document", async () => {
+      expect(buttons[1]).toBeInTheDocument();
     });
 
-    test("then a heading should be in the document", async () => {
+    test("Then a heading should be in the document", async () => {
       const element = await screen.findByRole("heading");
       expect(element).toBeInTheDocument();
     });
-    test("then the heading should be in the document with current page value", async () => {
+
+    test("Then the current page value should be in the component", async () => {
       const currentPage = screen.getByText(1);
       expect(currentPage).toHaveTextContent("1");
     });
