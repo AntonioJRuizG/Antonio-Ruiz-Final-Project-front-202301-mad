@@ -17,12 +17,13 @@ const mockStoreTool = configureStore({
 describe("Given usePagination hook", () => {
   beforeEach(async () => {
     const TestPageComponent = function () {
-      const { page, nextPage, restartPagination } = usePagination();
+      const { page, nextPage, prevPage, restartPagination } = usePagination();
       return (
         <>
           <h2>{page.currentPage}</h2>
           <button onClick={() => nextPage()}></button>
           <button onClick={() => restartPagination()}></button>
+          <button onClick={() => prevPage()}></button>
         </>
       );
     };
@@ -63,6 +64,13 @@ describe("Given usePagination hook", () => {
     test("Then it should call the restartPagination method", async () => {
       const restartPage = await fireEvent.click(buttons[1]);
       expect(restartPage).toBe(true);
+    });
+  });
+
+  describe("When click on the third button", () => {
+    test("Then it should call the prevPage method", async () => {
+      const setNextPage = await fireEvent.click(buttons[2]);
+      expect(setNextPage).toBe(true);
     });
   });
 });

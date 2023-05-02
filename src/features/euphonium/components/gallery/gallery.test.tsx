@@ -39,7 +39,9 @@ describe("Given Gallery", () => {
       });
 
       (usePagination as jest.Mock).mockReturnValue({
+        page: { currentPage: 2 },
         nextPage: jest.fn(),
+        prevPage: jest.fn(),
         restartPagination: jest.fn(),
       });
 
@@ -130,11 +132,22 @@ describe("Given Gallery", () => {
     describe("When click the seventh Button -show more", () => {
       test("Then it should call the loadEuphoniumsPaginated if no filter active", async () => {
         await act(async () => {
+          await userEvent.click(buttons[7]);
+        });
+
+        expect(buttons[7]).toBeInTheDocument();
+        expect(usePagination().nextPage).toHaveBeenCalled();
+      });
+    });
+
+    describe("When click the eigth Button -show less", () => {
+      test("Then it should call the loadEuphoniumsPaginated if no filter active", async () => {
+        await act(async () => {
           await userEvent.click(buttons[6]);
         });
 
         expect(buttons[6]).toBeInTheDocument();
-        expect(usePagination().nextPage).toHaveBeenCalled();
+        expect(usePagination().prevPage).toHaveBeenCalled();
       });
     });
   });

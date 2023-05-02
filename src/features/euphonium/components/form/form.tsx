@@ -4,14 +4,13 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 
 import style from "./form.style.module.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 
 export const AddEditForm = () => {
-  const navigate = useNavigate();
   let { instrumentEditId } = useParams();
-  const AddMode = !instrumentEditId;
+  const UpdateMode = instrumentEditId;
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { addEuphonium, euphoniums, updateEuphonium } = useEuphonium(repo);
   const repoUser = useMemo(() => new UserRepo(), []);
@@ -20,6 +19,8 @@ export const AddEditForm = () => {
   const storeEuphonium = euphoniums.find(
     (item) => item.id === instrumentEditId
   );
+
+  const [success, setSuccess] = useState<string>("");
 
   const initialItemData: EuphoniumProps = {
     id: "",
@@ -42,26 +43,26 @@ export const AddEditForm = () => {
     });
   };
 
-  const handleSubmit = (ev: SyntheticEvent) => {
+  const handleSubmit = async (ev: SyntheticEvent) => {
     ev.preventDefault();
     const formData = ev.currentTarget as HTMLFormElement;
     let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
 
-    if (!AddMode) {
-      instrumentEditId && (euphoniumData.id = instrumentEditId);
+    if (UpdateMode) {
       updateEuphonium(euphoniumData, user.token, image);
+      setSuccess(`Editado correctamente!`);
     } else {
       addEuphonium(euphoniumData, user.token, image);
+      setSuccess(`Agregado correctamente!`);
     }
-    navigate("/");
   };
 
   return (
     <div className={style.formPage}>
       <section className={style.form}>
-        <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
+        <h2>{!UpdateMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
         <div className={style.formContainer}>
-          {!AddMode && (
+          {UpdateMode && (
             <img
               width={200}
               height={280}
@@ -186,10 +187,11 @@ export const AddEditForm = () => {
             </div>
             <div>
               <button className={style.formButton} type="submit">
-                {AddMode ? "Añadir" : "Guardar"}
+                {UpdateMode ? "Guardar" : "Añadir"}
               </button>
             </div>
           </form>
+          <p>{success}</p>
         </div>
         <div className={style.back}>
           <Link to="/">⬅ Volver</Link>

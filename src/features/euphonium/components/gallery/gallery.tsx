@@ -1,41 +1,45 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useMemo } from "react";
-import { Link } from "react-router-dom";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumProps } from "../../model/euphonium.model";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
-import { useUsers } from "../../../user/hook/use.user.hook";
-import { UserRepo } from "../../../user/services/repository/user.repo";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
 import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 import style from "./gallery.style.module.scss";
 import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
+import { Thumbnail } from "../thumbnail/thumbnail";
+import { UserRepo } from "../../../user/services/repository/user.repo";
+import { useUsers } from "../../../user/hook/use.user.hook";
 
 export function Gallery() {
+  const repoUser = useMemo(() => new UserRepo(), []);
+  const { user } = useUsers(repoUser);
+
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums, clearEuphoniumsList, deleteEuphonium } =
     useEuphonium(repo);
 
-  const repoUser = useMemo(() => new UserRepo(), []);
-  const { user } = useUsers(repoUser);
-
-  const { nextPage, restartPagination } = usePagination();
+  const { page, nextPage, prevPage, restartPagination } = usePagination();
   const { clearFilter, loadFilter } = useFilter();
 
   const showMoreHandler = () => {
     nextPage();
   };
 
+  const showLessHandler = () => {
+    prevPage();
+  };
+
   const filterHandler = useCallback((value: string) => {
+    clearEuphoniumsList();
     restartPagination();
     loadFilter(value);
-    clearEuphoniumsList();
   }, []);
 
   const removeFilterHandler = useCallback(() => {
-    clearFilter();
     clearEuphoniumsList();
+    clearFilter();
     restartPagination();
   }, []);
 
@@ -99,62 +103,26 @@ export function Gallery() {
         <ul className={style.galleryList}>
           {euphoniums.map((item: EuphoniumProps) => (
             <li key={item.id} className={style.galleryListItem}>
-              <div>
-                <p className={style.galleryListItemButtons}>
-                  {user.user?.id === item.creator?.id && (
-                    <>
-                      <button className={style.cardButton}>
-                        <Link to={`/editar/${item.id}`} relative="path">
-                          🖊
-                        </Link>
-                      </button>
-
-                      <button
-                        className={style.cardButton}
-                        onClick={() => {
-                          deleteEuphonium(item.id, user.token);
-                        }}
-                      >
-                        ✖
-                      </button>
-                    </>
-                  )}
-                </p>
-              </div>
-              <Link to={`/detalles/${item.id}`} relative="path">
-                <div className={style.galleryImgBox}>
-                  <div className={style.galleryListItemImg}>
-                    <img height={160} src={item.image} alt={item.alias} />
-                  </div>
-                </div>
-                <div className={style.galleryListItemInfo}>
-                  <ul>
-                    <li>
-                      <p className={style.galleryListItemInfoAlias}>
-                        <span>Alias:</span> {item.alias}
-                      </p>
-                    </li>
-                    <li>
-                      <p className={style.galleryListItemInfoCreator}>
-                        <span>Miembro:</span> {item.creator?.name}
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </Link>
+              <Thumbnail
+                item={item}
+                deleteEuphonium={deleteEuphonium}
+                user={user}
+              ></Thumbnail>
             </li>
           ))}
         </ul>
-        {euphoniums !== undefined && (
-          <button
-            className={style.showMoreBtn}
-            onClick={() => {
-              showMoreHandler();
-            }}
-          >
-            Show more
-          </button>
-        )}
+        <div className={style.btnContainer}>
+          {euphoniums.length > 0 && page.currentPage > 1 && (
+            <button className={style.showMoreBtn} onClick={showLessHandler}>
+              Anterior
+            </button>
+          )}
+          {euphoniums.length > 0 && page.currentPage < 10 && (
+            <button className={style.showMoreBtn} onClick={showMoreHandler}>
+              Siguiente
+            </button>
+          )}
+        </div>
       </section>
     </>
   );

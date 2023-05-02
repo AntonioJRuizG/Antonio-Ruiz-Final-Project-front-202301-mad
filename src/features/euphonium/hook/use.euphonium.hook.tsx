@@ -14,9 +14,12 @@ export function useEuphonium(repo: EuphoniumRepo) {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    page.currentPage === 1 && filter.filter === ""
-      ? loadEuphoniums()
-      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
+    if (page.currentPage === 1 && filter.filter === "") {
+      loadEuphoniums();
+      return;
+    }
+
+    loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
   }, [page.currentPage, filter.filter]);
 
   const loadEuphoniums = async () => {
@@ -47,7 +50,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const clearEuphoniumsList = async () => {
+  const clearEuphoniumsList = () => {
     dispatch(ac.clearCreator([]));
   };
 
@@ -85,7 +88,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   const loadEuphoniumsPaginated = async (offset: string, material: string) => {
     try {
       const data = await repo.loadEuphoniumsPaginated(offset, material);
-      dispatch(ac.addListCreator(data.results));
+      dispatch(ac.loadCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
     }
