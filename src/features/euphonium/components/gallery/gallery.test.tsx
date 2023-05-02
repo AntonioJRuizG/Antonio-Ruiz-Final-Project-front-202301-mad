@@ -8,13 +8,13 @@ import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { Gallery } from "./gallery";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
-import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
-jest.mock("../../../../common/hooks/pagination.hook/use.pagination");
+jest.mock("../../../../common/hooks/pagination.hook/use.pagination.hook");
 jest.mock("../../../../common/components/loading/loading");
 
 describe("Given Gallery", () => {

@@ -7,18 +7,14 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
-import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 import style from "./gallery.style.module.scss";
 
 export function Gallery() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
-  const {
-    euphoniums,
-
-    clearEuphoniumsList,
-    deleteEuphonium,
-  } = useEuphonium(repo);
+  const { euphoniums, clearEuphoniumsList, deleteEuphonium } =
+    useEuphonium(repo);
 
   const repoUser = useMemo(() => new UserRepo(), []);
   const { user } = useUsers(repoUser);
@@ -29,9 +25,6 @@ export function Gallery() {
   const [filter, setFilter] = useState({ value: "", filtered: false });
 
   const showMoreHandler = () => {
-    /* TEMP.
-    (filter.filtered) ?
-      loadEuphoniumsFiltered((visibleItems + 1).toString(), filter.value) : */
     nextPage();
   };
 
@@ -39,7 +32,6 @@ export function Gallery() {
     restartPagination();
     setFilter({ value, filtered: true });
     clearEuphoniumsList();
-    // TEMP. loadEuphoniumsFiltered(page.currentPage.toString(), value);
   }, []);
 
   const removeFilterHandler = useCallback(() => {

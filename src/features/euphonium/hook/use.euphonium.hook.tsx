@@ -81,15 +81,6 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  /* TEMP. const loadEuphoniumsPaginated = async (offset: string) => {
-    try {
-      const data = await repo.loadEuphoniumsPaginated(offset);
-      dispatch(ac.addListCreator(data.results));
-    } catch (error) {
-      console.log((error as Error).message);
-    }
-  }; */
-
   const loadEuphoniumsPaginated = async (offset: string, material: string) => {
     try {
       const data = await repo.loadEuphoniumsPaginated(offset, material);

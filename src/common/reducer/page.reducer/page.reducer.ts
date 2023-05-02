@@ -5,9 +5,7 @@ export type PaginationProps = {
   currentPage: number;
 };
 
-const initialState: {
-  currentPage: number;
-} = {
+const initialState = {
   currentPage: 1,
 } as PaginationProps;
 

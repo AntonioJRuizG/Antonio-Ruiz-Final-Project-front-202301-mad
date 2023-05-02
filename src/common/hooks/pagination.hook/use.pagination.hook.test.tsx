@@ -2,7 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { usePagination } from "./use.pagination";
+import { usePagination } from "./use.pagination.hook";
 import { paginationReducer } from "../../reducer/page.reducer/page.reducer";
 
 describe("Given the usePagination hook", () => {
