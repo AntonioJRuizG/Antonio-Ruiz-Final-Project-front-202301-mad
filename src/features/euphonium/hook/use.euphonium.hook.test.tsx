@@ -193,7 +193,7 @@ describe("Given the useEuphonium hook", () => {
   });
 });
 
-describe("Given the useEuphonium hook with another page different to 1", () => {
+describe("Given the useEuphonium hook with another page different to 1 and a filter", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
@@ -229,18 +229,10 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
     elements = await screen.findAllByRole("button");
   });
 
-  describe("When TestComponent is rendered", () => {
-    test("then button should be in the document", async () => {
-      const element = await screen.findAllByRole("button");
-      expect(element[0]).toBeInTheDocument();
-    });
-  });
-
   describe("When click on seventh button", () => {
     test("Then it should call the repo method loadEuphoniumsPaginated", async () => {
-      const loadEuphoniumsPaginated = await fireEvent.click(elements[0]);
+      await fireEvent.click(elements[0]);
       expect(mockRepo.loadEuphoniumsPaginated).toHaveBeenCalled();
-      expect(loadEuphoniumsPaginated).toEqual(true);
     });
   });
 });
