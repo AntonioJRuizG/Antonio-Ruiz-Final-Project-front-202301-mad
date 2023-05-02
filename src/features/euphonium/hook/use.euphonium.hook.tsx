@@ -24,7 +24,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
   useEffect(() => {
     page.currentPage === 1
       ? loadEuphoniums()
-      : loadEuphoniumsPaginated(page.currentPage.toString());
+      : loadEuphoniumsPaginated(page.currentPage.toString(), "");
   }, [page.currentPage]);
 
   const loadOneEuphonium = async (id: string) => {
@@ -81,18 +81,18 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const loadEuphoniumsPaginated = async (offset: string) => {
+  /* TEMP. const loadEuphoniumsPaginated = async (offset: string) => {
     try {
       const data = await repo.loadEuphoniumsPaginated(offset);
       dispatch(ac.addListCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
     }
-  };
+  }; */
 
-  const loadEuphoniumsFiltered = async (offset: string, material: string) => {
+  const loadEuphoniumsPaginated = async (offset: string, material: string) => {
     try {
-      const data = await repo.loadEuphoniumsFiltered(offset, material);
+      const data = await repo.loadEuphoniumsPaginated(offset, material);
       dispatch(ac.addListCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
@@ -104,7 +104,6 @@ export function useEuphonium(repo: EuphoniumRepo) {
     loadEuphoniums,
     loadOneEuphonium,
     loadEuphoniumsPaginated,
-    loadEuphoniumsFiltered,
     deleteEuphonium,
     clearEuphoniumsList,
     updateEuphonium,

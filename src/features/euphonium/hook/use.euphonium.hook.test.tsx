@@ -53,7 +53,6 @@ describe("Given the useEuphonium hook", () => {
     createEuphonium: jest.fn(),
     updateEuphonium: jest.fn(),
     loadEuphoniumsPaginated: jest.fn(),
-    loadEuphoniumsFiltered: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
@@ -65,7 +64,6 @@ describe("Given the useEuphonium hook", () => {
         addEuphonium,
         updateEuphonium,
         loadEuphoniumsPaginated,
-        loadEuphoniumsFiltered,
         clearEuphoniumsList,
       } = useEuphonium(mockRepo);
       return (
@@ -86,10 +84,7 @@ describe("Given the useEuphonium hook", () => {
             }
           ></button>
           <button
-            onClick={() => loadEuphoniumsPaginated("test-offset")}
-          ></button>
-          <button
-            onClick={() => loadEuphoniumsFiltered("test-offset", "test-value")}
+            onClick={() => loadEuphoniumsPaginated("test-offset", "test-value")}
           ></button>
           <button onClick={() => clearEuphoniumsList()}></button>
           <button
@@ -132,9 +127,10 @@ describe("Given the useEuphonium hook", () => {
 
   describe("When click on third button", () => {
     test("Then it should call the repo method deleteEuphonium", async () => {
-      const deleteEuphonium = await fireEvent.click(elements[2]);
+      await act(async () => {
+        await fireEvent.click(elements[2]);
+      });
       expect(mockRepo.deleteEuphonium).toHaveBeenCalled();
-      expect(deleteEuphonium).toEqual(true);
     });
   });
 
@@ -148,61 +144,55 @@ describe("Given the useEuphonium hook", () => {
 
   describe("When click on fifth button", () => {
     test("Then it should call the repo method addEuphonium", async () => {
-      const addEuphonium = await fireEvent.click(elements[4]);
+      await act(async () => {
+        await fireEvent.click(elements[4]);
+      });
       expect(mockRepo.createEuphonium).toHaveBeenCalled();
-      expect(addEuphonium).toEqual(true);
     });
     test("Then it should throw error if fails", async () => {
       (mockRepo.createEuphonium as jest.Mock).mockRejectedValue("error");
-      await act(async () => fireEvent.click(elements[4]));
+      await fireEvent.click(elements[4]);
       expect(mockRepo.createEuphonium).toHaveBeenCalled();
     });
   });
 
   describe("When click on sixth button", () => {
     test("Then it should call the repo method updateEuphonium", async () => {
-      const updateEuphonium = await fireEvent.click(elements[5]);
+      await act(async () => {
+        await fireEvent.click(elements[5]);
+      });
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
-      expect(updateEuphonium).toEqual(true);
     });
     test("Then it should throw error if fails", async () => {
       (mockRepo.updateEuphonium as jest.Mock).mockRejectedValue("error");
-      await act(async () => fireEvent.click(elements[5]));
+      await fireEvent.click(elements[5]);
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
     });
     test("Then it should update no file if there is no File", async () => {
-      const updateEuphonium = await fireEvent.click(elements[9]);
+      await act(async () => {
+        await fireEvent.click(elements[8]);
+      });
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
-      expect(updateEuphonium).toEqual(true);
     });
   });
 
   describe("When click on seventh button", () => {
     test("Then it should call the repo method loadEuphoniumsPaginated", async () => {
-      const loadEuphoniumsPaginated = await fireEvent.click(elements[6]);
+      await fireEvent.click(elements[6]);
       expect(mockRepo.loadEuphoniumsPaginated).toHaveBeenCalled();
-      expect(loadEuphoniumsPaginated).toEqual(true);
-    });
-  });
-
-  describe("When click on eightth button", () => {
-    test("Then it should call the repo method loadEuphoniumsFiltered", async () => {
-      const loadEuphoniumsFiltered = await fireEvent.click(elements[7]);
-      expect(mockRepo.loadEuphoniumsFiltered).toHaveBeenCalled();
-      expect(loadEuphoniumsFiltered).toEqual(true);
     });
   });
 
   describe("When click on nineth button", () => {
     test("Then it should call the repo method clearEuphoniumList", async () => {
-      const clearEuphoniumList = await fireEvent.click(elements[8]);
+      const clearEuphoniumList = await fireEvent.click(elements[7]);
       expect(clearEuphoniumList).toEqual(true);
     });
   });
 
   describe("When click on tenth button", () => {
     test("Then it should call the repo method addEuphoniumList and not upload File tu firebase", async () => {
-      const addEuphonium = await fireEvent.click(elements[8]);
+      const addEuphonium = await fireEvent.click(elements[7]);
       expect(addEuphonium).toEqual(true);
     });
   });
@@ -250,7 +240,6 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
     createEuphonium: jest.fn(),
     updateEuphonium: jest.fn(),
     loadEuphoniumsPaginated: jest.fn(),
-    loadEuphoniumsFiltered: jest.fn(),
   };
   beforeEach(async () => {
     const TestComponent = function () {
@@ -258,7 +247,7 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
       return (
         <div>
           <button
-            onClick={() => loadEuphoniumsPaginated("test-offset")}
+            onClick={() => loadEuphoniumsPaginated("test-offset", "")}
           ></button>
         </div>
       );
