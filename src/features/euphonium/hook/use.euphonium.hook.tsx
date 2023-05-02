@@ -50,7 +50,7 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const clearEuphoniumsList = async () => {
+  const clearEuphoniumsList = () => {
     dispatch(ac.clearCreator([]));
   };
 

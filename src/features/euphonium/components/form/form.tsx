@@ -43,16 +43,16 @@ export const AddEditForm = () => {
     });
   };
 
-  const handleSubmit = (ev: SyntheticEvent) => {
+  const handleSubmit = async (ev: SyntheticEvent) => {
     ev.preventDefault();
     const formData = ev.currentTarget as HTMLFormElement;
     let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
 
     if (UpdateMode) {
-      addEuphonium(euphoniumData, user.token, image);
+      await addEuphonium(euphoniumData, user.token, image);
       setSuccess(`Agregado correctamente!`);
     } else {
-      updateEuphonium(euphoniumData, user.token, image);
+      await updateEuphonium(euphoniumData, user.token, image);
       setSuccess(`Editado correctamente!`);
     }
   };
