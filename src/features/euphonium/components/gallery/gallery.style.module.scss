@@ -27,59 +27,40 @@
 
   .galleryList {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0;
 
-    .galleryListItem {
-      background-color: $gallery_item_background_color;
-      border-radius: 0.5rem;
-      color: $text_default_dark_color;
-      height: $min_height_card;
-      padding: 1rem;
-      text-align: center;
-      .galleryListItemButtons {
-        height: 1.7rem;
-        margin-bottom: 0.7rem;
-        text-align: right;
-
-        .cardButton {
-          background-color: transparent;
-          border: 0;
-          cursor: pointer;
-          height: fit-content;
-          margin-left: 0.5rem;
-          padding: 0.2rem;
-          width: fit-content;
-        }
-      }
-      .galleryImgBox {
-        height: 170px;
-        margin: auto;
-        margin-bottom: 0.7rem;
-        width: 100px;
-
-        .galleryListItemImg {
-          height: 100%;
-          object-fit: cover;
-          text-align: center;
-          width: 100%;
-        }
-      }
-
-      .galleryListItemInfoAlias {
-        color: $text_default_dark_color;
-        font-size: 0.875rem;
-      }
-      .galleryListItemInfoCreator {
-        color: $text_default_light_color;
-        font-size: 0.8rem;
-      }
+    @media (max-width: 670px) {
+      grid-template-columns: repeat(auto-fit, minmax($min_width_card, 1fr));
+      gap: 1rem;
+    }
+    @media (min-width: 670px) {
+      grid-template-columns: repeat(2, minmax($min_width_card, 1fr));
+      gap: 1.8rem;
+    }
+    @media (min-width: 940px) {
+      grid-template-columns: repeat(4, minmax($min_width_card, 1fr));
+      gap: 1.8rem;
     }
   }
 
+  .galleryListItem {
+    background-color: $gallery_item_background_color;
+    border-radius: 0rem;
+    color: $text_default_dark_color;
+    height: $min_height_card;
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+.btnContainer {
+  min-width: 195px;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
   .showMoreBtn {
     background-color: white;
     border: 1px solid #b9b9b9;
@@ -89,8 +70,12 @@
     font-family: $font_default_family;
     font-size: 0.8rem;
     height: 2rem;
-    margin-top: 1rem;
+    margin: 1rem 2rem 0 2rem;
     width: 8rem;
+    @media (max-width: 670px) {
+      margin: 1rem 0.2rem 0 0.2rem;
+      width: 5rem;
+    }
   }
 }
 
