@@ -4,12 +4,11 @@ import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 
 import style from "./form.style.module.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { useUsers } from "../../../user/hook/use.user.hook";
 
 export const AddEditForm = () => {
-  const navigate = useNavigate();
   let { instrumentEditId } = useParams();
   const AddMode = !instrumentEditId;
   const repo = useMemo(() => new EuphoniumRepo(), []);
@@ -20,6 +19,8 @@ export const AddEditForm = () => {
   const storeEuphonium = euphoniums.find(
     (item) => item.id === instrumentEditId
   );
+
+  const [success, setSuccess] = useState<string>("");
 
   const initialItemData: EuphoniumProps = {
     id: "",
@@ -47,13 +48,13 @@ export const AddEditForm = () => {
     const formData = ev.currentTarget as HTMLFormElement;
     let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
 
-    if (!AddMode) {
-      instrumentEditId && (euphoniumData.id = instrumentEditId);
-      updateEuphonium(euphoniumData, user.token, image);
-    } else {
+    if (AddMode) {
       addEuphonium(euphoniumData, user.token, image);
+      setSuccess(`Agregado correctamente!`);
+    } else {
+      updateEuphonium(euphoniumData, user.token, image);
+      setSuccess(`Editado correctamente!`);
     }
-    navigate("/");
   };
 
   return (
@@ -190,6 +191,7 @@ export const AddEditForm = () => {
               </button>
             </div>
           </form>
+          <p>{success}</p>
         </div>
         <div className={style.back}>
           <Link to="/">⬅ Volver</Link>
