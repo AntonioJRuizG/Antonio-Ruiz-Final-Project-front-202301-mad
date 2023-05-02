@@ -1,8 +1,6 @@
-/* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter as Router } from "react-router-dom";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { EuphoniumRepo } from "../../services/repository/euphonium.repo";
@@ -26,9 +24,6 @@ describe("Given Thumbnail component", () => {
       (useEuphonium as jest.Mock).mockReturnValue({
         euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }],
         deleteEuphonium: jest.fn(),
-        loadEuphoniumsPaginated: jest.fn(),
-        loadEuphoniumsFiltered: jest.fn(),
-        clearEuphoniumsList: jest.fn(),
       });
 
       (useUsers as jest.Mock).mockReturnValue({
@@ -38,13 +33,11 @@ describe("Given Thumbnail component", () => {
       });
 
       render(
-        <Router>
-          <Thumbnail
-            item={mockEuphonium}
-            deleteEuphonium={useEuphonium(mockEuphoniumRepo).deleteEuphonium}
-            user={useUsers(mockUserRepo).user}
-          ></Thumbnail>
-        </Router>
+        <Thumbnail
+          item={mockEuphonium}
+          deleteEuphonium={useEuphonium(mockEuphoniumRepo).deleteEuphonium}
+          user={useUsers(mockUserRepo).user}
+        ></Thumbnail>
       );
 
       buttons = screen.getAllByRole("button");
