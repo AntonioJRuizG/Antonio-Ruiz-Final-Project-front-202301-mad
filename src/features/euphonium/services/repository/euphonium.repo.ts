@@ -28,21 +28,13 @@ export class EuphoniumRepo {
   }
 
   async loadEuphoniumsPaginated(
-    offset: string
-  ): Promise<EuphoniumResponseBody> {
-    const url = this.url + "?offset=" + offset;
-    const resp = await fetch(url);
-    if (!resp.ok)
-      throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
-    const data: EuphoniumResponseBody = await resp.json();
-    return data;
-  }
-
-  async loadEuphoniumsFiltered(
     offset: string,
     material: string
   ): Promise<EuphoniumResponseBody> {
-    const url = this.url + "/filter?offset=" + offset + "&material=" + material;
+    let url = "";
+    material === ""
+      ? (url = this.url + "?offset=" + offset)
+      : (url = this.url + "/filter?offset=" + offset + "&material=" + material);
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
