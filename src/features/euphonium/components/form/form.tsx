@@ -49,20 +49,20 @@ export const AddEditForm = () => {
     let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
 
     if (UpdateMode) {
-      await addEuphonium(euphoniumData, user.token, image);
-      setSuccess(`Agregado correctamente!`);
-    } else {
-      await updateEuphonium(euphoniumData, user.token, image);
+      updateEuphonium(euphoniumData, user.token, image);
       setSuccess(`Editado correctamente!`);
+    } else {
+      addEuphonium(euphoniumData, user.token, image);
+      setSuccess(`Agregado correctamente!`);
     }
   };
 
   return (
     <div className={style.formPage}>
       <section className={style.form}>
-        <h2>{UpdateMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
+        <h2>{!UpdateMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
         <div className={style.formContainer}>
-          {!UpdateMode && (
+          {UpdateMode && (
             <img
               width={200}
               height={280}
@@ -187,7 +187,7 @@ export const AddEditForm = () => {
             </div>
             <div>
               <button className={style.formButton} type="submit">
-                {UpdateMode ? "Añadir" : "Guardar"}
+                {UpdateMode ? "Guardar" : "Añadir"}
               </button>
             </div>
           </form>
