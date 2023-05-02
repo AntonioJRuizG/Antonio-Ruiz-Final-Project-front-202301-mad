@@ -112,12 +112,12 @@ export function Gallery() {
           ))}
         </ul>
         <div className={style.btnContainer}>
-          {euphoniums.length && page.currentPage > 1 && (
+          {euphoniums.length > 0 && page.currentPage > 1 && (
             <button className={style.showMoreBtn} onClick={showLessHandler}>
               Anterior
             </button>
           )}
-          {euphoniums.length && page.currentPage < 10 && (
+          {euphoniums.length > 0 && page.currentPage < 10 && (
             <button className={style.showMoreBtn} onClick={showMoreHandler}>
               Siguiente
             </button>

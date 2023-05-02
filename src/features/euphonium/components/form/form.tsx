@@ -10,7 +10,7 @@ import { useUsers } from "../../../user/hook/use.user.hook";
 
 export const AddEditForm = () => {
   let { instrumentEditId } = useParams();
-  const AddMode = !instrumentEditId;
+  const UpdateMode = instrumentEditId;
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { addEuphonium, euphoniums, updateEuphonium } = useEuphonium(repo);
   const repoUser = useMemo(() => new UserRepo(), []);
@@ -48,7 +48,7 @@ export const AddEditForm = () => {
     const formData = ev.currentTarget as HTMLFormElement;
     let image = (formData.elements[5] as HTMLFormElement).files?.item(0);
 
-    if (AddMode) {
+    if (UpdateMode) {
       addEuphonium(euphoniumData, user.token, image);
       setSuccess(`Agregado correctamente!`);
     } else {
@@ -60,9 +60,9 @@ export const AddEditForm = () => {
   return (
     <div className={style.formPage}>
       <section className={style.form}>
-        <h2>{AddMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
+        <h2>{UpdateMode ? "Añade tu bombardino" : "Edita tu bombardino"}</h2>
         <div className={style.formContainer}>
-          {!AddMode && (
+          {!UpdateMode && (
             <img
               width={200}
               height={280}
@@ -187,7 +187,7 @@ export const AddEditForm = () => {
             </div>
             <div>
               <button className={style.formButton} type="submit">
-                {AddMode ? "Añadir" : "Guardar"}
+                {UpdateMode ? "Añadir" : "Guardar"}
               </button>
             </div>
           </form>
