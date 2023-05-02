@@ -14,9 +14,17 @@ export function usePagination() {
     dispatch(ac.loadCreator(nextPage));
   };
 
+  const prevPage = () => {
+    const newPage = page.currentPage - 1;
+    const prevPage = {
+      currentPage: newPage,
+    };
+    dispatch(ac.loadCreator(prevPage));
+  };
+
   const restartPagination = () => {
     dispatch(ac.restartCreator());
   };
 
-  return { page, nextPage, restartPagination };
+  return { page, nextPage, prevPage, restartPagination };
 }

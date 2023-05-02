@@ -7,5 +7,5 @@ export type UserProps = {
 
 export type UserResponseBody = {
   token: string;
-  user: UserProps;
+  user: UserProps | null;
 };
