@@ -13,6 +13,12 @@ export function useEuphonium(repo: EuphoniumRepo) {
   const euphoniums = useSelector((state: RootState) => state.euphoniums);
   const dispatch = useDispatch<AppDispatch>();
 
+  useEffect(() => {
+    page.currentPage === 1 && filter.filter === ""
+      ? loadEuphoniums()
+      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
+  }, [page.currentPage, filter.filter]);
+
   const loadEuphoniums = async () => {
     try {
       const data = await repo.loadEuphoniums();
@@ -21,12 +27,6 @@ export function useEuphonium(repo: EuphoniumRepo) {
       console.log((error as Error).message);
     }
   };
-
-  useEffect(() => {
-    page.currentPage === 1
-      ? loadEuphoniums()
-      : loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
-  }, [page.currentPage]);
 
   const loadOneEuphonium = async (id: string) => {
     try {

@@ -16,7 +16,11 @@ describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
   const mockStore = configureStore({
-    reducer: { euphoniums: euphoniumReducer, page: paginationReducer },
+    reducer: {
+      euphoniums: euphoniumReducer,
+      page: paginationReducer,
+      filter: filterReducer,
+    },
     preloadedState: {
       euphoniums: [
         {
@@ -43,6 +47,7 @@ describe("Given the useEuphonium hook", () => {
         },
       ],
       page: { currentPage: 1 },
+      filter: { filter: "" },
     },
   });
 
