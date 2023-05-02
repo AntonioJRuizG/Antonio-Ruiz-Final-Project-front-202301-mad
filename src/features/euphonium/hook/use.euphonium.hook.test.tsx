@@ -12,54 +12,54 @@ import { filterReducer } from "../../../common/reducer/filter.reducer/filter.red
 jest.mock("../services/firebase/firebase-user");
 const mockFile = new File(["image"], "test.jpeg");
 
+const mockRepo: EuphoniumRepo = {
+  url: "",
+  loadEuphoniums: jest.fn(),
+  getEuphonium: jest.fn(),
+  deleteEuphonium: jest.fn(),
+  createEuphonium: jest.fn(),
+  updateEuphonium: jest.fn(),
+  loadEuphoniumsPaginated: jest.fn(),
+};
+const mockStore = configureStore({
+  reducer: {
+    euphoniums: euphoniumReducer,
+    page: paginationReducer,
+    filter: filterReducer,
+  },
+  preloadedState: {
+    euphoniums: [
+      {
+        id: "1",
+        alias: "test",
+        manufacturer: "test",
+        instrumentModel: "test",
+        valves: 3,
+        material: "test",
+        marchingBand: true,
+        image: "test",
+        creator: { name: "Fabio" },
+      },
+      {
+        id: "2",
+        alias: "test-2",
+        manufacturer: "test-2",
+        instrumentModel: "test",
+        valves: 3,
+        material: "test",
+        marchingBand: true,
+        image: "test",
+        creator: { name: "Fabio" },
+      },
+    ],
+    page: { currentPage: 1 },
+    filter: { filter: "" },
+  },
+});
+
 describe("Given the useEuphonium hook", () => {
   let elements: HTMLElement[];
 
-  const mockStore = configureStore({
-    reducer: {
-      euphoniums: euphoniumReducer,
-      page: paginationReducer,
-      filter: filterReducer,
-    },
-    preloadedState: {
-      euphoniums: [
-        {
-          id: "1",
-          alias: "test",
-          manufacturer: "test",
-          instrumentModel: "test",
-          valves: 3,
-          material: "test",
-          marchingBand: true,
-          image: "test",
-          creator: { name: "Fabio" },
-        },
-        {
-          id: "2",
-          alias: "test-2",
-          manufacturer: "test-2",
-          instrumentModel: "test",
-          valves: 3,
-          material: "test",
-          marchingBand: true,
-          image: "test",
-          creator: { name: "Fabio" },
-        },
-      ],
-      page: { currentPage: 1 },
-      filter: { filter: "" },
-    },
-  });
-
-  const mockRepo: EuphoniumRepo = {
-    url: "",
-    loadEuphoniums: jest.fn(),
-    getEuphonium: jest.fn(),
-    deleteEuphonium: jest.fn(),
-    createEuphonium: jest.fn(),
-    updateEuphonium: jest.fn(),
-    loadEuphoniumsPaginated: jest.fn(),
-  };
   beforeEach(async () => {
     const TestComponent = function () {
       const {
@@ -69,7 +69,6 @@ describe("Given the useEuphonium hook", () => {
         deleteEuphonium,
         addEuphonium,
         updateEuphonium,
-        loadEuphoniumsPaginated,
         clearEuphoniumsList,
       } = useEuphonium(mockRepo);
       return (
@@ -88,9 +87,6 @@ describe("Given the useEuphonium hook", () => {
             onClick={() =>
               updateEuphonium(euphoniums[0], "test-token", mockFile)
             }
-          ></button>
-          <button
-            onClick={() => loadEuphoniumsPaginated("test-offset", "test-value")}
           ></button>
           <button onClick={() => clearEuphoniumsList()}></button>
           <button
@@ -176,29 +172,22 @@ describe("Given the useEuphonium hook", () => {
     });
     test("Then it should update no file if there is no File", async () => {
       await act(async () => {
-        await fireEvent.click(elements[8]);
+        await fireEvent.click(elements[7]);
       });
       expect(mockRepo.updateEuphonium).toHaveBeenCalled();
     });
   });
 
-  describe("When click on seventh button", () => {
-    test("Then it should call the repo method loadEuphoniumsPaginated", async () => {
-      await fireEvent.click(elements[6]);
-      expect(mockRepo.loadEuphoniumsPaginated).toHaveBeenCalled();
-    });
-  });
-
   describe("When click on nineth button", () => {
     test("Then it should call the repo method clearEuphoniumList", async () => {
-      const clearEuphoniumList = await fireEvent.click(elements[7]);
+      const clearEuphoniumList = await fireEvent.click(elements[6]);
       expect(clearEuphoniumList).toEqual(true);
     });
   });
 
   describe("When click on tenth button", () => {
     test("Then it should call the repo method addEuphoniumList and not upload File tu firebase", async () => {
-      const addEuphonium = await fireEvent.click(elements[7]);
+      const addEuphonium = await fireEvent.click(elements[6]);
       expect(addEuphonium).toEqual(true);
     });
   });
@@ -214,44 +203,11 @@ describe("Given the useEuphonium hook with another page different to 1", () => {
       filter: filterReducer,
     },
     preloadedState: {
-      euphoniums: [
-        {
-          id: "1",
-          alias: "test",
-          manufacturer: "test",
-          instrumentModel: "test",
-          valves: 3,
-          material: "test",
-          marchingBand: true,
-          image: "test",
-          creator: { name: "Fabio" },
-        },
-        {
-          id: "2",
-          alias: "test-2",
-          manufacturer: "test-2",
-          instrumentModel: "test",
-          valves: 3,
-          material: "test",
-          marchingBand: true,
-          image: "test",
-          creator: { name: "Fabio" },
-        },
-      ],
       page: { currentPage: 2 },
       filter: { filter: "test" },
     },
   });
 
-  const mockRepo: EuphoniumRepo = {
-    url: "",
-    loadEuphoniums: jest.fn(),
-    getEuphonium: jest.fn(),
-    deleteEuphonium: jest.fn(),
-    createEuphonium: jest.fn(),
-    updateEuphonium: jest.fn(),
-    loadEuphoniumsPaginated: jest.fn(),
-  };
   beforeEach(async () => {
     const TestComponent = function () {
       const { loadEuphoniumsPaginated } = useEuphonium(mockRepo);

@@ -147,15 +147,11 @@ describe("Given Gallery", () => {
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
         euphoniums: [],
-        deleteEuphonium: jest.fn(),
-        loadEuphoniumsPaginated: jest.fn(),
-        loadEuphoniumsFiltered: jest.fn(),
-        clearEuphoniumsList: jest.fn(),
       });
 
       (useUsers as jest.Mock).mockReturnValue({
         user: {
-          user: { id: "1" },
+          user: { id: "2" },
         },
       });
 

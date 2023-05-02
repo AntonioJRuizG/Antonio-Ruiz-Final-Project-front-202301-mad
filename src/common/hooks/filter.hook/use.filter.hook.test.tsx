@@ -39,12 +39,12 @@ describe("Given the useFilter hook", () => {
     buttons = await screen.findAllByRole("button");
   });
 
-  describe("When TestComponent is rendered", () => {
+  describe("When TestComponent renders", () => {
     test("then a button should be in the document", async () => {
       expect(buttons[0]).toBeInTheDocument();
     });
 
-    test("then a heading should be in the document with current page value", async () => {
+    test("then a heading should be in the document with current filter value", async () => {
       const element = await screen.findByRole("heading");
       expect(element).toBeInTheDocument();
       const currentPage = screen.getByText("test-filter");
