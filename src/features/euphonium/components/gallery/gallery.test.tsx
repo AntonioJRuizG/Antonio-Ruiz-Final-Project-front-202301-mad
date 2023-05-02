@@ -47,13 +47,11 @@ describe("Given Gallery", () => {
         clearFilter: jest.fn(),
       });
 
-      await act(async () => {
-        await render(
-          <Router>
-            <Gallery></Gallery>
-          </Router>
-        );
-      });
+      render(
+        <Router>
+          <Gallery></Gallery>
+        </Router>
+      );
     });
 
     test("Then it should be called in the document", async () => {

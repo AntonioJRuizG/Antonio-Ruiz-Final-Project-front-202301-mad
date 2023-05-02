@@ -31,10 +31,9 @@ export class EuphoniumRepo {
     offset: string,
     material: string
   ): Promise<EuphoniumResponseBody> {
-    let url = "";
-    material === ""
-      ? (url = this.url + "?offset=" + offset)
-      : (url = this.url + "/filter?offset=" + offset + "&material=" + material);
+    let url = this.url + "?offset=" + offset;
+    material !== "" &&
+      (url = this.url + "/filter?offset=" + offset + "&material=" + material);
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);
