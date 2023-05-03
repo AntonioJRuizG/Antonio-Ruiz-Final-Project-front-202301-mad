@@ -1,14 +1,19 @@
-@import "../../../../style/variables.scss";
+@import "../../../style/variables.scss";
 
 .mainMenu {
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  padding: 0.3rem 0.3rem 0;
   text-align: left;
-  width: 220px;
+  width: 100%;
+
   .mainMenuList {
     display: flex;
     flex-direction: row;
     font-size: 0.8rem;
     font-family: $font_default_family;
-    justify-content: space-between;
+    gap: 1rem;
+    justify-content: flex-start;
     list-style-type: none;
 
     .mainMenuListLink {

@@ -2,8 +2,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { MenuOptions } from "../../../../app/app";
-import { PublicMenu } from "./public.menu";
+import { MenuOptions } from "../../../app/app";
+import { MenuList } from "./menu.list";
 
 describe("Given menu component", () => {
   describe("When it renders and no user is logged", () => {
@@ -17,7 +17,7 @@ describe("Given menu component", () => {
     beforeEach(async () => {
       render(
         <MemoryRouter>
-          <PublicMenu menuOptionsPublic={mockOptions}></PublicMenu>
+          <MenuList menuOptions={mockOptions}></MenuList>
         </MemoryRouter>
       );
     });
