@@ -2,7 +2,7 @@
 
 .mainMenuBtn {
   background-color: white;
-  border: none;
+  border: $border-radius-1;
   color: $text_default_light_color;
   cursor: pointer;
   font-family: $font_default_family;

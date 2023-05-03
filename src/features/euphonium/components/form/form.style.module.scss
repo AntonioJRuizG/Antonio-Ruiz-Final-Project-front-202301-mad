@@ -51,7 +51,7 @@
           rgba(251, 252, 70, 1) 0%,
           rgba(255, 255, 255, 1) 100%
         );
-        border-radius: 0.5rem;
+        border-radius: $border-radius-1;
         margin: auto;
         width: 200px;
         height: 280px;
@@ -74,7 +74,7 @@
           text-align: left;
           .formInput {
             border: 1px solid #b9b9b9;
-            border-radius: 0.5rem;
+            border-radius: $border-radius-1;
             color: $text_default_dark_color;
             font-family: $font_default_family;
             font-size: 0.87rem;
@@ -87,7 +87,7 @@
 
           .formSelector {
             border: 1px solid #b9b9b9;
-            border-radius: 0.5rem;
+            border-radius: $border-radius-1;
             color: $text_default_dark_color;
             font-family: $font_default_family;
             font-size: 0.87rem;
@@ -103,7 +103,7 @@
         button {
           background-color: white;
           border: 1px solid #b9b9b9;
-          border-radius: 1rem;
+          border-radius: $border-radius-1;
           color: $text_default_light_color;
           cursor: pointer;
           font-family: $font_default_family;

@@ -65,7 +65,7 @@
   .showMoreBtn {
     background-color: white;
     border: 1px solid #b9b9b9;
-    border-radius: 1rem;
+    border-radius: $border-radius-1;
     color: $text_default_light_color;
     cursor: pointer;
     font-family: $font_default_family;
