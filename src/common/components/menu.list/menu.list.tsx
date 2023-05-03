@@ -3,7 +3,7 @@ import { MenuOptions } from "../../../app/app";
 
 import style from "./menu.list.style.module.scss";
 
-type NavProps = {
+export type NavProps = {
   menuOptions: MenuOptions[];
 };
 

@@ -5,25 +5,22 @@ import { MemoryRouter } from "react-router-dom";
 import { MenuOptions } from "../../../app/app";
 import { MenuList } from "./menu.list";
 
-describe("Given menu component", () => {
-  describe("When it renders and no user is logged", () => {
-    const mockOptions: MenuOptions[] = [
-      {
-        id: "2",
-        label: "test",
-        path: "/test",
-      },
+describe("Given Menu component", () => {
+  describe("When it renders", () => {
+    const mockMenuOptions: MenuOptions[] = [
+      { id: "1", label: "Galería", path: "/" },
     ];
+
     beforeEach(async () => {
-      render(
+      await render(
         <MemoryRouter>
-          <MenuList menuOptions={mockOptions}></MenuList>
+          <MenuList menuOptions={mockMenuOptions}></MenuList>
         </MemoryRouter>
       );
     });
 
-    test("Then it should render the PublicMenu", async () => {
-      const element = screen.getByText(mockOptions[0].label);
+    test("Then it should be in the document", () => {
+      const element = screen.getByText(mockMenuOptions[0].label);
       expect(element).toBeInTheDocument();
     });
   });
