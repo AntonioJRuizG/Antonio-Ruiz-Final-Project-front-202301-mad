@@ -11,8 +11,8 @@ describe("Given Menu component", () => {
       { id: "1", label: "Galería", path: "/" },
     ];
 
-    beforeEach(async () => {
-      await render(
+    beforeEach(() => {
+      render(
         <MemoryRouter>
           <MenuList menuOptions={mockMenuOptions}></MenuList>
         </MemoryRouter>
