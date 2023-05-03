@@ -2,31 +2,32 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { useUsers } from "../../../features/user/hook/use.user.hook";
 import { Menu } from "./menu";
-import { PrivateMenu } from "./private.menu/private.menu";
-import { PublicMenu } from "./public.menu/public.menu";
+import { MenuList } from "../menu.list/menu.list";
+import { LogoutBtn } from "../../../features/user/components/logout/logout.btn";
 
-jest.mock("./public.menu/public.menu");
-jest.mock("./private.menu/private.menu");
+jest.mock("../menu.list/menu.list");
 jest.mock("../../../features/user/hook/use.user.hook");
+jest.mock("../../../features/user/components/logout/logout.btn");
 
-describe("Given menu component", () => {
-  describe("When it renders and no user is logged", () => {
-    test("Then it should render the PublicMenu", async () => {
+describe("Given Menu component", () => {
+  describe("When it renders and there is no logged user", () => {
+    test("Then it should call the MenuList component", async () => {
       (useUsers as jest.Mock).mockReturnValue({
         user: {},
       });
       render(<Menu></Menu>);
-      expect(PublicMenu).toHaveBeenCalled();
+      expect(MenuList).toHaveBeenCalled();
     });
   });
 
   describe("When it renders and there is a logged user", () => {
-    test("Then it should render the PrivateMenu", async () => {
+    test("Then it should render the MenuList and LogOut button", async () => {
       (useUsers as jest.Mock).mockReturnValue({
         user: { token: "token-test", user: { id: "1" } },
       });
       render(<Menu></Menu>);
-      expect(PrivateMenu).toHaveBeenCalled();
+      expect(MenuList).toHaveBeenCalled();
+      expect(LogoutBtn).toHaveBeenCalled();
     });
   });
 });

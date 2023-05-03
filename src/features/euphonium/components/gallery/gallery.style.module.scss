@@ -46,6 +46,7 @@
 
   .galleryListItem {
     background-color: $gallery_item_background_color;
+    border: 1px solid gray;
     border-radius: 0rem;
     color: $text_default_dark_color;
     height: $min_height_card;
@@ -64,7 +65,7 @@
   .showMoreBtn {
     background-color: white;
     border: 1px solid #b9b9b9;
-    border-radius: 1rem;
+    border-radius: $border-radius-1;
     color: $text_default_light_color;
     cursor: pointer;
     font-family: $font_default_family;
@@ -85,23 +86,4 @@
   min-width: 280px;
   max-width: 400px;
   padding: $body_padding;
-  .mainMenuList {
-    display: flex;
-    flex-direction: row;
-    font-size: 0.8rem;
-    font-family: $font_default_family;
-    gap: 0.3rem;
-    justify-content: left;
-    list-style-type: none;
-
-    .mainMenuListLink {
-      color: $text_default_light_color;
-      text-decoration: none;
-      min-width: 3.5rem;
-    }
-    button {
-      border: none;
-      cursor: pointer;
-    }
-  }
 }

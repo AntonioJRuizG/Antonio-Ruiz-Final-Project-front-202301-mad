@@ -35,7 +35,7 @@
       display: flex;
       flex-direction: column;
       background-color: white;
-      border-radius: 0.6rem;
+      border-radius: $border-radius-1;
       margin: auto;
       min-width: 16.6rem;
       max-width: 20.6rem;
@@ -45,7 +45,7 @@
       text-align: center;
 
       .imgContainer {
-        border-radius: 0.5rem;
+        border-radius: $border-radius-1;
         height: 300px;
         margin-top: 1rem;
         margin-left: auto;
@@ -75,7 +75,7 @@
 
         .detailItem {
           border: 1px solid #b9b9b9;
-          border-radius: 0.5rem;
+          border-radius: $border-radius-1;
           color: $text_default_dark_color;
           font-family: $font_default_family;
           font-size: 0.87rem;
