@@ -46,6 +46,7 @@
 
   .galleryListItem {
     background-color: $gallery_item_background_color;
+    border: 1px solid gray;
     border-radius: 0rem;
     color: $text_default_dark_color;
     height: $min_height_card;
