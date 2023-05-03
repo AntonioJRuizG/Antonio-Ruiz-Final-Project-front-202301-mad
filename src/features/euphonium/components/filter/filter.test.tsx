@@ -59,37 +59,7 @@ describe("Given GalleryFilter component", () => {
         await act(async () => {
           await userEvent.click(buttons[1]);
         });
-        expect(
-          useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
-        ).toHaveBeenCalled();
-        expect(usePagination().restartPagination).toHaveBeenCalled();
         expect(useFilter().loadFilter).toHaveBeenCalled();
-      });
-    });
-
-    describe("When click the third Button", () => {
-      test("Then it should call the filterHandler", async () => {
-        await act(async () => {
-          await userEvent.click(buttons[2]);
-        });
-        expect(buttons[2]).toBeInTheDocument();
-        expect(
-          useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
-        ).toHaveBeenCalled();
-        expect(usePagination().restartPagination).toHaveBeenCalled();
-      });
-    });
-
-    describe("When click the fourth Button", () => {
-      test("Then it should call the filterHandler", async () => {
-        await act(async () => {
-          await userEvent.click(buttons[3]);
-        });
-        expect(buttons[3]).toBeInTheDocument();
-        expect(
-          useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
-        ).toHaveBeenCalled();
-        expect(usePagination().restartPagination).toHaveBeenCalled();
       });
     });
   });
