@@ -4,8 +4,8 @@ import style from "./header.style.module.scss";
 export function Header() {
   return (
     <header className={style.header}>
-      <div>
-        <h1 className={style.headerTitle}>Comunidad del bombardino</h1>
+      <div className={style.headerTitleContainer}>
+        <h1 className={style.headerTitle}>Comunidad Bombardino</h1>
         <CurrentUserName></CurrentUserName>
       </div>
       <div>

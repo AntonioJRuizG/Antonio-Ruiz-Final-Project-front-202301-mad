@@ -9,10 +9,6 @@ export function CurrentUserName() {
   const { user } = useUsers(repoUser);
 
   return (
-    <>
-      {user.user && (
-        <div className={style.userName}>Hola {user.user?.name}!</div>
-      )}
-    </>
+    <>{user.user && <div className={style.userName}>{user.user?.name}</div>}</>
   );
 }

@@ -9,11 +9,15 @@
   height: 6rem;
   padding: $body_padding;
   width: 100%;
-
-  .headerTitle {
-    color: $text_default_light_color;
-    font-family: $font_default_family;
-    font-size: 1.25rem;
-    min-width: 300px;
+  .headerTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .headerTitle {
+      color: $text_default_light_color;
+      font-family: $font_default_family;
+      font-size: 1.25rem;
+      min-width: 300px;
+    }
   }
 }
