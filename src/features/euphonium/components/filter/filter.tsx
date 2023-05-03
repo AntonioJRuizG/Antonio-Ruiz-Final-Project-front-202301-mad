@@ -7,6 +7,22 @@ import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagi
 import style from "./filter.style.module.scss";
 import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
 
+type FilterOptions = {
+  prop: string;
+};
+
+const filterEuphoniumMaterial: FilterOptions[] = [
+  { prop: "Plateado" },
+  { prop: "Dorado" },
+  { prop: "Otros" },
+];
+
+export type MenuOptions = {
+  id: string;
+  label: string;
+  path: string;
+};
+
 export function GalleryFilter() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { clearEuphoniumsList } = useEuphonium(repo);
@@ -39,36 +55,19 @@ export function GalleryFilter() {
             Todos
           </button>
         </li>
-        <li>
-          <button
-            className={style.mainMenuListLink}
-            onClick={() => {
-              filterHandler("Plateado");
-            }}
-          >
-            Plateado
-          </button>
-        </li>
-        <li>
-          <button
-            className={style.mainMenuListLink}
-            onClick={() => {
-              filterHandler("Dorado");
-            }}
-          >
-            Dorado
-          </button>
-        </li>
-        <li>
-          <button
-            className={style.mainMenuListLink}
-            onClick={() => {
-              filterHandler("Otros");
-            }}
-          >
-            Otros
-          </button>
-        </li>
+
+        {filterEuphoniumMaterial.map((item) => (
+          <li key={item.prop}>
+            <button
+              className={style.mainMenuListLink}
+              onClick={() => {
+                filterHandler(item.prop);
+              }}
+            >
+              {item.prop}
+            </button>
+          </li>
+        ))}
       </ul>
     </>
   );
