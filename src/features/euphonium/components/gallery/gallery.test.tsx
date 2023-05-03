@@ -25,7 +25,7 @@ describe("Given Gallery", () => {
   describe("When it is render with euphoniums", () => {
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
-        euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }],
+        euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }, {}, {}],
         deleteEuphonium: jest.fn(),
         loadEuphoniumsPaginated: jest.fn(),
         loadEuphoniumsFiltered: jest.fn(),
@@ -130,7 +130,7 @@ describe("Given Gallery", () => {
     });
 
     describe("When click the seventh Button -show more", () => {
-      test("Then it should call the loadEuphoniumsPaginated if no filter active", async () => {
+      test("Then it should call the loadEuphoniumsPaginated if thre ir at least 4 items", async () => {
         await act(async () => {
           await userEvent.click(buttons[7]);
         });

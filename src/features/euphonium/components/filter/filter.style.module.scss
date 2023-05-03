@@ -1,0 +1,21 @@
+@import "../../../../style/variables.scss";
+
+.mainMenuList {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8rem;
+  font-family: $font_default_family;
+  gap: 0.3rem;
+  justify-content: left;
+  list-style-type: none;
+
+  .mainMenuListLink {
+    color: $text_default_light_color;
+    text-decoration: none;
+    min-width: 3.5rem;
+  }
+  button {
+    border: 1px solid white;
+    cursor: pointer;
+  }
+}
