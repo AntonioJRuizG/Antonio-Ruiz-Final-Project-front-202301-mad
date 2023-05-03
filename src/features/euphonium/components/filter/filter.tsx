@@ -47,7 +47,7 @@ export function GalleryFilter() {
       <ul className={style.mainMenuList}>
         <li>
           <button
-            className={style.mainMenuListLink}
+            className={style.mainMenuListLinkAll}
             onClick={() => {
               removeFilterHandler();
             }}
