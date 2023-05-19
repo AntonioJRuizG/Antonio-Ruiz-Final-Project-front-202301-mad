@@ -30,10 +30,10 @@ Find the repository with the Backend here:
 ## Features
 
 - Gallery of items.
-- Item detacil page.
+- Item detail page.
 - Add/Edit page.
 - Delete item.
-- Pagination: infinite sroll.
+- Pagination.
 - Gallery filter by item characteristics.
 - User registration and login.
 - Feedback to the user.
