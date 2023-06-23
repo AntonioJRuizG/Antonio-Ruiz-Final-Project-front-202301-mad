@@ -22,9 +22,16 @@ export function usePagination() {
     dispatch(ac.loadCreator(prevPage));
   };
 
+  const loadCurrentPage = () => {
+    const currentPage = {
+      currentPage: page.currentPage,
+    };
+    dispatch(ac.loadCreator(currentPage));
+  };
+
   const restartPagination = () => {
     dispatch(ac.restartCreator());
   };
 
-  return { page, nextPage, prevPage, restartPagination };
+  return { page, nextPage, prevPage, restartPagination, loadCurrentPage };
 }
