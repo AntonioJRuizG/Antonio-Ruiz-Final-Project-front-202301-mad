@@ -10,7 +10,6 @@ import { UserRepo } from "../../../user/services/repository/user.repo";
 import { EuphoniumProps } from "../../model/euphonium.model";
 import { MemoryRouter as Router } from "react-router-dom";
 import Modal from "../../../../common/modal/modal";
-import { shallowEqual } from "react-redux";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
