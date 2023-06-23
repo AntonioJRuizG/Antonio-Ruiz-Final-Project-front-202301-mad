@@ -51,9 +51,10 @@ Find the repository with the Backend here:
 - 100% test coverage.
 - SonarCloud code analisys.
 - Zero technical debt.
-- Lighthouse metrics +90%.
+- Lighhouse performance, Accessibility, Best Practices and SEO audit.
 - Error handling.
-- Deploy: Netlify.
+- 404 page.
+- Deployment: Netlify.
 
 ### Backend
 
