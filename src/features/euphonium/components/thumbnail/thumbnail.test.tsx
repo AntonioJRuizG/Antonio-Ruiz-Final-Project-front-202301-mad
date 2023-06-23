@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
@@ -9,11 +9,14 @@ import { Thumbnail } from "./thumbnail";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { EuphoniumProps } from "../../model/euphonium.model";
 import { MemoryRouter as Router } from "react-router-dom";
+import Modal from "../../../../common/modal/modal";
+import { shallowEqual } from "react-redux";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
+jest.mock("../../../../common/modal/modal");
 
 describe("Given Thumbnail component", () => {
   let buttons: HTMLElement[];
@@ -53,13 +56,17 @@ describe("Given Thumbnail component", () => {
 
     describe("When click the second Button", () => {
       test("Then it should call handleDelete", async () => {
-        await act(async () => {
-          await userEvent.click(buttons[1]);
-        });
+        const deleteButton = screen.getByText("✖");
+        await fireEvent.click(deleteButton);
+        expect(Modal).toHaveBeenCalled();
+      });
+    });
 
-        expect(
-          useEuphonium(mockEuphoniumRepo).deleteEuphonium
-        ).toHaveBeenCalled();
+    describe("When click the third Button", () => {
+      test("Then it should call handleDelete", async () => {
+        await act(async () => {
+          await userEvent.click(buttons[2]);
+        });
       });
     });
   });

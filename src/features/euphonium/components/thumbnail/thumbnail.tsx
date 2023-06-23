@@ -3,6 +3,8 @@ import { EuphoniumProps } from "../../model/euphonium.model";
 
 import style from "./thumbnail.style.module.scss";
 import { UserResponseBody } from "../../../user/model/user.model";
+import Modal from "../../../../common/modal/modal";
+import { useState } from "react";
 
 type EuphoniumPropsThumbnail = {
   item: EuphoniumProps;
@@ -15,8 +17,14 @@ export function Thumbnail({
   deleteEuphonium,
   user,
 }: EuphoniumPropsThumbnail) {
-  const handleDelete = () => {
-    deleteEuphonium(item.id, user.token);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const onModal = () => {
+    setShowModal(true);
+  };
+
+  const handleModal = (arg: boolean) => {
+    setShowModal(arg);
   };
 
   return (
@@ -29,7 +37,7 @@ export function Thumbnail({
                 <Link to={`/editar/${item.id}`}>🖊</Link>
               </button>
 
-              <button className={style.cardButton} onClick={handleDelete}>
+              <button className={style.cardButton} onClick={onModal}>
                 ✖
               </button>
             </>
@@ -57,6 +65,11 @@ export function Thumbnail({
           </ul>
         </div>
       </Link>
+      <Modal
+        customFunction={() => deleteEuphonium(item.id, user.token)}
+        showModal={showModal}
+        handleModal={handleModal}
+      ></Modal>
     </>
   );
 }
