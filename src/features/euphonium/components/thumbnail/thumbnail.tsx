@@ -3,8 +3,6 @@ import { EuphoniumProps } from "../../model/euphonium.model";
 
 import style from "./thumbnail.style.module.scss";
 import { UserResponseBody } from "../../../user/model/user.model";
-import Modal from "../../../../common/modal/modal";
-import { useState } from "react";
 
 type EuphoniumPropsThumbnail = {
   item: EuphoniumProps;
@@ -17,14 +15,8 @@ export function Thumbnail({
   deleteEuphonium,
   user,
 }: EuphoniumPropsThumbnail) {
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  const onModal = () => {
-    setShowModal(true);
-  };
-
-  const handleModal = (arg: boolean) => {
-    setShowModal(arg);
+  const handleDelete = () => {
+    deleteEuphonium(item.id, user.token);
   };
 
   return (
@@ -37,7 +29,7 @@ export function Thumbnail({
                 <Link to={`/editar/${item.id}`}>🖊</Link>
               </button>
 
-              <button className={style.cardButton} onClick={onModal}>
+              <button className={style.cardButton} onClick={handleDelete}>
                 ✖
               </button>
             </>
@@ -47,7 +39,7 @@ export function Thumbnail({
       <Link to={`/detalles/${item.id}`}>
         <div className={style.galleryImgBox}>
           <div className={style.galleryListItemImg}>
-            <img height={160} width={100} src={item.image} alt={item.alias} />
+            <img height={160} src={item.image} alt={item.alias} />
           </div>
         </div>
         <div className={style.galleryListItemInfo}>
@@ -65,11 +57,6 @@ export function Thumbnail({
           </ul>
         </div>
       </Link>
-      <Modal
-        customFunction={() => deleteEuphonium(item.id, user.token)}
-        showModal={showModal}
-        handleModal={handleModal}
-      ></Modal>
     </>
   );
 }
