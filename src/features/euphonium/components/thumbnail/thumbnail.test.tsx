@@ -9,11 +9,13 @@ import { Thumbnail } from "./thumbnail";
 import { UserRepo } from "../../../user/services/repository/user.repo";
 import { EuphoniumProps } from "../../model/euphonium.model";
 import { MemoryRouter as Router } from "react-router-dom";
+// TEMP. import Modal from "../../../../common/modal/modal";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
 jest.mock("../../hook/use.euphonium.hook");
 jest.mock("../../../user/hook/use.user.hook");
+jest.mock("../../../../common/modal/modal");
 
 describe("Given Thumbnail component", () => {
   let buttons: HTMLElement[];
@@ -51,6 +53,14 @@ describe("Given Thumbnail component", () => {
       expect(buttons[0]).toBeInTheDocument();
     });
 
+    /* TEMP describe("When click the second Button", () => {
+      test("Then it should call handleDelete", async () => {
+        const deleteButton = screen.getByText("✖");
+        await fireEvent.click(deleteButton);
+        expect(Modal).toHaveBeenCalled();
+      });
+    }); */
+
     describe("When click the second Button", () => {
       test("Then it should call handleDelete", async () => {
         await act(async () => {
@@ -60,6 +70,14 @@ describe("Given Thumbnail component", () => {
         expect(
           useEuphonium(mockEuphoniumRepo).deleteEuphonium
         ).toHaveBeenCalled();
+      });
+    });
+
+    describe("When click the third Button", () => {
+      test("Then it should call handleDelete", async () => {
+        await act(async () => {
+          await userEvent.click(buttons[2]);
+        });
       });
     });
   });

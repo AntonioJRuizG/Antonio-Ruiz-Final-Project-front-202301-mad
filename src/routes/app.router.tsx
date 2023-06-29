@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import ErrorPage from "../pages/error/error";
 
 const GalleryPage = lazy(() => import("../pages/gallery/gallery.page"));
 const AddPage = lazy(() => import("../pages/add/add.page"));
@@ -32,6 +33,7 @@ export function AppRouter() {
           path={"/editar/:instrumentEditId"}
           element={<EditPage></EditPage>}
         ></Route>
+        <Route path={"*"} element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </Suspense>
   );
