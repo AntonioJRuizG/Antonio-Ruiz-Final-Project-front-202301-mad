@@ -20,6 +20,7 @@ export default function Detail() {
           <div className={style.imgContainer}>
             <img
               height={300}
+              width={200}
               className={style.detailImg}
               src={storeEuphonium?.image}
               alt={"Imagen del bombardino de " + storeEuphonium?.alias}

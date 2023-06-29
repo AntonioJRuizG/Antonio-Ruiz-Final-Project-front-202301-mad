@@ -47,7 +47,7 @@ export function Thumbnail({
       <Link to={`/detalles/${item.id}`}>
         <div className={style.galleryImgBox}>
           <div className={style.galleryListItemImg}>
-            <img height={160} src={item.image} alt={item.alias} />
+            <img height={160} width={100} src={item.image} alt={item.alias} />
           </div>
         </div>
         <div className={style.galleryListItemInfo}>
