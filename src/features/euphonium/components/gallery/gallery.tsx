@@ -34,17 +34,16 @@ export function Gallery() {
       </nav>
       <section className={style.gallery}>
         <h1 className={style.galleryTitle}>Galería</h1>
-        <ul className={style.galleryList}>
+        <div className={style.galleryList}>
           {euphoniums.map((item: EuphoniumProps) => (
-            <li key={item.id} className={style.galleryListItem}>
-              <Thumbnail
-                item={item}
-                deleteEuphonium={deleteEuphonium}
-                user={user}
-              ></Thumbnail>
-            </li>
+            <Thumbnail
+              key={item.id}
+              item={item}
+              deleteEuphonium={deleteEuphonium}
+              user={user}
+            ></Thumbnail>
           ))}
-        </ul>
+        </div>
         <div className={style.btnContainer}>
           <NavButtons></NavButtons>
         </div>

@@ -20,7 +20,7 @@ export function Thumbnail({
   };
 
   return (
-    <>
+    <div className={style.galleryListItem}>
       <div>
         <p className={style.galleryListItemButtons}>
           {user && user.user?.id === item.creator?.id && (
@@ -57,6 +57,6 @@ export function Thumbnail({
           </ul>
         </div>
       </Link>
-    </>
+    </div>
   );
 }

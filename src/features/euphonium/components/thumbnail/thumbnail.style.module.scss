@@ -4,6 +4,16 @@ li {
   list-style-type: none;
 }
 
+.galleryListItem {
+  background-color: $gallery_item_background_color;
+  border: 1px solid #ebebeb;
+  border-radius: 0rem;
+  color: $text_default_dark_color;
+  height: $min_height_card;
+  padding: 1rem;
+  text-align: center;
+}
+
 .galleryListItemButtons {
   height: 1.7rem;
   margin-bottom: 0.7rem;

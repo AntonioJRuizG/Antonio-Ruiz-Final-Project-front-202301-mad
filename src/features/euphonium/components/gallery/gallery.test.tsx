@@ -18,7 +18,12 @@ describe("Given Gallery", () => {
   describe("When it is render with euphoniums", () => {
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
-        euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }, {}, {}],
+        euphoniums: [
+          { id: "1", creator: { id: "1" } },
+          { id: "2" },
+          { id: "3" },
+          { id: "4" },
+        ],
         deleteEuphonium: jest.fn(),
       });
 
