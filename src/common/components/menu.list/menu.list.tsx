@@ -11,7 +11,7 @@ export function MenuList({ menuOptions }: NavProps) {
   return (
     <>
       {menuOptions.map((item) => (
-        <li key={item.id} className={style.mainMenuListLi}>
+        <li key={item.id}>
           <Link to={item.path} className={style.mainMenuListLink}>
             {item.label}
           </Link>
