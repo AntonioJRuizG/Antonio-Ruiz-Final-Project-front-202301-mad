@@ -24,3 +24,8 @@ li {
     transition: ease 0.5s;
   }
 }
+
+.activeLink {
+  background-color: $primary-color;
+  color: $quaternary-color;
+}
