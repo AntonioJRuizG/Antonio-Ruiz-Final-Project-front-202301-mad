@@ -2,7 +2,6 @@
 
 .header {
   text-align: left;
-  background-color: $backgroud-color;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -27,6 +26,7 @@
       color: $quaternary-color;
       font-family: $font_default_family;
       font-size: 48px;
+      font-weight: normal;
       min-width: 300px;
     }
 
