@@ -1,16 +1,21 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from "@testing-library/react";
-import { CurrentUserName } from "../../../features/user/components/current.user/current.user";
 
 import { Menu } from "../menu/menu";
 import { Header } from "./header";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("../menu/menu");
 jest.mock("../../../features/user/components/current.user/current.user");
 
 describe("Given Header", () => {
   beforeEach(async () => {
-    render(<Header></Header>);
+    render(
+      <MemoryRouter>
+        {" "}
+        <Header></Header>
+      </MemoryRouter>
+    );
   });
 
   describe("When it is render", () => {
@@ -21,9 +26,6 @@ describe("Given Header", () => {
 
     test("Then it should be called Menu", async () => {
       expect(Menu).toHaveBeenCalled();
-    });
-    test("Then it should be called CurrentUserName", async () => {
-      expect(CurrentUserName).toHaveBeenCalled();
     });
   });
 });

@@ -18,7 +18,7 @@ export function LogoutBtn() {
 
   return (
     <button className={style.mainMenuBtn} onClick={() => handlerLogout()}>
-      Cerrar sesión
+      Log out
     </button>
   );
 }
