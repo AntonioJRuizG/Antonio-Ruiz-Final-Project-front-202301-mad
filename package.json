@@ -49,6 +49,13 @@
     ]
   },
   "devDependencies": {
+    "husky": "^8.0.3",
     "sass": "^1.59.3"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/index.tsx",
+      "<rootDir>/src/store/store.ts"
+    ]
   }
 }
