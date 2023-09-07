@@ -3,21 +3,45 @@ import { render, screen } from "@testing-library/react";
 
 import { Featured } from "./featured";
 import { MemoryRouter } from "react-router-dom";
+import { useUsers } from "../../../features/user/hook/use.user.hook";
 
-jest.mock("../menu/menu");
+jest.mock("../../../features/user/hook/use.user.hook");
 jest.mock("../../../features/user/components/current.user/current.user");
 
-describe("Given Header", () => {
-  beforeEach(async () => {
-    render(
-      <MemoryRouter>
-        <Featured></Featured>
-      </MemoryRouter>
-    );
+describe("Given Featured", () => {
+  describe("When it renders with user", () => {
+    beforeEach(async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {
+          user: { id: "1" },
+        },
+      });
+      render(
+        <MemoryRouter>
+          <Featured></Featured>
+        </MemoryRouter>
+      );
+    });
+
+    test("Then it should be called", async () => {
+      const element = screen.getAllByRole("heading");
+      expect(element[0]).toBeInTheDocument();
+    });
   });
 
-  describe("When it is render", () => {
-    test("Then it should be called", async () => {
+  describe("When it renders without user", () => {
+    beforeEach(async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {},
+      });
+      render(
+        <MemoryRouter>
+          <Featured></Featured>
+        </MemoryRouter>
+      );
+    });
+
+    test("Then it should be called without button", async () => {
       const element = screen.getAllByRole("heading");
       expect(element[0]).toBeInTheDocument();
     });
