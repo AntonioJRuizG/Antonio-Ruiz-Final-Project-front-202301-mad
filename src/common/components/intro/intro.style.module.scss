@@ -1,0 +1,62 @@
+@import "../../../style/variables.scss";
+
+.intro {
+  align-items: center;
+  background-color: $quaternary-color;
+  color: $nonary-color;
+  display: flex;
+  flex-direction: column;
+  font-family: $font_default_family;
+  gap: 1rem;
+  height: fit-content;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  padding-left: $body_padding;
+  padding-right: $body_padding;
+  padding-top: 2rem;
+  width: 100%;
+
+  .introTitle {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 0;
+  }
+
+  .introStepsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+
+    .introStepsCard {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 180px;
+
+      .cardTitle {
+        font-size: 20px;
+      }
+
+      .cardDescription {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .intro {
+    .introStepsContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+  }
+}

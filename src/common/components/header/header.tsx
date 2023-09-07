@@ -4,8 +4,8 @@ import { Menu } from "../menu/menu";
 import style from "./header.style.module.scss";
 import SearchIcon from "../../icons/search.icon";
 import { UserRepo } from "../../../features/user/services/repository/user.repo";
-import { useMemo } from "react";
 import { useUsers } from "../../../features/user/hook/use.user.hook";
+import { useMemo } from "react";
 
 export const menuOptionsPublic: MenuOptions[] = [
   { id: "1", label: "Login", path: "/iniciar_sesion" },
