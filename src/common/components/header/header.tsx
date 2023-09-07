@@ -3,13 +3,23 @@ import { MenuOptions } from "../../../app/app";
 import { Menu } from "../menu/menu";
 import style from "./header.style.module.scss";
 import SearchIcon from "../../icons/search.icon";
+import { UserRepo } from "../../../features/user/services/repository/user.repo";
+import { useMemo } from "react";
+import { useUsers } from "../../../features/user/hook/use.user.hook";
 
 export const menuOptionsPublic: MenuOptions[] = [
   { id: "1", label: "Login", path: "/iniciar_sesion" },
   { id: "2", label: "Register free", path: "/registro" },
 ];
 
+export const menuOptionsLogged: MenuOptions[] = [
+  { id: "1", label: "Dashboard", path: "/user_dashboard" },
+];
+
 export function Header() {
+  const repoUser = useMemo(() => new UserRepo(), []);
+  const { user } = useUsers(repoUser);
+
   return (
     <header className={style.header}>
       <div>
@@ -29,14 +39,19 @@ export function Header() {
             </button>
           </div>
           <div className={style.headerButtons}>
-            {menuOptionsPublic.map((menuOpt) => (
-              <Link key={menuOpt.id} to={menuOpt.path}>
-                {menuOpt.label}
-              </Link>
-            ))}
+            {user?.user
+              ? menuOptionsLogged.map((menuOpt) => (
+                  <Link key={menuOpt.id} to={menuOpt.path}>
+                    {menuOpt.label}
+                  </Link>
+                ))
+              : menuOptionsPublic.map((menuOpt) => (
+                  <Link key={menuOpt.id} to={menuOpt.path}>
+                    {menuOpt.label}
+                  </Link>
+                ))}
           </div>
         </div>
-        {/* <CurrentUserName></CurrentUserName> */}
       </div>
     </header>
   );
