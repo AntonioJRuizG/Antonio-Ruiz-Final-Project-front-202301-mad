@@ -24,6 +24,11 @@ const options: Option[] = [
   { id: 1, label: "Silver", value: "Plateado", category: "Material" },
   { id: 2, label: "Gold", value: "Dorado", category: "Material" },
   { id: 3, label: "Other", value: "Otros", category: "Material" },
+  { id: 4, label: "Miraphone", value: "Miraphone", category: "Manufacturer" },
+  { id: 5, label: "Yamaha", value: "Yamaha", category: "Manufacturer" },
+  { id: 6, label: "Eastmann", value: "Eastmann", category: "Manufacturer" },
+  { id: 7, label: "3", value: "3", category: "Valves" },
+  { id: 8, label: "4", value: "4", category: "Valves" },
 ];
 
 export function GalleryFilter() {
@@ -34,10 +39,11 @@ export function GalleryFilter() {
   const { loadFilter, filter } = useFilter();
 
   const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+    const optionId: number = Number(event.target.value);
+    const option: Option = options.find((item) => item.id === optionId)!;
     clearEuphoniumsList();
     restartPagination();
-    loadFilter(value);
+    loadFilter(option.value, option.category.toLocaleLowerCase());
   };
 
   return (
@@ -56,7 +62,7 @@ export function GalleryFilter() {
                 {options
                   .filter((option) => option.category === category)
                   .map((option) => (
-                    <option key={option.id} value={option.value}>
+                    <option key={option.id} value={option.id}>
                       {option.label}
                     </option>
                   ))}

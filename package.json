@@ -55,7 +55,8 @@
   "jest": {
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/index.tsx",
-      "<rootDir>/src/store/store.ts"
+      "<rootDir>/src/store/store.ts",
+      "<rootDir>/src/common/icons"
     ]
   }
 }

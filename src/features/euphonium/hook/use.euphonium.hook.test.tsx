@@ -53,7 +53,7 @@ const mockStore = configureStore({
       },
     ],
     page: { currentPage: 1 },
-    filter: { filter: "" },
+    filter: { filter: "", category: "" },
   },
 });
 
@@ -204,7 +204,7 @@ describe("Given the useEuphonium hook with another page different to 1 and a fil
     },
     preloadedState: {
       page: { currentPage: 2 },
-      filter: { filter: "test" },
+      filter: { filter: "test", category: "test" },
     },
   });
 
@@ -214,7 +214,7 @@ describe("Given the useEuphonium hook with another page different to 1 and a fil
       return (
         <div>
           <button
-            onClick={() => loadEuphoniumsPaginated("test-offset", "")}
+            onClick={() => loadEuphoniumsPaginated("test-offset", "", "")}
           ></button>
         </div>
       );

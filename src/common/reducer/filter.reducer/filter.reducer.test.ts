@@ -4,6 +4,7 @@ import { filterReducer } from "./filter.reducer";
 describe("Given filterReducer", () => {
   const filter = {
     filter: "test-filter",
+    category: "test-category",
   };
 
   describe("When it is called", () => {
@@ -12,7 +13,7 @@ describe("Given filterReducer", () => {
         filterReducer(undefined, {
           type: undefined,
         })
-      ).toEqual({ filter: "" });
+      ).toEqual({ filter: "", category: "" });
     });
 
     test("Then it should handle loadCreator and load filter", () => {
@@ -20,7 +21,10 @@ describe("Given filterReducer", () => {
     });
 
     test("Then it should handle clearCreator and clear filter", () => {
-      expect(filterReducer(filter, ac.clearCreator())).toEqual({ filter: "" });
+      expect(filterReducer(filter, ac.clearCreator())).toEqual({
+        filter: "",
+        category: "",
+      });
     });
   });
 });

@@ -43,7 +43,7 @@ describe("Given GalleryFilter component", () => {
     });
 
     test("Then it should call the handle change function when option selected", () => {
-      fireEvent.change(elements[0], { target: { value: "Plateado" } });
+      fireEvent.change(elements[0], { target: { value: "1" } });
       expect(
         useEuphonium(mockEuphoniumRepo).clearEuphoniumsList
       ).toHaveBeenCalled();

@@ -36,12 +36,14 @@ describe("Given EuphoniumRepo", () => {
       });
       const result = await euphoniumMockRepo.loadEuphoniumsPaginated(
         "test-offset",
-        ""
+        "",
+        "test-category"
       );
       expect(result).toEqual({ alias: "test" });
       const resultFilter = await euphoniumMockRepo.loadEuphoniumsPaginated(
         "test-offset",
-        "test-filter"
+        "test-filter",
+        "test-category"
       );
       expect(resultFilter).toEqual({ alias: "test" });
     });
@@ -50,6 +52,7 @@ describe("Given EuphoniumRepo", () => {
       global.fetch = jest.fn().mockResolvedValue("error");
       const result = euphoniumMockRepo.loadEuphoniumsPaginated(
         "test-offset",
+        "",
         ""
       );
       await expect(result).rejects.toThrow();

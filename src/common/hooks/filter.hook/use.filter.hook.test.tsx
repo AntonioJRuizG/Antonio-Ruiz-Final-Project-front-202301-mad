@@ -13,6 +13,7 @@ describe("Given the useFilter hook", () => {
     preloadedState: {
       filter: {
         filter: "test-filter",
+        category: "test-category",
       },
     },
   });
@@ -24,7 +25,9 @@ describe("Given the useFilter hook", () => {
       return (
         <>
           <h1>{filter.filter}</h1>
-          <button onClick={() => loadFilter(filter.filter)}></button>
+          <button
+            onClick={() => loadFilter(filter.filter, filter.category)}
+          ></button>
           <button onClick={() => clearFilter()}></button>
         </>
       );
