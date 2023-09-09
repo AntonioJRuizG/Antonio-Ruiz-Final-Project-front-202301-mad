@@ -11,6 +11,7 @@ import { useMemo } from "react";
 
 import style from "./gallery.style.module.scss";
 import { NavButtons } from "../navigation.buttons/navigation.buttons";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 export function Gallery() {
   const repoUser = useMemo(() => new UserRepo(), []);
@@ -19,33 +20,34 @@ export function Gallery() {
   const repoEuphoniums = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums, deleteEuphonium } = useEuphonium(repoEuphoniums);
 
-  if (!euphoniums.length) {
-    return (
-      <div className={style.spin}>
-        <LoadingSpin></LoadingSpin>
-      </div>
-    );
-  }
+  const { page } = usePagination();
 
   return (
     <>
       <section className={style.gallery}>
         <div className={style.galleryMenu}>
-          <nav className={style.mainMenu}>
+          <nav className={style.filterContainer}>
             <GalleryFilter></GalleryFilter>
           </nav>
-          <p className={style.galleryPage}>1 of 35 pages</p>
+          <p className={style.galleryPage}>{page.currentPage} of 8 pages</p>
         </div>
-        <div className={style.galleryList}>
-          {euphoniums.map((item: EuphoniumProps) => (
-            <Thumbnail
-              key={item.id}
-              item={item}
-              deleteEuphonium={deleteEuphonium}
-              user={user}
-            ></Thumbnail>
-          ))}
-        </div>
+        {!euphoniums.length ? (
+          <div className={style.spin}>
+            <LoadingSpin></LoadingSpin>
+          </div>
+        ) : (
+          <div className={style.galleryList}>
+            {euphoniums.map((item: EuphoniumProps) => (
+              <Thumbnail
+                key={item.id}
+                item={item}
+                deleteEuphonium={deleteEuphonium}
+                user={user}
+              ></Thumbnail>
+            ))}
+          </div>
+        )}
+
         <div className={style.btnContainer}>
           <NavButtons></NavButtons>
         </div>

@@ -1,9 +1,5 @@
 @import "../../../../style/variables.scss";
 
-.galleryTitle {
-  display: none;
-}
-
 .spin {
   display: flex;
   justify-content: center;
@@ -14,11 +10,7 @@
   background-color: $denary-color;
   font-family: $font_default_family;
   margin: auto;
-  min-height: 100vh;
-  padding-right: $body_padding;
-  padding-left: $body_padding;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem $body_padding;
 
   li {
     list-style-type: none;
@@ -46,46 +38,20 @@
 
 .btnContainer {
   min-width: 195px;
-  max-width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: auto;
-  .showMoreBtn {
-    background-color: white;
-    border: 1px solid #b9b9b9;
-    border-radius: $border-radius-1;
-    color: $text_default_light_color;
-    cursor: pointer;
-    font-family: $font_default_family;
-    font-size: 0.8rem;
-    height: 2rem;
-    margin: 1rem 2rem 0 2rem;
-    width: 8rem;
-    @media (max-width: 670px) {
-      margin: 1rem 0.2rem 0 0.2rem;
-      width: 5rem;
-    }
-  }
-}
-
-.mainMenu {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  min-width: 280px;
-  max-width: 400px;
-  margin-bottom: 1rem;
 }
 
 .galleryMenu {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.galleryPage {
-  font-family: $font_default_family;
-  color: $quinary-color;
-  font-size: 14px;
+  .galleryPage {
+    font-family: $font_default_family;
+    color: $quinary-color;
+    font-size: 14px;
+  }
 }

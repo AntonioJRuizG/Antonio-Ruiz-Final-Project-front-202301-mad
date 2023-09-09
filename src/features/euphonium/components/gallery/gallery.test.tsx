@@ -4,6 +4,7 @@ import { useUsers } from "../../../user/hook/use.user.hook";
 import { useEuphonium } from "../../hook/use.euphonium.hook";
 import { Gallery } from "./gallery";
 import { LoadingSpin } from "../../../../common/components/loading/loading";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
 jest.mock("../../services/repository/euphonium.repo");
 jest.mock("../../../user/services/repository/user.repo");
@@ -13,6 +14,7 @@ jest.mock("../../../../common/components/loading/loading");
 jest.mock("../thumbnail/thumbnail");
 jest.mock("../navigation.buttons/navigation.buttons");
 jest.mock("../filter/filter");
+jest.mock("../../../../common/hooks/pagination.hook/use.pagination.hook");
 
 describe("Given Gallery", () => {
   describe("When it is render with euphoniums", () => {
@@ -31,6 +33,13 @@ describe("Given Gallery", () => {
         user: {
           user: { id: "1" },
         },
+      });
+
+      (usePagination as jest.Mock).mockReturnValue({
+        page: { currentPage: 2 },
+        nextPage: jest.fn(),
+        prevPage: jest.fn(),
+        restartPagination: jest.fn(),
       });
 
       render(<Gallery></Gallery>);
