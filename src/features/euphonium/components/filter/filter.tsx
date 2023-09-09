@@ -6,17 +6,6 @@ import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagi
 
 import style from "./filter.style.module.scss";
 import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
-import CaretIcon from "../../../../common/icons/caret.icon";
-
-type FilterOptions = {
-  prop: string;
-};
-
-const filterEuphoniumMaterial: FilterOptions[] = [
-  { prop: "Plateado" },
-  { prop: "Dorado" },
-  { prop: "Otros" },
-];
 
 export type MenuOptions = {
   id: string;
@@ -24,52 +13,58 @@ export type MenuOptions = {
   path: string;
 };
 
+interface Option {
+  id: number;
+  label: string;
+  value: string;
+  category: string;
+}
+
+const options: Option[] = [
+  { id: 1, label: "Silver", value: "Plateado", category: "Material" },
+  { id: 2, label: "Gold", value: "Dorado", category: "Material" },
+  { id: 3, label: "Other", value: "Otros", category: "Material" },
+];
+
 export function GalleryFilter() {
   const repo = useMemo(() => new EuphoniumRepo(), []);
   const { clearEuphoniumsList } = useEuphonium(repo);
 
   const { restartPagination } = usePagination();
-  const { clearFilter, loadFilter } = useFilter();
+  const { loadFilter, filter } = useFilter();
 
-  const filterHandler = (value: string) => {
+  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
     clearEuphoniumsList();
     restartPagination();
     loadFilter(value);
   };
 
-  const removeFilterHandler = () => {
-    clearEuphoniumsList();
-    clearFilter();
-    restartPagination();
-  };
-
   return (
     <>
-      <ul className={style.mainMenuList}>
-        <li>
-          <button
-            className={style.mainMenuListLinkAll}
-            onClick={() => {
-              removeFilterHandler();
-            }}
-          >
-            Todos <CaretIcon></CaretIcon>
-          </button>
-        </li>
-
-        {filterEuphoniumMaterial.map((item) => (
-          <li key={item.prop}>
-            <button
-              className={style.mainMenuListLink}
-              onClick={() => {
-                filterHandler(item.prop);
-              }}
-            >
-              {item.prop}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <select
+          className={style.mainMenuListLink}
+          id="selector"
+          value={filter?.filter || ""}
+          onChange={handleOptionChange}
+        >
+          <option value="">Filter by</option>
+          {Array.from(new Set(options.map((option) => option.category))).map(
+            (category) => (
+              <optgroup label={category} key={category}>
+                {options
+                  .filter((option) => option.category === category)
+                  .map((option) => (
+                    <option key={option.id} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+              </optgroup>
+            )
+          )}
+        </select>
+      </div>
     </>
   );
 }

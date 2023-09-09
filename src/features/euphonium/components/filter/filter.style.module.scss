@@ -1,39 +1,21 @@
 @import "../../../../style/variables.scss";
 
-.mainMenuList {
-  display: flex;
-  flex-direction: row;
+select {
+  background-color: $eleventh-color;
+  color: $quaternary-color;
+  width: 120px;
+  padding: 10px;
+  border: none;
   font-size: 14px;
-  font-family: $font_default_family;
-  gap: 0.3rem;
-  justify-content: left;
-  list-style-type: none;
-  align-items: flex-start;
+  outline: none;
+  cursor: pointer;
+}
 
-  .mainMenuListLink {
-    color: $quaternary-color;
-    text-decoration: none;
-    min-width: 3.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-  button {
-    background-color: $eleventh-color;
-    color: $quaternary-color;
-    border: 1px solid rgb(212, 212, 212);
-    cursor: pointer;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
+optgroup {
+  font-weight: bold;
+}
 
-  .mainMenuListLinkAll {
-    display: flex;
-    border: 1px solid rgb(243, 243, 243);
-    font-size: 14px;
-    white-space: nowrap;
-  }
+option {
+  cursor: pointer;
+  height: 20px;
 }
