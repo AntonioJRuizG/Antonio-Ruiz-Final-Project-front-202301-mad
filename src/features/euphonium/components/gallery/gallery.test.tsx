@@ -37,8 +37,8 @@ describe("Given Gallery", () => {
     });
 
     test("Then it should be called in the document", async () => {
-      const element = screen.getByRole("heading");
-      expect(element).toBeInTheDocument();
+      const element = screen.getAllByRole("generic");
+      expect(element[0]).toBeInTheDocument();
     });
 
     describe("When it renders with empty euphoniums state", () => {

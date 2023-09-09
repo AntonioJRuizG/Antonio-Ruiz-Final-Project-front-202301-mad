@@ -19,7 +19,16 @@ describe("Given the navButtons component", () => {
   describe("When it renders", () => {
     beforeEach(async () => {
       (useEuphonium as jest.Mock).mockReturnValue({
-        euphoniums: [{ id: "1", creator: { id: "1" } }, { id: "2" }, {}, {}],
+        euphoniums: [
+          { id: "1", creator: { id: "1" } },
+          { id: "2" },
+          { id: "3" },
+          { id: "4" },
+          { id: "1", creator: { id: "1" } },
+          { id: "2" },
+          { id: "3" },
+          { id: "4" },
+        ],
       });
 
       (usePagination as jest.Mock).mockReturnValue({

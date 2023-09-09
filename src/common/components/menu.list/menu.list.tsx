@@ -13,8 +13,6 @@ export function MenuList({ menuOptions }: NavProps) {
 
   const handleSetActiveLink = (path: string) => {
     setActiveLink(path);
-    console.log(path);
-    console.log(activeLink);
   };
 
   return (

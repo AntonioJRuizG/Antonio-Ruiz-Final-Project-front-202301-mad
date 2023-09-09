@@ -6,6 +6,7 @@ import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagi
 
 import style from "./filter.style.module.scss";
 import { useFilter } from "../../../../common/hooks/filter.hook/use.filter.hook";
+import CaretIcon from "../../../../common/icons/caret.icon";
 
 type FilterOptions = {
   prop: string;
@@ -52,7 +53,7 @@ export function GalleryFilter() {
               removeFilterHandler();
             }}
           >
-            Todos
+            Todos <CaretIcon></CaretIcon>
           </button>
         </li>
 

@@ -29,11 +29,13 @@ export function Gallery() {
 
   return (
     <>
-      <nav className={style.mainMenu}>
-        <GalleryFilter></GalleryFilter>
-      </nav>
       <section className={style.gallery}>
-        <h1 className={style.galleryTitle}>Galería</h1>
+        <div className={style.galleryMenu}>
+          <nav className={style.mainMenu}>
+            <GalleryFilter></GalleryFilter>
+          </nav>
+          <p className={style.galleryPage}>1 of 35 pages</p>
+        </div>
         <div className={style.galleryList}>
           {euphoniums.map((item: EuphoniumProps) => (
             <Thumbnail
