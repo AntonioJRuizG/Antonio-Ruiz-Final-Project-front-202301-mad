@@ -3,6 +3,8 @@ import { EuphoniumProps } from "../../model/euphonium.model";
 
 import style from "./thumbnail.style.module.scss";
 import { UserResponseBody } from "../../../user/model/user.model";
+import EditIcon from "../../../../common/icons/edit.icon";
+import RemoveIcon from "../../../../common/icons/remove.icon";
 
 type EuphoniumPropsThumbnail = {
   item: EuphoniumProps;
@@ -20,41 +22,33 @@ export function Thumbnail({
   };
 
   return (
-    <div className={style.galleryListItem}>
-      <div>
-        <p className={style.galleryListItemButtons}>
-          {user && user.user?.id === item.creator?.id && (
-            <>
-              <button className={style.cardButton}>
-                <Link to={`/editar/${item.id}`}>🖊</Link>
-              </button>
-
-              <button className={style.cardButton} onClick={handleDelete}>
-                ✖
-              </button>
-            </>
-          )}
-        </p>
-      </div>
+    <div className={style.card}>
       <Link to={`/detalles/${item.id}`}>
-        <div className={style.galleryImgBox}>
-          <div className={style.galleryListItemImg}>
-            <img height={160} src={item.image} alt={item.alias} />
+        <div className={style.cardImgContainer}>
+          <div className={style.cardImgWrapper}>
+            <img height={160} width={160} src={item.image} alt={item.alias} />
+
+            <div className={style.cardHoverContent}>
+              {user && user.user?.id === item.creator?.id && (
+                <div className={style.cardUserBtns}>
+                  <button className={style.cardButton}>
+                    <Link to={`/editar/${item.id}`}>
+                      <EditIcon></EditIcon>
+                    </Link>
+                  </button>
+
+                  <button className={style.cardButton} onClick={handleDelete}>
+                    <RemoveIcon></RemoveIcon>
+                  </button>
+                </div>
+              )}
+
+              <div className={style.cardInfo}>
+                <p className={style.cardInfoAlias}>{item.alias}</p>
+                <p className={style.cardInfoCreator}>{item.creator?.name}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={style.galleryListItemInfo}>
-          <ul>
-            <li>
-              <p className={style.galleryListItemInfoAlias}>
-                <span>Alias:</span> {item.alias}
-              </p>
-            </li>
-            <li>
-              <p className={style.galleryListItemInfoCreator}>
-                <span>Miembro:</span> {item.creator?.name}
-              </p>
-            </li>
-          </ul>
         </div>
       </Link>
     </div>
