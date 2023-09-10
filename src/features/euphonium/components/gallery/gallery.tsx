@@ -31,7 +31,9 @@ export function Gallery() {
           <nav className={style.filterContainer}>
             <GalleryFilter></GalleryFilter>
           </nav>
-          <p className={style.galleryPage}>{page.currentPage} of 8 pages</p>
+          <p className={style.galleryPage}>
+            {page.currentPage} of {3} pages
+          </p>
         </div>
         {!euphoniums.length ? (
           <div className={style.spin}>
