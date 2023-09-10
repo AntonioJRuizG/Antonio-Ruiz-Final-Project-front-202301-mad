@@ -3,8 +3,10 @@ import App from "./app";
 import { AppRouter } from "../routes/app.router";
 import { MemoryRouter as Router } from "react-router-dom";
 import { Header } from "../common/components/header/header";
+import { Featured } from "../common/components/featured/featured";
 
 jest.mock("../common/components/header/header");
+jest.mock("../common/components/featured/featured");
 jest.mock("../routes/app.router");
 
 describe("Given App component", () => {
@@ -18,6 +20,7 @@ describe("Given App component", () => {
 
       expect(Header).toHaveBeenCalled();
       expect(AppRouter).toHaveBeenCalled();
+      expect(Featured).toHaveBeenCalled();
     });
   });
 });

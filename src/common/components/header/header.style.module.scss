@@ -2,23 +2,126 @@
 
 .header {
   text-align: left;
-  background-color: $backgroud-color;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
   height: fit-content;
-  padding: $body_padding;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   width: 100%;
+  border-top: 5px solid $primary-color;
+
   .headerTitleContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: $tertiary-color;
+    height: 90px;
+    padding-right: $body_padding;
+    padding-left: $body_padding;
+
     .headerTitle {
-      color: $text_default_light_color;
+      color: $quaternary-color;
       font-family: $font_default_family;
-      font-size: 2rem;
+      font-size: 48px;
+      font-weight: normal;
       min-width: 300px;
-      font-weight: bold;
+    }
+
+    .headerButtonsContainer {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 40px;
+
+      .headerButtons {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        height: 40px;
+        align-items: center;
+
+        a {
+          font-family: $font_default_family;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          background-color: $octonary-color;
+          height: 40px;
+          color: $quaternary-color;
+          text-decoration: none;
+          padding: 0 1.5rem 0 1.5rem;
+          transition: ease 0.2s;
+          white-space: nowrap;
+        }
+
+        a:nth-child(2) {
+          background-color: $primary-color;
+        }
+
+        a:hover {
+          background-color: $secondary-color;
+          color: $quaternary-color;
+          transition: ease 0.5s;
+        }
+      }
+
+      .headerSearchBoxContainer {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .headerSearchBox {
+        height: 40px;
+        width: 250px;
+        font-family: $font_default_family;
+        background-color: $quinary-color;
+        color: $quaternary-color;
+        font-size: 14px;
+        padding-left: 1.5rem;
+        border: none;
+        outline: none;
+      }
+
+      .headerSearchBtn {
+        height: 40px;
+        width: 40px;
+        border-radius: 0px;
+        border: none;
+        background-color: $quinary-color;
+        color: $senary-color;
+        cursor: pointer;
+      }
+
+      .headerSearchBox::placeholder {
+        color: $senary-color;
+      }
+
+      .headerSearchBox:focus {
+        border: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .header {
+    .headerTitleContainer {
+      align-items: flex-start;
+      flex-direction: column;
+      height: 190px;
+      justify-content: flex-start;
+
+      .headerButtonsContainer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   }
 }

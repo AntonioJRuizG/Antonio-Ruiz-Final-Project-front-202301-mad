@@ -16,7 +16,7 @@ export class EuphoniumRepo {
   constructor() {
     this.url =
       "https://antonio-ruiz-final-project-2023.onrender.com/bombardinos";
-    // RENDER URL this.url = "http://localhost:4500/bombardinos";
+    // TEMP. this.url = "http://localhost:4500/bombardinos";
   }
 
   async loadEuphoniums(): Promise<EuphoniumResponseBody> {
@@ -29,11 +29,19 @@ export class EuphoniumRepo {
 
   async loadEuphoniumsPaginated(
     offset: string,
-    material: string
+    filterValue: string,
+    category: string
   ): Promise<EuphoniumResponseBody> {
     let url = this.url + "?offset=" + offset;
-    material !== "" &&
-      (url = this.url + "/filter?offset=" + offset + "&material=" + material);
+    filterValue !== "" &&
+      (url =
+        this.url +
+        "/filter?offset=" +
+        offset +
+        "&" +
+        category +
+        "=" +
+        filterValue);
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error http fetch" + resp.status + "" + resp.statusText);

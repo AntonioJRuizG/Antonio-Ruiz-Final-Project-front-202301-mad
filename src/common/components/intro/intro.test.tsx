@@ -1,16 +1,14 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from "@testing-library/react";
 
-import { Menu } from "../menu/menu";
-import { Header } from "./header";
+import { Intro } from "./intro";
 import { MemoryRouter } from "react-router-dom";
 import { useUsers } from "../../../features/user/hook/use.user.hook";
 
-jest.mock("../menu/menu");
-jest.mock("../../../features/user/components/current.user/current.user");
 jest.mock("../../../features/user/hook/use.user.hook");
+jest.mock("../../../features/user/components/current.user/current.user");
 
-describe("Given Header", () => {
+describe("Given Featured", () => {
   describe("When it renders with user", () => {
     beforeEach(async () => {
       (useUsers as jest.Mock).mockReturnValue({
@@ -20,18 +18,14 @@ describe("Given Header", () => {
       });
       render(
         <MemoryRouter>
-          <Header></Header>
+          <Intro></Intro>
         </MemoryRouter>
       );
     });
 
     test("Then it should be called", async () => {
-      const element = screen.getByRole("heading");
-      expect(element).toBeInTheDocument();
-    });
-
-    test("Then it should be called Menu", async () => {
-      expect(Menu).toHaveBeenCalled();
+      const element = screen.getAllByRole("heading");
+      expect(element[0]).toBeInTheDocument();
     });
   });
 
@@ -42,18 +36,14 @@ describe("Given Header", () => {
       });
       render(
         <MemoryRouter>
-          <Header></Header>
+          <Intro></Intro>
         </MemoryRouter>
       );
     });
 
-    test("Then it should be called", async () => {
-      const element = screen.getByRole("heading");
-      expect(element).toBeInTheDocument();
-    });
-
-    test("Then it should be called Menu", async () => {
-      expect(Menu).toHaveBeenCalled();
+    test("Then it should be called without button", async () => {
+      const element = screen.getAllByRole("heading");
+      expect(element[0]).toBeInTheDocument();
     });
   });
 });

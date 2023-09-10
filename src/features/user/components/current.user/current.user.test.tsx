@@ -22,4 +22,18 @@ describe("Given Header", () => {
       expect(element[0]).toBeInTheDocument();
     });
   });
+
+  describe("When it renders without user", () => {
+    beforeEach(async () => {
+      (useUsers as jest.Mock).mockReturnValue({
+        user: {},
+      });
+      render(<CurrentUserName></CurrentUserName>);
+    });
+
+    test("Then it should be called", async () => {
+      const element = screen.getAllByRole("generic");
+      expect(element[0]).toBeInTheDocument();
+    });
+  });
 });

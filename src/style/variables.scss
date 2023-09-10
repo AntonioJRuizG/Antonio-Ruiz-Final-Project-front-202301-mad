@@ -1,13 +1,25 @@
 // Overall site style
 $backgroud_color: #fafafa;
-$body_padding: 1rem;
+$body_padding: 3rem;
 $border-radius-1: 0;
-$font_default_family: "Raleway", sans-serif;
+$font_default_family: sans-serif;
 $gallery_item_background_color: white;
 $min_screen_with: 300px;
 $text_default_light_color: #000000;
 $text_default_dark_color: #000000;
 $default_grey_color: #eeeeee;
+
+$primary-color: #cf2121;
+$secondary-color: #242a32;
+$tertiary-color: #323a45;
+$quaternary-color: #ffffff;
+$quinary-color: #4b5159;
+$senary-color: #a6a9ae;
+$septenary-color: #999999;
+$octonary-color: #7d8289;
+$nonary-color: #444444;
+$denary-color: #f5f5f5;
+$eleventh-color: #696d73;
 
 // Gallery cards
 $min_height_card: 300px;

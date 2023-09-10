@@ -11,6 +11,9 @@ import { useMemo } from "react";
 
 import style from "./gallery.style.module.scss";
 import { NavButtons } from "../navigation.buttons/navigation.buttons";
+import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
+
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export function Gallery() {
   const repoUser = useMemo(() => new UserRepo(), []);
@@ -19,32 +22,40 @@ export function Gallery() {
   const repoEuphoniums = useMemo(() => new EuphoniumRepo(), []);
   const { euphoniums, deleteEuphonium } = useEuphonium(repoEuphoniums);
 
-  if (!euphoniums.length) {
-    return (
-      <div className={style.spin}>
-        <LoadingSpin></LoadingSpin>
-      </div>
-    );
-  }
+  const { page } = usePagination();
 
   return (
     <>
-      <nav className={style.mainMenu}>
-        <GalleryFilter></GalleryFilter>
-      </nav>
       <section className={style.gallery}>
-        <h1 className={style.galleryTitle}>Galería</h1>
-        <ul className={style.galleryList}>
-          {euphoniums.map((item: EuphoniumProps) => (
-            <li key={item.id} className={style.galleryListItem}>
-              <Thumbnail
-                item={item}
-                deleteEuphonium={deleteEuphonium}
-                user={user}
-              ></Thumbnail>
-            </li>
-          ))}
-        </ul>
+        <div className={style.galleryMenu}>
+          <nav className={style.filterContainer}>
+            <GalleryFilter></GalleryFilter>
+          </nav>
+          <p className={style.galleryPage}>
+            {page.currentPage} of {3} pages
+          </p>
+        </div>
+        {!euphoniums.length ? (
+          <div className={style.spin}>
+            <LoadingSpin></LoadingSpin>
+          </div>
+        ) : (
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 1, 550: 2, 800: 3, 1000: 4 }}
+          >
+            <Masonry gutter="5px" className={style.galleryList}>
+              {euphoniums.map((item: EuphoniumProps) => (
+                <Thumbnail
+                  key={item.id}
+                  item={item}
+                  deleteEuphonium={deleteEuphonium}
+                  user={user}
+                ></Thumbnail>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        )}
+
         <div className={style.btnContainer}>
           <NavButtons></NavButtons>
         </div>

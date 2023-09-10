@@ -1,26 +1,21 @@
 @import "../../../../style/variables.scss";
 
-.mainMenuList {
-  display: flex;
-  flex-direction: row;
-  font-size: 0.8rem;
-  font-family: $font_default_family;
-  gap: 0.3rem;
-  justify-content: left;
-  list-style-type: none;
+select {
+  background-color: $eleventh-color;
+  color: $quaternary-color;
+  width: 120px;
+  padding: 10px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
 
-  .mainMenuListLink {
-    color: $text_default_light_color;
-    text-decoration: none;
-    min-width: 3.5rem;
-  }
-  button {
-    background-color: white;
-    border: 1px solid rgb(212, 212, 212);
-    cursor: pointer;
-  }
+optgroup {
+  font-weight: bold;
+}
 
-  .mainMenuListLinkAll {
-    border: 1px solid rgb(243, 243, 243);
-  }
+option {
+  cursor: pointer;
+  height: 20px;
 }

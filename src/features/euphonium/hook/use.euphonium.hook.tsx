@@ -19,7 +19,11 @@ export function useEuphonium(repo: EuphoniumRepo) {
       return;
     }
 
-    loadEuphoniumsPaginated(page.currentPage.toString(), filter.filter);
+    loadEuphoniumsPaginated(
+      page.currentPage.toString(),
+      filter.filter,
+      filter.category
+    );
   }, [page.currentPage, filter.filter]);
 
   const loadEuphoniums = async () => {
@@ -85,9 +89,17 @@ export function useEuphonium(repo: EuphoniumRepo) {
     }
   };
 
-  const loadEuphoniumsPaginated = async (offset: string, material: string) => {
+  const loadEuphoniumsPaginated = async (
+    offset: string,
+    material: string,
+    category: string
+  ) => {
     try {
-      const data = await repo.loadEuphoniumsPaginated(offset, material);
+      const data = await repo.loadEuphoniumsPaginated(
+        offset,
+        material,
+        category
+      );
       dispatch(ac.loadCreator(data.results));
     } catch (error) {
       console.log((error as Error).message);
