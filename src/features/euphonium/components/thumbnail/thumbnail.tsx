@@ -22,7 +22,7 @@ export function Thumbnail({
   };
 
   return (
-    <div className={style.card}>
+    <div className={style.card + "grid-item"}>
       <Link to={`/detalles/${item.id}`}>
         <div className={style.cardImgContainer}>
           <div className={style.cardImgWrapper}>

@@ -13,6 +13,8 @@ import style from "./gallery.style.module.scss";
 import { NavButtons } from "../navigation.buttons/navigation.buttons";
 import { usePagination } from "../../../../common/hooks/pagination.hook/use.pagination.hook";
 
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+
 export function Gallery() {
   const repoUser = useMemo(() => new UserRepo(), []);
   const { user } = useUsers(repoUser);
@@ -36,16 +38,20 @@ export function Gallery() {
             <LoadingSpin></LoadingSpin>
           </div>
         ) : (
-          <div className={style.galleryList}>
-            {euphoniums.map((item: EuphoniumProps) => (
-              <Thumbnail
-                key={item.id}
-                item={item}
-                deleteEuphonium={deleteEuphonium}
-                user={user}
-              ></Thumbnail>
-            ))}
-          </div>
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 1, 550: 2, 800: 3, 1000: 4 }}
+          >
+            <Masonry gutter="5px" className={style.galleryList}>
+              {euphoniums.map((item: EuphoniumProps) => (
+                <Thumbnail
+                  key={item.id}
+                  item={item}
+                  deleteEuphonium={deleteEuphonium}
+                  user={user}
+                ></Thumbnail>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
         )}
 
         <div className={style.btnContainer}>
